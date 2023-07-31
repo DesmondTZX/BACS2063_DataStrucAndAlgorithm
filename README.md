@@ -1,1 +1,1 @@
-# Data Sturucture Assignment
+# Data Structure Assignment
