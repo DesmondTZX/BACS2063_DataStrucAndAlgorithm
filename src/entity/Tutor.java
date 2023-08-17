@@ -1,4 +1,4 @@
-package tutormanagement;
+package entity;
 
 public class Tutor {
     
