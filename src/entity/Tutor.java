@@ -14,6 +14,17 @@ public class Tutor {
     public Tutor() {
         
     }
+
+    public Tutor(String tutorId, String tutorName, char tutorGender, String tutorEmail, String position, String faculty, String department, String campus) {
+        this.tutorId = tutorId;
+        this.tutorName = tutorName;
+        this.tutorGender = tutorGender;
+        this.tutorEmail = tutorEmail;
+        this.position = position;
+        this.faculty = faculty;
+        this.department = department;
+        this.campus = campus;
+    }
     
     public String getTutorId() {
         return tutorId;

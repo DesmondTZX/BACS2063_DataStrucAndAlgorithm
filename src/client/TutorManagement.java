@@ -1,20 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package client;
 
-/**
- *
- * @author Desmond
- */
+import adt.*;
+import boundary.*;
+import entity.*;
+
 public class TutorManagement {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         // TODO code application logic here
+        // based on what i see in ECBDemo, i think i will probably do it via that method as well, will put code here latr
     }
     
 }
