@@ -1,6 +1,6 @@
 package entity;
 
-public class Tutor {
+public class Tutor implements Comparable<Tutor> {
     
     private String tutorId;
     private String tutorName;
@@ -24,6 +24,11 @@ public class Tutor {
         this.faculty = faculty;
         this.department = department;
         this.campus = campus;
+    }
+    
+    @Override
+    public int compareTo(Tutor o) {
+        return this.tutorName.compareTo(o.tutorName);
     }
     
     public String getTutorId() {
