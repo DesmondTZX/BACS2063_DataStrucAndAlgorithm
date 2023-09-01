@@ -1,5 +1,8 @@
 package adt;
 
+import entity.Tutor;
+import java.util.Iterator;
+
 /**
  * SortedArrayList - Implements the ADT Sorted List using an array. - Note: Some
  * methods are not implemented yet and have been left as practical exercises
@@ -113,5 +116,10 @@ public class SortedArrayList<T extends Comparable<T>> implements SortedListInter
       array[index] = array[index + 1];
     }
   }
+
+    @Override
+    public Iterator<Tutor> getIterator() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
 }

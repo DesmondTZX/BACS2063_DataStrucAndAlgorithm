@@ -7,10 +7,14 @@ public class TutorManagementUI {
     
     Scanner scanner = new Scanner(System.in);
     
-    public int getMenuChoice() {
+   public int getMenuChoice() {
     System.out.println("\nMAIN MENU");
-    System.out.println("1. Add new product");
-    System.out.println("2. List all products");
+    System.out.println("1. Add new tutor");
+    System.out.println("2. List all tutors");
+    System.out.println("3. Remove a tutor");
+    System.out.println("4. Modify a tutor");
+    System.out.println("5. List all tutors based on fliter criteria");
+    System.out.println("6. Generate Report");
     System.out.println("0. Quit");
     System.out.print("Enter choice: ");
     int choice = scanner.nextInt();
@@ -37,7 +41,9 @@ public class TutorManagementUI {
   }
 
   public String generateProductCode() {
-    throw new UnsupportedOperationException();
+    int idCounter = 1;
+    System.out.print("Tutor ID generated.\n");
+    return "p" + idCounter++;
   } // TODO: just randomly generate the Id for this i think, may need to see how tutor id looks like
 
   public String inputTutorName() {
@@ -96,5 +102,23 @@ public class TutorManagementUI {
     String tutorCampus = inputTutorCampus();
     System.out.println();
     return new Tutor(tutorId, tutorName, tutorGender, tutorEmail, tutorPosition, tutorFaculty, tutorDepartment, tutorCampus);
+  }
+  
+  public int selectCriteria() {
+    System.out.println("\nSelect Criteria:");
+    System.out.println("1. Tutor ID");
+    System.out.println("2. Tutor Name");
+    System.out.println("3. Tutor Gender");
+    System.out.println("4. Tutor Email");
+    System.out.println("5. Tutor Position");
+    System.out.println("6. Tutor Faculty");
+    System.out.println("7. Tutor Department");
+    System.out.println("8. Tutor Campus");
+    System.out.println("0. Back to Main Menu");
+    System.out.print("Enter choice: ");
+    int choice = scanner.nextInt();
+    scanner.nextLine();
+    System.out.println();
+    return choice;
   }
 }

@@ -1,5 +1,8 @@
 package adt;
 
+import entity.Tutor;
+import java.util.Iterator;
+
 public class SortedLinkedList<T extends Comparable<T>> implements SortedListInterface<T> {
 
   private Node firstNode;
@@ -77,6 +80,11 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedListInte
       currentNode = currentNode.next;
     }
     return outputStr;
+  }
+
+  @Override
+  public Iterator<Tutor> getIterator() {
+    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
   }
 
   private class Node {

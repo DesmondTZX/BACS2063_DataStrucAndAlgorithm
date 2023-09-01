@@ -4,6 +4,7 @@ import adt.*;
 import boundary.TutorManagementUI;
 import dao.TutorDAO;
 import entity.*;
+import java.util.Iterator;
 
 public class TutorManagement {
     
@@ -15,17 +16,29 @@ public class TutorManagement {
         tutorList = tutorDAO.retrieveFromFile();
     }
     
-    public void runProductMaintenance() {
+    public void runTutorManagement() {
         int choice = tutorUI.getMenuChoice();
 
         while (choice != 0) {
             switch (choice) {
                 case 1:
-                    //addNewTutor();
-                    //tutorUI.listAllTutors(getAllTutors());
+                    addNewTutor();
+                    displayTutors();
                     break;
                 case 2:
-                    //tutorUI.listAllTutors(getAllTutors());
+                    displayTutors();
+                    break;
+                case 3:
+                    // delete entry
+                    break;
+                case 4:
+                    // modify entry
+                    break;
+                case 5:
+                    // list entry based on criteria
+                    break;
+                case 6:
+                    // generate report
                     break;
                 default:
                     System.out.println("\nInvalid choice");
@@ -37,11 +50,40 @@ public class TutorManagement {
 
         System.out.println("\nExiting system");
     }
+    
+    public void addNewTutor() {
+        Tutor newTutor = tutorUI.inputTutorDetails();
+        tutorList.add(newTutor);
+        tutorDAO.saveToFile(tutorList);
+    }
 
+    public String getAllTutors() {
+        String outputStr = "";
+        Iterator<Tutor> tutorIterator = tutorList.getIterator();
 
+        while (tutorIterator.hasNext()) {
+            Tutor tutor = tutorIterator.next();
+            outputStr += tutor + "\n";
+        }
+
+        return outputStr;
+    }
+
+    public void displayTutors() {
+        tutorUI.listAllTutors(getAllTutors());
+    }
+    
+    public void deleteTutor() {
+        
+    }
+    
+    public void editTutor() {
+        
+    }
+  
     public static void main(String[] args) {
-        // TODO code application logic here
-        // based on what i see in ECBDemo, i think i will probably do it via that method as well, will put code here latr
+        TutorManagement tutorManagement = new TutorManagement();
+        tutorManagement.runTutorManagement();
     }
     
 }
