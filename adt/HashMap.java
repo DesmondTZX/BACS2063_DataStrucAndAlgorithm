@@ -1,6 +1,8 @@
 package adt;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class HashMap<K, V> implements HashMapInterface<K, V> {
 
@@ -63,6 +65,28 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
             entries[index] = null;
             count--;
         }
+    }
+
+    @Override
+    public List<K> keys() {
+        List<K> keys = new ArrayList<>();
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] != null) {
+                keys.add(entries[i].key);
+            }
+        }
+        return keys;
+    }
+
+    @Override
+    public List<V> values() {
+        List<V> values = new ArrayList<>();
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] != null) {
+                values.add(entries[i].value);
+            }
+        }
+        return values;
     }
 
     @Override
