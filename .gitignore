@@ -72,6 +72,9 @@ dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+nbproject
+manifest.mf
+build.xml
 
 ##############################
 ## Visual Studio Code
