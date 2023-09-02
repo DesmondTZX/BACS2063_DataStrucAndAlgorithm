@@ -42,9 +42,11 @@ public class TutorManagementUI {
 
   public String generateProductCode() {
     int idCounter = 1;
+    String formattedID = String.format("p%04d", idCounter); // %04d means a 4-digit integer with leading zeros
+    idCounter++; // Increment the counter for the next ID
     System.out.print("Tutor ID generated.\n");
-    return "p" + idCounter++;
-  } // TODO: made this look better ig 
+    return formattedID;
+  }
   
   public String inputTutorID() {
     System.out.print("Enter tutor ID for the Tutors you want to remove/modify: ");
@@ -55,10 +57,10 @@ public class TutorManagementUI {
   public String inputTutorName() {
     System.out.print("Enter tutor name: ");
     String name = scanner.nextLine();
+    System.out.print("Tutor Email generated.\n");
     return name;
   }
   
-  // TODO: gender and email will have to be input manually but will do some format checkings
   public char inputTutorGender() {
     System.out.print("Enter tutor gender: ");
     char gender = scanner.next().charAt(0);
@@ -66,12 +68,18 @@ public class TutorManagementUI {
     return gender;
   }
   
-  public String inputTutorEmail() {
-    System.out.print("Enter tutor email: ");
-    String email = scanner.nextLine();
+  public String generateTutorEmail(String tutorName) {
+    // Remove spaces and convert to lowercase
+    String formattedName = tutorName.replaceAll(" ", "").toLowerCase();
+
+    String domain = "tarc.edu.my";
+
+    // Construct the email address by combining the formatted name and domain
+    String email = formattedName + "@" + domain;
+
     return email;
   }
-  // TODO: gender and email will have to be input manually but will do some format checkings
+
   
   public String inputTutorPosition() {
     System.out.print("Enter tutor position: ");
@@ -101,7 +109,7 @@ public class TutorManagementUI {
     String tutorId = generateProductCode();
     String tutorName = inputTutorName();
     char tutorGender = inputTutorGender();
-    String tutorEmail = inputTutorEmail();
+    String tutorEmail = generateTutorEmail(tutorName);
     String tutorPosition = inputTutorPosition();
     String tutorFaculty = inputTutorFaculty();
     String tutorDepartment = inputTutorDepartment();

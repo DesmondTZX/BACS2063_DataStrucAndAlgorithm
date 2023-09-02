@@ -126,7 +126,6 @@ public class Tutor implements Serializable, Comparable<Tutor> {
 
     @Override
     public String toString() {
-        /* return String.format("%6d %-8s %10.2f", id, name, basicSalary); */
         return String.format("%6s %6s %6c %6s %6s %6s %6s %6s", tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus);
     }
 }

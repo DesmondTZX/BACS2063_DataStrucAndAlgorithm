@@ -37,30 +37,34 @@ public class SortedLinkedList<T extends Comparable<T>> implements Serializable, 
 
   @Override
   public boolean remove(T anEntry) {
-    boolean stop = false;
-    Node previousNode = null;
-    Node currentNode = firstNode;
-    
-    while (currentNode != null && !stop) {
-        if (currentNode.data.compareTo(anEntry) >= 0) {
-            stop = true;
-        } else {
-            previousNode = currentNode;
-            currentNode = currentNode.next;
-        }
+    if (isEmpty()) {
+        return false; // List is empty, nothing to remove
     }
-    
-    if (currentNode != null && currentNode.data.compareTo(anEntry) == 0) {
-        if (currentNode == firstNode) {
-            firstNode = currentNode.next;
-        } else {
-            previousNode.next = currentNode.next;
-        }
+
+    // Check if the first node matches
+    if (firstNode.data.compareTo(anEntry) == 0) {
+        firstNode = firstNode.next;
         numberOfEntries--;
         return true;
     }
-    return false;
+
+    Node previousNode = firstNode;
+    Node currentNode = firstNode.next;
+
+    while (currentNode != null && currentNode.data.compareTo(anEntry) < 0) {
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+    }
+
+    if (currentNode != null && currentNode.data.compareTo(anEntry) == 0) {
+        previousNode.next = currentNode.next;
+        numberOfEntries--;
+        return true;
+    }
+
+    return false; // Element not found
   }
+
 
   @Override
   public boolean contains(T anEntry) {
@@ -138,11 +142,6 @@ public class SortedLinkedList<T extends Comparable<T>> implements Serializable, 
     private Node(T data) {
       this.data = data;
       next = null;
-    }
-
-    private Node(T data, Node next) {
-      this.data = data;
-      this.next = next;
     }
   }
 }
