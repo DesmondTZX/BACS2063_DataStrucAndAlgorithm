@@ -11,6 +11,10 @@ public class Programme implements Comparable<Programme> {
 
     private ArrayList<TutorialGroup> tutorialGroup;
 
+    public Programme(int code) {
+        this.code = code;
+    }
+
     public Programme(int code, String name, String type, int duration, String faculty) {
         this.code = code;
         this.name = name;
@@ -25,6 +29,56 @@ public class Programme implements Comparable<Programme> {
         this.type = type;
         this.duration = duration;
         this.faculty = faculty;
+        this.tutorialGroup = tutorialGroup;
+    }
+
+
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    public String getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(String faculty) {
+        this.faculty = faculty;
+    }
+
+    public ArrayList<TutorialGroup> getTutorialGroup() {
+        return tutorialGroup;
+    }
+
+    public void setTutorialGroup(ArrayList<TutorialGroup> tutorialGroup) {
         this.tutorialGroup = tutorialGroup;
     }
 
