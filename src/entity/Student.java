@@ -5,13 +5,14 @@
  */
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Jack
  */
-public class Student implements Comparable<Student>{
+public class Student implements Serializable, Comparable<Student>{
     
     private String studentName;
     private int studentID;
@@ -93,15 +94,12 @@ public class Student implements Comparable<Student>{
             return false;
         }
         final Student other = (Student) obj;
-        if (!Objects.equals(this.studentID, other.studentID)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.studentID, other.studentID);
     }
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%6d %6d %6d %6d %6d",  studentName,  studentID,  studentEmail,  mode,  gender);
+        return super.toString() + String.format("%6s %6d %6s %6s %6s",  studentName,  studentID,  studentEmail,  mode,  gender);
     }
 
     @Override

@@ -31,18 +31,18 @@ public class TutorGroupManagementUI {
         System.out.println();
         return choice;
     }
+    
+    public int inputStudentID() {
+        System.out.print("Enter student id: ");
+        int studentID = scanner.nextInt();
+        return studentID;
+    }
 
     //input student detail
     public String inputStudentName() {
         System.out.print("Enter student name: ");
         String studentName = scanner.nextLine();
         return studentName;
-    }
-
-    public int inputStudentID() {
-        System.out.print("Enter student id: ");
-        int studentID = scanner.nextInt();
-        return studentID;
     }
 
     public String inputStudentEmail() {
@@ -64,20 +64,20 @@ public class TutorGroupManagementUI {
     }
 
     public Student inputStudentDetails() {
-        System.out.println("\nPlease key in the student details:\n");
+        System.out.println("\nPlease key in the student details:");
         String studentName = inputStudentName();
         int studentID = inputStudentID();
         String studentEmail = inputStudentEmail();
-        String gender = inputGender();
         String mode = inputMode();
+        String gender = inputGender();
 
         System.out.println();
         System.out.println("Student Details");
-        System.out.println("Student Name:" + studentName);
-        System.out.println("Student ID:" + studentID);
-        System.out.println("Student Email:" + studentEmail);
-        System.out.println("Student Gender:" + gender);
-        System.out.println("Mode:" + mode);
+        System.out.println("Student Name: " + studentName);
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Student Email: " + studentEmail);
+        System.out.println("Mode: " + mode);
+        System.out.println("Student Gender: " + gender);
         return new Student(studentName, studentID, studentEmail, mode, gender);
     }
 
@@ -141,6 +141,13 @@ public class TutorGroupManagementUI {
         return choice;
     }
 
-   
+    
+    public void listAllStudent(String outputStr){
+        System.out.println("\nList of Students:\n" + outputStr);
+    }
+    
+    
+
+
 
 }

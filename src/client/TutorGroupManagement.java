@@ -5,11 +5,14 @@
  */
 package client;
 
+import adt.*;
 import boundary.*;
 import dao.*;
+import entity.Student;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.util.Iterator;
 import utility.*;
 
 /**
@@ -18,45 +21,51 @@ import utility.*;
  */
 public class TutorGroupManagement {
 
-    private TutorGroupManagementUI tutGroupUI = new TutorGroupManagementUI();
-    private DisplayStudentList disStudList = new DisplayStudentList();
+    private final TutorGroupManagementUI tutGroupUI = new TutorGroupManagementUI();
+    private final StudentDAO studDAO = new StudentDAO("Student.dat");
+    private SortedListInterface<Student> studentList = new SortedList<>();
 
+    public TutorGroupManagement() {
+        studentList = studDAO.retrieveFromFile();
+    }
+    
     public void mainMenu() {
         int choice = 0;
         do {
             choice = tutGroupUI.getMenuChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     addNewStudent();
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     cls();
                     removeStudent();
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     cls();
                     changeStudentTutGroup();
-                    break;
-                case 4:
+                }
+                case 4 -> {
                     cls();
                     findStudent();
-                    break;
-                case 5:
+                }
+                case 5 -> {
                     cls();
-                    listAllStudent();
-                    break;
-                case 6:
+                    dispStudent();
+                }
+                case 6 -> {
                     cls();
                     generateReport();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
 
             }
         } while (choice != 0);
@@ -64,23 +73,26 @@ public class TutorGroupManagement {
     }
 
     public void addNewStudent() {
-        tutGroupUI.inputStudentDetails();
+        Student newStud = tutGroupUI.inputStudentDetails();
+        studentList.add(newStud);
+        studDAO.saveToFile(studentList);
         int choice = 0;
         do {
             choice = tutGroupUI.getAddChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
     }
@@ -90,18 +102,19 @@ public class TutorGroupManagement {
         do {
             choice = tutGroupUI.getRemoveChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
     }
@@ -111,18 +124,19 @@ public class TutorGroupManagement {
         do {
             choice = tutGroupUI.getChangeChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
     }
@@ -132,40 +146,42 @@ public class TutorGroupManagement {
         do {
             choice = tutGroupUI.getFindChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
     }
 
-    public void listAllStudent() {
-        
+    public void dispStudent() {
+        tutGroupUI.listAllStudent(getAllStudents());
         int choice = 0;
         do {
             choice = tutGroupUI.getListChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
     }
@@ -175,21 +191,34 @@ public class TutorGroupManagement {
         do {
             choice = tutGroupUI.getReportChoice();
             switch (choice) {
-                case 0:
+                case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
-                    break;
-                case 1:
+                }
+                case 1 -> {
                     cls();
                     mainMenu();
-                    break;
-                default:
+                }
+                default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                }
             }
         } while (choice != 0);
 
+    }
+    
+    public String getAllStudents() {
+        String outputStr = "";
+        Iterator<Student> studIterator = studentList.getIterator();
+
+        while (studIterator.hasNext()) {
+            Student stud = studIterator.next();
+            outputStr += stud + "\n";
+        }
+
+        return outputStr;
     }
 
     //clear screen

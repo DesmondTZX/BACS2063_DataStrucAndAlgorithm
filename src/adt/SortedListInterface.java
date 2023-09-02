@@ -5,6 +5,8 @@
  */
 package adt;
 
+import java.util.Iterator;
+
 /**
  *
  * @author Jack
@@ -14,7 +16,7 @@ public interface SortedListInterface<T extends Comparable<T>> {
     
     public boolean add(T newEntry);
     
-    public T remove(int givenPosition);
+    public boolean remove(T anEntry);
     
     public void clear();
     
@@ -25,6 +27,8 @@ public interface SortedListInterface<T extends Comparable<T>> {
     public int getNumberOfEntries();
     
     public boolean isEmpty();
+    
+    public Iterator<T> getIterator();
 
  
     
