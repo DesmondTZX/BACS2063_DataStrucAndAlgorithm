@@ -44,6 +44,10 @@ public class TutorManagement {
                 case 6:
                     // generate report
                     break;
+                // generate dummy data, comment out later
+                case 7:
+                    generateDummyData();
+                    break;
                 default:
                     System.out.println("\nInvalid choice");
                     break;
@@ -58,6 +62,20 @@ public class TutorManagement {
     public void addNewTutor() {
         Tutor newTutor = tutorUI.inputTutorDetails();
         tutorList.add(newTutor);
+        tutorDAO.saveToFile(tutorList);
+    }
+    
+    // Comment this out later, this is used to generate dummy data for testing purposes.
+    public void generateDummyData() {
+        /* tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus */
+        tutorList.add(new Tutor("p0001", "David Hill", 'F', "plchow@tarc.edu.my", "Assistant Professor", "Faculty of Accountancy, Finance And Business", "", "Kuala Lumpur Branch"));
+        tutorList.add(new Tutor("p0002", "Alice Smith", 'M', "asmith@tarc.edu.my", "Associate Professor", "Faculty of Computer Science", "", "Kuala Lumpur Branch"));
+        tutorList.add(new Tutor("p0003", "John Doe", 'M', "jdoe@tarc.edu.my", "Professor", "Faculty of Engineering", "", "Penang Branch"));
+        tutorList.add(new Tutor("p0004", "Mary Johnson", 'F', "mjohnson@tarc.edu.my", "Lecturer", "Faculty of Medicine", "", "Johor Branch"));
+        tutorList.add(new Tutor("p0005", "Sarah Lee", 'F', "slee@tarc.edu.my", "Associate Professor", "Faculty of Arts and Humanities", "", "Kuala Lumpur Branch"));
+        tutorList.add(new Tutor("p0006", "Michael Wang", 'M', "mwang@tarc.edu.my", "Assistant Professor", "Faculty of Science", "", "Penang Branch"));
+        tutorList.add(new Tutor("p0007", "Lisa Chen", 'F', "lchen@tarc.edu.my", "Lecturer", "Faculty of Law", "", "Kuala Lumpur Branch"));
+        tutorList.add(new Tutor("p0008", "Robert Tan", 'M', "rtan@tarc.edu.my", "Professor", "Faculty of Social Sciences", "", "Johor Branch"));
         tutorDAO.saveToFile(tutorList);
     }
 
@@ -84,7 +102,7 @@ public class TutorManagement {
     }
     
     public void editTutor() {
-        
+        Tutor editTutor = new Tutor(tutorUI.inputTutorID());
     }
     
     public void displaySpecificTutors() {

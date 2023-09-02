@@ -1,8 +1,9 @@
 package entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Tutor implements Comparable<Tutor> {
+public class Tutor implements Serializable, Comparable<Tutor> {
     
     private String tutorId;
     private String tutorName;
@@ -56,7 +57,7 @@ public class Tutor implements Comparable<Tutor> {
     
     @Override
     public int compareTo(Tutor o) {
-        return this.tutorName.compareTo(o.tutorName);
+        return this.tutorId.compareTo(o.tutorId);
     }
     
     public String getTutorId() {
@@ -125,6 +126,7 @@ public class Tutor implements Comparable<Tutor> {
 
     @Override
     public String toString() {
-        return "Tutor{" + "tutorId=" + tutorId + ", tutorName=" + tutorName + ", tutorGender=" + tutorGender + ", tutorEmail=" + tutorEmail + ", position=" + position + ", faculty=" + faculty + ", department=" + department + ", campus=" + campus + '}';
+        /* return String.format("%6d %-8s %10.2f", id, name, basicSalary); */
+        return String.format("%6s %6s %6c %6s %6s %6s %6s %6s", tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus);
     }
 }

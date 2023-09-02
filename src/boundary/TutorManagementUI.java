@@ -47,7 +47,7 @@ public class TutorManagementUI {
   } // TODO: made this look better ig 
   
   public String inputTutorID() {
-    System.out.print("Enter tutor ID: ");
+    System.out.print("Enter tutor ID for the Tutors you want to remove/modify: ");
     String id = scanner.nextLine();
     return id;
   }

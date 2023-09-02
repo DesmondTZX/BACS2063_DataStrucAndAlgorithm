@@ -1,8 +1,9 @@
 package adt;
 
+import java.io.Serializable;
 import java.util.Iterator;
 
-public class SortedLinkedList<T extends Comparable<T>> implements SortedListInterface<T> {
+public class SortedLinkedList<T extends Comparable<T>> implements Serializable, SortedListInterface<T> {
 
   private Node firstNode;
   private int numberOfEntries;
@@ -129,7 +130,7 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedListInte
       
   }
 
-  private class Node {
+  private class Node implements Serializable {
 
     private T data;
     private Node next;
