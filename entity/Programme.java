@@ -1,6 +1,6 @@
 package entity;
 
-public class Programme {
+public class Programme implements Comparable<Programme> {
     private int code;
     private String name;
     private int duration;
@@ -47,10 +47,10 @@ public class Programme {
         this.faculty = faculty;
     }
 
-    //@Override
-    //public int hashCode() {
-    //    return code;
-    //}
+    @Override
+    public int hashCode() {
+        return code;
+    }
 
     @Override
     public String toString() {
@@ -60,5 +60,16 @@ public class Programme {
                 ", duration=" + duration +
                 ", faculty='" + faculty + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Programme o) {
+        if(this.code > o.code){
+            return 1;
+        }else if(this.code < o.code){
+            return -1;
+        }else{
+            return 0;
+        }
     }
 }
