@@ -67,11 +67,14 @@ local.properties
 ##############################
 nbproject/private/
 build/
-nbbuild/
+nbbuild/s
 dist/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+build.xml
+manifest.mf
+nbproject/
 
 ##############################
 ## Visual Studio Code
