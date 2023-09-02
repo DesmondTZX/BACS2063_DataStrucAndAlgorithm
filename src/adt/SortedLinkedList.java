@@ -1,6 +1,5 @@
 package adt;
 
-import entity.Tutor;
 import java.util.Iterator;
 
 public class SortedLinkedList<T extends Comparable<T>> implements SortedListInterface<T> {
@@ -37,7 +36,29 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedListInte
 
   @Override
   public boolean remove(T anEntry) {
-    throw new UnsupportedOperationException();	// Left as Practical exercise
+    boolean stop = false;
+    Node previousNode = null;
+    Node currentNode = firstNode;
+    
+    while (currentNode != null && !stop) {
+        if (currentNode.data.compareTo(anEntry) >= 0) {
+            stop = true;
+        } else {
+            previousNode = currentNode;
+            currentNode = currentNode.next;
+        }
+    }
+    
+    if (currentNode != null && currentNode.data.compareTo(anEntry) == 0) {
+        if (currentNode == firstNode) {
+            firstNode = currentNode.next;
+        } else {
+            previousNode.next = currentNode.next;
+        }
+        numberOfEntries--;
+        return true;
+    }
+    return false;
   }
 
   @Override
@@ -83,8 +104,29 @@ public class SortedLinkedList<T extends Comparable<T>> implements SortedListInte
   }
 
   @Override
-  public Iterator<Tutor> getIterator() {
-    throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+  public Iterator<T> getIterator() {
+      return new LinkedIterator();
+  }
+  
+  private class LinkedIterator implements Iterator<T> {
+        private Node currentNode = firstNode;
+      
+      
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            T currentElement = null;
+            if (hasNext()) {
+                currentElement = currentNode.data;
+                currentNode = currentNode.next;
+            }
+            return currentElement;
+        }
+      
   }
 
   private class Node {

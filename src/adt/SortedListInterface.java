@@ -1,7 +1,5 @@
-// this is temporary for now, idk if i will change adt type but i think sorted list will work just fine
 package adt;
 
-import entity.Tutor;
 import java.util.Iterator;
 
 /**
@@ -34,6 +32,6 @@ public interface SortedListInterface<T extends Comparable<T>> {
 
   public boolean isEmpty();
 
-  public Iterator<Tutor> getIterator();
+  public Iterator<T> getIterator();
 
 } 

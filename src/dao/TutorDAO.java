@@ -5,7 +5,7 @@ import entity.Tutor;
 import java.io.*;
 
 public class TutorDAO {
-    private String fileName;
+    private final String fileName;
     
     public TutorDAO(String fileName) {
         this.fileName = fileName;
@@ -20,14 +20,22 @@ public class TutorDAO {
     }
     
     public SortedListInterface<Tutor> retrieveFromFile() {
-        SortedListInterface<Tutor> tutorList = new SortedArrayList<>();
+        SortedListInterface<Tutor> tutorList = new SortedLinkedList<>();
+
         try (ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(fileName))) {
-            tutorList = (SortedArrayList<Tutor>) oiStream.readObject();
+            Object obj = oiStream.readObject();
+            if (obj instanceof SortedLinkedList<?>) {
+                tutorList = (SortedLinkedList<Tutor>) obj;
+            } else {
+                System.err.println("Invalid object type found in the file.");
+            }
         } catch (IOException ex) {
             System.err.println("Cannot read from file: " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
             System.err.println("Class not found: " + ex.getMessage());
         }
+
         return tutorList;
     }
+
 }

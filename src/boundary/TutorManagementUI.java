@@ -44,8 +44,14 @@ public class TutorManagementUI {
     int idCounter = 1;
     System.out.print("Tutor ID generated.\n");
     return "p" + idCounter++;
-  } // TODO: just randomly generate the Id for this i think, may need to see how tutor id looks like
-
+  } // TODO: made this look better ig 
+  
+  public String inputTutorID() {
+    System.out.print("Enter tutor ID: ");
+    String id = scanner.nextLine();
+    return id;
+  }
+  
   public String inputTutorName() {
     System.out.print("Enter tutor name: ");
     String name = scanner.nextLine();

@@ -14,6 +14,7 @@ public class TutorManagement {
     
     public TutorManagement() {
         tutorList = tutorDAO.retrieveFromFile();
+        // this is currently broken and im still finding out why, dealing with this later
     }
     
     public void runTutorManagement() {
@@ -23,19 +24,22 @@ public class TutorManagement {
             switch (choice) {
                 case 1:
                     addNewTutor();
-                    displayTutors();
+                    tutorUI.listAllTutors(getAllTutors());
                     break;
                 case 2:
-                    displayTutors();
+                    tutorUI.listAllTutors(getAllTutors());
                     break;
                 case 3:
-                    // delete entry
+                    deleteTutor();
+                    tutorUI.listAllTutors(getAllTutors());
                     break;
                 case 4:
                     // modify entry
+                    tutorUI.listAllTutors(getAllTutors());
                     break;
                 case 5:
                     // list entry based on criteria
+                    displaySpecificTutors();
                     break;
                 case 6:
                     // generate report
@@ -74,10 +78,20 @@ public class TutorManagement {
     }
     
     public void deleteTutor() {
-        
+        Tutor delTutor = new Tutor(tutorUI.inputTutorID());
+        tutorList.remove(delTutor);
+        tutorDAO.saveToFile(tutorList);
     }
     
     public void editTutor() {
+        
+    }
+    
+    public void displaySpecificTutors() {
+        tutorUI.selectCriteria();
+    }
+    
+    public void generateReport() {
         
     }
   

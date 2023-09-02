@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.Objects;
+
 public class Tutor implements Comparable<Tutor> {
     
     private String tutorId;
@@ -13,6 +15,32 @@ public class Tutor implements Comparable<Tutor> {
 
     public Tutor() {
         
+    }
+
+    public Tutor(String tutorId) {
+        this.tutorId = tutorId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 13 * hash + Objects.hashCode(this.tutorId);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Tutor other = (Tutor) obj;
+        return Objects.equals(this.tutorId, other.tutorId);
     }
 
     public Tutor(String tutorId, String tutorName, char tutorGender, String tutorEmail, String position, String faculty, String department, String campus) {
@@ -93,5 +121,10 @@ public class Tutor implements Comparable<Tutor> {
     
     public void setCampus(String newCampus) {
         this.campus = newCampus;
+    }
+
+    @Override
+    public String toString() {
+        return "Tutor{" + "tutorId=" + tutorId + ", tutorName=" + tutorName + ", tutorGender=" + tutorGender + ", tutorEmail=" + tutorEmail + ", position=" + position + ", faculty=" + faculty + ", department=" + department + ", campus=" + campus + '}';
     }
 }
