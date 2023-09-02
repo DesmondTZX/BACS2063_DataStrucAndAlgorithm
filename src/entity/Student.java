@@ -78,9 +78,12 @@ public class Student implements Serializable, Comparable<Student>{
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
+        hash = 53 * hash + this.studentID;
         return hash;
     }
+
+   
 
     @Override
     public boolean equals(Object obj) {
@@ -99,7 +102,7 @@ public class Student implements Serializable, Comparable<Student>{
 
     @Override
     public String toString() {
-        return super.toString() + String.format("%6s %6d %6s %6s %6s",  studentName,  studentID,  studentEmail,  mode,  gender);
+        return String.format("%6s %6s %6s %6s %6s",  studentName,  studentID,  studentEmail,  mode,  gender);
     }
 
     @Override

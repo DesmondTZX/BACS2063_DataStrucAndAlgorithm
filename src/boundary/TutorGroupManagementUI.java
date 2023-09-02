@@ -33,34 +33,37 @@ public class TutorGroupManagementUI {
     }
     
     public int inputStudentID() {
-        System.out.print("Enter student id: ");
+        System.out.print("Enter Student ID:  ");
         int studentID = scanner.nextInt();
+        scanner.nextLine();
         return studentID;
     }
 
     //input student detail
     public String inputStudentName() {
-        System.out.print("Enter student name: ");
-        String studentName = scanner.nextLine();
+       
+        System.out.print("Enter Student Name:  ");
+        String studentName = scanner.nextLine(); 
         return studentName;
     }
 
     public String inputStudentEmail() {
-        System.out.print("Enter student email: ");
+        System.out.print("Enter Student Email:  ");
         String studentEmail = scanner.nextLine();
         return studentEmail;
     }
 
     public String inputGender() {
-        System.out.print("Enter student gender: ");
+        System.out.print("Enter Student Gender:  ");
         String gender = scanner.nextLine();
         return gender;
     }
 
     public String inputMode() {
-        System.out.print("Enter Mode: "); //fulltime or parttime
+        System.out.print("Enter Mode:  "); //fulltime or parttime
         String mode = scanner.nextLine();
         return mode;
+       
     }
 
     public Student inputStudentDetails() {
@@ -71,13 +74,6 @@ public class TutorGroupManagementUI {
         String mode = inputMode();
         String gender = inputGender();
 
-        System.out.println();
-        System.out.println("Student Details");
-        System.out.println("Student Name: " + studentName);
-        System.out.println("Student ID: " + studentID);
-        System.out.println("Student Email: " + studentEmail);
-        System.out.println("Mode: " + mode);
-        System.out.println("Student Gender: " + gender);
         return new Student(studentName, studentID, studentEmail, mode, gender);
     }
 
@@ -147,7 +143,14 @@ public class TutorGroupManagementUI {
     }
     
     
-
+    public void printStudentDetails(Student student){
+      System.out.println("Student Details");
+        System.out.println("Student Name: " + student.getStudentName());
+        System.out.println("Student ID: " + student.getStudentID());
+        System.out.println("Student Email: " + student.getStudentEmail());
+        System.out.println("Mode: " + student.getMode());
+        System.out.println("Student Gender: " + student.getGender());
+    }
 
 
 }

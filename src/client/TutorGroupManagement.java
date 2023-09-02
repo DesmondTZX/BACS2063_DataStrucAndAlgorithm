@@ -73,9 +73,12 @@ public class TutorGroupManagement {
     }
 
     public void addNewStudent() {
+        tutGroupUI.listAllStudent(getAllStudents()); //display all the studentList
+        
         Student newStud = tutGroupUI.inputStudentDetails();
         studentList.add(newStud);
         studDAO.saveToFile(studentList);
+        
         int choice = 0;
         do {
             choice = tutGroupUI.getAddChoice();
@@ -98,6 +101,12 @@ public class TutorGroupManagement {
     }
 
     public void removeStudent() {
+        tutGroupUI.listAllStudent(getAllStudents()); //display all the studentList
+        
+        Student delStud = new Student(tutGroupUI.inputStudentID());
+        studentList.remove(delStud);
+        studDAO.saveToFile(studentList);
+        
         int choice = 0;
         do {
             choice = tutGroupUI.getRemoveChoice();

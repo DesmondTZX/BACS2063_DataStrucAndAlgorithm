@@ -13,11 +13,11 @@ import java.util.Iterator;
  * @author Jack
  * @param <T>
  */
-public class SortedList<T extends Comparable <T>> implements Serializable, SortedListInterface<T> {
-    
+public class SortedList<T extends Comparable<T>> implements Serializable, SortedListInterface<T> {
+
     private Node firstNode;
     private int numberOfEntries;
-    
+
     public SortedList() {
         firstNode = null;
         numberOfEntries = 0;
@@ -131,7 +131,7 @@ public class SortedList<T extends Comparable <T>> implements Serializable, Sorte
     public Iterator<T> getIterator() {
         return new LinkedIterator();
     }
-    
+
     private class LinkedIterator implements Iterator<T> {
 
         private Node currentNode = firstNode;
@@ -163,11 +163,8 @@ public class SortedList<T extends Comparable <T>> implements Serializable, Sorte
         }
         return outputStr;
     }
-    
-    
-    
-    
-    private class Node implements Serializable{
+
+    private class Node implements Serializable {
 
         private T data;
         private Node next;
@@ -175,11 +172,6 @@ public class SortedList<T extends Comparable <T>> implements Serializable, Sorte
         private Node(T data) {
             this.data = data;
             next = null;
-        }
-
-        private Node(T data, Node next) {
-            this.data = data;
-            this.next = next;
         }
     }
 

@@ -9,6 +9,7 @@ import adt.*;
 import entity.Student;
 import java.io.*;
 import java.util.Iterator;
+import utility.*;
 
 /**
  *
@@ -28,6 +29,7 @@ public class StudentDAO {
             while (studentIterator.hasNext()) {
                 ooStream.writeObject(studentIterator.next());
             }
+            MessageUI.displaySuccessConfirmationMessage(fileName);
         } catch (IOException ex) {
             System.err.println("Cannot save to file: " + ex.getMessage());
         }
@@ -39,8 +41,8 @@ public class StudentDAO {
         try ( ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(fileName))) {
             Object obj;
             while ((obj = oiStream.readObject()) != null) {
-                if (obj instanceof Student) {
-                    studentList.add((Student) obj);
+                if (obj instanceof Student student) {
+                    studentList.add(student);
                 } else {
                     System.err.println("Invalid object type found in the file.");
                 }
