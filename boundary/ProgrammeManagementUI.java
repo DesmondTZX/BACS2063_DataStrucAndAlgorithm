@@ -21,30 +21,51 @@ public class ProgrammeManagementUI {
         return sc.nextInt();
     }
 
+    public int getUpdateMenuChoice(){
+        System.out.println("Update Menu");
+        System.out.println("1. Update Programme Code");
+        System.out.println("2. Update Programme Name");
+        System.out.println("3. Update Programme Type");
+        System.out.println("4. Update Programme Duration");
+        System.out.println("5. Update Programme Faculty");
+        System.out.println("-1. Exit");
+        System.out.print("Enter choice: ");
+        return sc.nextInt();
+    }
+
 
     public void listAllProgrammes(String outputStr){
         System.out.println("List of Programmes");
         System.out.println(outputStr);
     }
 
+    public int inputProgrammeCodeToUpdateRemove(){
+        System.out.print("Enter Programme Code to update/remove: ");
+        return sc.nextInt();
+    }
 
-    public String inputProgrammeCode(){
-        System.out.print("Enter Programme Code: ");
-        return sc.next();
+    public int inputProgrammeCode(){
+        System.out.print("Enter new Programme Code: ");
+        return sc.nextInt();
     }
 
     public String inputProgrammeName(){
-        System.out.print("Enter Programme Name: ");
+        System.out.print("Enter new Programme Name: ");
+        return sc.next();
+    }
+
+    public String inputProgrammeType(){
+        System.out.print("Enter new Programme Type: ");
         return sc.next();
     }
 
     public int inputProgrammeDuration(){
-        System.out.print("Enter Programme Duration: ");
+        System.out.print("Enter new Programme Duration: ");
         return sc.nextInt();
     }
 
     public String inputProgrammeFaculty(){
-        System.out.print("Enter Programme Faculty: ");
+        System.out.print("Enter new Programme Faculty: ");
         return sc.next();
     }
 
