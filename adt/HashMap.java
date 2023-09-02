@@ -59,12 +59,15 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
     }
 
     @Override
-    public void remove(K key) {
+    public V remove(K key) {
+        V removedValue = null;
         int index = getIndexForExistingEntries(key);
         if (index != -1) {
+            removedValue = entries[index].value;
             entries[index] = null;
             count--;
         }
+        return removedValue;
     }
 
     @Override
