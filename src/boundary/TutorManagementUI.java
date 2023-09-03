@@ -13,7 +13,7 @@ public class TutorManagementUI {
     System.out.println("2. List all tutors");
     System.out.println("3. Remove a tutor");
     System.out.println("4. Modify a tutor");
-    System.out.println("5. List all tutors based on fliter criteria");
+    System.out.println("5. List/Search tutors based on fliter criteria");
     System.out.println("6. Generate Report");
     System.out.println("0. Quit");
     System.out.print("Enter choice: ");
@@ -57,7 +57,6 @@ public class TutorManagementUI {
   public String inputTutorName() {
     System.out.print("Enter tutor name: ");
     String name = scanner.nextLine();
-    System.out.print("Tutor Email generated.\n");
     return name;
   }
   
@@ -66,6 +65,12 @@ public class TutorManagementUI {
     char gender = scanner.next().charAt(0);
     scanner.nextLine();
     return gender;
+  }
+  
+  public String inputTutorEmail() {
+    System.out.print("Enter tutor email: ");
+    String email = scanner.nextLine();
+    return email;
   }
   
   public String generateTutorEmail(String tutorName) {
@@ -80,7 +85,6 @@ public class TutorManagementUI {
     return email;
   }
 
-  
   public String inputTutorPosition() {
     System.out.print("Enter tutor position: ");
     String position = scanner.nextLine();
@@ -114,7 +118,7 @@ public class TutorManagementUI {
     String tutorFaculty = inputTutorFaculty();
     String tutorDepartment = inputTutorDepartment();
     String tutorCampus = inputTutorCampus();
-    System.out.println();
+    System.out.print("Tutor Email generated.\n");
     return new Tutor(tutorId, tutorName, tutorGender, tutorEmail, tutorPosition, tutorFaculty, tutorDepartment, tutorCampus);
   }
   
@@ -129,6 +133,23 @@ public class TutorManagementUI {
     System.out.println("7. Tutor Department");
     System.out.println("8. Tutor Campus");
     System.out.println("0. Back to Main Menu");
+    System.out.print("Enter choice: ");
+    int choice = scanner.nextInt();
+    scanner.nextLine();
+    System.out.println();
+    return choice;
+  }
+  
+  public int selectEdit() {
+    System.out.println("\nSelect the information you want to edit for this Tutor entry:");
+    System.out.println("1. Tutor Name");
+    System.out.println("2. Tutor Gender");
+    System.out.println("3. Tutor Email");
+    System.out.println("4. Tutor Position");
+    System.out.println("5. Tutor Faculty");
+    System.out.println("6. Tutor Department");
+    System.out.println("7. Tutor Campus");
+    System.out.println("0. Go Back");
     System.out.print("Enter choice: ");
     int choice = scanner.nextInt();
     scanner.nextLine();
