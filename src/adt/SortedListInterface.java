@@ -14,15 +14,15 @@ import java.util.Iterator;
  */
 public interface SortedListInterface<T extends Comparable<T>> {
     
-    public boolean add(T newEntry);
+    public boolean add(T newEntry); //add
     
-    public boolean remove(T anEntry);
+    public boolean remove(T anEntry); //remove
     
     public void clear();
     
-    public boolean replace(int givenPosition, T newEntry);
+    public boolean replace(int givenPosition, T newEntry); //change
     
-    public boolean contains(T anEntry);
+    public boolean contains(T anEntry);//find
     
     public int getNumberOfEntries();
     

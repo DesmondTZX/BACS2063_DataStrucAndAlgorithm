@@ -22,13 +22,16 @@ import utility.*;
 public class TutorGroupManagement {
 
     private final TutorGroupManagementUI tutGroupUI = new TutorGroupManagementUI();
-    private final StudentDAO studDAO = new StudentDAO("Student.dat");
-    private SortedListInterface<Student> studentList = new SortedList<>();
+    private final StudentDAO g1DAO = new StudentDAO("Group1.dat");
+    private final StudentDAO g2DAO = new StudentDAO("Group2.dat");
+    private SortedListInterface<Student> g1List = new SortedList<>();
+    private SortedListInterface<Student> g2List = new SortedList<>();
 
     public TutorGroupManagement() {
-        studentList = studDAO.retrieveFromFile();
+        g1List = g1DAO.retrieveFromFile();
+        g2List = g2DAO.retrieveFromFile();
     }
-    
+
     public void mainMenu() {
         int choice = 0;
         do {
@@ -37,30 +40,37 @@ public class TutorGroupManagement {
                 case 0 -> {
                     MessageUI.displayExitMessage();
                     System.exit(0);
+                    break;
                 }
                 case 1 -> {
                     cls();
                     addNewStudent();
+                    break;
                 }
                 case 2 -> {
                     cls();
                     removeStudent();
+                    break;
                 }
                 case 3 -> {
                     cls();
                     changeStudentTutGroup();
+                    break;
                 }
                 case 4 -> {
                     cls();
                     findStudent();
+                    break;
                 }
                 case 5 -> {
                     cls();
                     dispStudent();
+                    break;
                 }
                 case 6 -> {
                     cls();
                     generateReport();
+                    break;
                 }
                 default -> {
                     cls();
@@ -73,24 +83,67 @@ public class TutorGroupManagement {
     }
 
     public void addNewStudent() {
-        tutGroupUI.listAllStudent(getAllStudents()); //display all the studentList
-        
-        Student newStud = tutGroupUI.inputStudentDetails();
-        studentList.add(newStud);
-        studDAO.saveToFile(studentList);
-        
+        int gpChoice = 0;
+        do {
+            System.out.println("===========");
+            System.out.println("Add Student");
+            System.out.println("===========");
+            gpChoice = tutGroupUI.getGroupChoice();
+            switch (gpChoice) {
+                case 0 -> {
+                    cls();
+                    MessageUI.displayExitMessage();
+                    System.exit(0);
+                    break;
+                }
+                case 1 -> {
+                    cls();
+                    System.out.println("===========");
+                    System.out.println("Add Student");
+                    System.out.println("===========");
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    Student newStud = tutGroupUI.inputStudentDetails();
+                    g1List.add(newStud);
+                    g1DAO.saveToFile(g1List);
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    System.out.println("===========");
+                    System.out.println("Add Student");
+                    System.out.println("===========");
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1
+                    Student newStud = tutGroupUI.inputStudentDetails();
+                    g2List.add(newStud);
+                    g2DAO.saveToFile(g2List);
+                    break;
+                }
+                case 99 -> {
+                    cls();
+                    mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
+            }
+        } while (gpChoice != 0);
+
         int choice = 0;
         do {
-            choice = tutGroupUI.getAddChoice();
+            choice = tutGroupUI.returnChoice();
             switch (choice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
+                    break;
                 }
-                case 1 -> {
+                case 99 -> {
                     cls();
                     mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -101,24 +154,67 @@ public class TutorGroupManagement {
     }
 
     public void removeStudent() {
-        tutGroupUI.listAllStudent(getAllStudents()); //display all the studentList
-        
-        Student delStud = new Student(tutGroupUI.inputStudentID());
-        studentList.remove(delStud);
-        studDAO.saveToFile(studentList);
-        
+        int gpChoice = 0;
+        do {
+            System.out.println("==============");
+            System.out.println("Remove Student");
+            System.out.println("==============");
+            gpChoice = tutGroupUI.getGroupChoice();
+            switch (gpChoice) {
+                case 0 -> {
+                    cls();
+                    MessageUI.displayExitMessage();
+                    System.exit(0);
+                    break;
+                }
+                case 1 -> {
+                    cls();
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    System.out.println("==============");
+                    System.out.println("Remove Student");
+                    System.out.println("==============");
+                    Student delStud = new Student(tutGroupUI.inputStudentID());
+                    g1List.remove(delStud);
+                    g1DAO.saveToFile(g1List);
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G2
+                    System.out.println("==============");
+                    System.out.println("Remove Student");
+                    System.out.println("==============");
+                    Student delStud = new Student(tutGroupUI.inputStudentID());
+                    g2List.remove(delStud);
+                    g2DAO.saveToFile(g2List);
+                    break;
+                }
+                case 99 -> {
+                    cls();
+                    mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
+            }
+        } while (gpChoice != 0);
+
         int choice = 0;
         do {
-            choice = tutGroupUI.getRemoveChoice();
+            choice = tutGroupUI.returnChoice();
             switch (choice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
+                    break;
                 }
-                case 1 -> {
+                case 99 -> {
                     cls();
                     mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -129,18 +225,70 @@ public class TutorGroupManagement {
     }
 
     public void changeStudentTutGroup() {
+        int gpChoice = 0;
+        do {
+            System.out.println("=============================");
+            System.out.println("Change Student Tutorial Group");
+            System.out.println("=============================");
+            gpChoice = tutGroupUI.getGroupChoice();
+            switch (gpChoice) {
+                case 0 -> {
+                    cls();
+                    MessageUI.displayExitMessage();
+                    System.exit(0);
+                    break;
+                }
+                case 1 -> {
+                    cls();
+                    System.out.println("=============================");
+                    System.out.println("Change Student Tutorial Group");
+                    System.out.println("=============================");
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    Student chgStud = tutGroupUI.inputStudentDetails();
+                    g1List.remove(chgStud);
+                    g1DAO.saveToFile(g1List);
+                    g2List.add(chgStud);
+                    g2DAO.saveToFile(g2List);
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    System.out.println("=============================");
+                    System.out.println("Change Student Tutorial Group");
+                    System.out.println("=============================");
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1
+                    Student chgStud = tutGroupUI.inputStudentDetails();
+                    g2List.remove(chgStud);
+                    g2DAO.saveToFile(g2List);
+                    g1List.add(chgStud);
+                    g1DAO.saveToFile(g1List);
+                    break;
+                }
+                case 99 -> {
+                    cls();
+                    mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
+            }
+        } while (gpChoice != 0);
         int choice = 0;
         do {
-            choice = tutGroupUI.getChangeChoice();
+            choice = tutGroupUI.returnChoice();
             switch (choice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
+                    break;
                 }
-                case 1 -> {
+                case 99 -> {
                     cls();
                     mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -151,18 +299,38 @@ public class TutorGroupManagement {
     }
 
     public void findStudent() {
+        do {
+            System.out.println("============");
+            System.out.println("Find Student");
+            System.out.println("============");
+            Student findStud = new Student(tutGroupUI.inputStudentID());
+            if (g1List.contains(findStud) || g2List.contains(findStud)) {
+                System.out.println("Student Details");
+                System.out.println("Student Name: " + findStud.getStudentName());
+                System.out.println("Student ID: " + findStud.getStudentID());
+                System.out.println("Student Email: " + findStud.getStudentEmail());
+                System.out.println("Mode: " + findStud.getMode());
+                System.out.println("Student Gender: " + findStud.getGender());
+            } else {
+                MessageUI.displayNotFound();
+                tutGroupUI.againChoice();
+            }
+        } while ("y".equals(tutGroupUI.againChoice()));
+
         int choice = 0;
         do {
-            choice = tutGroupUI.getFindChoice();
+            choice = tutGroupUI.returnChoice();
             switch (choice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
                     System.exit(0);
+                    break;
                 }
-                case 1 -> {
+                case 99 -> {
                     cls();
                     mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -172,12 +340,15 @@ public class TutorGroupManagement {
         } while (choice != 0);
     }
 
+    // got filter one based on criteria
     public void dispStudent() {
-        tutGroupUI.listAllStudent(getAllStudents());
-        int choice = 0;
+        int gpChoice = 0;
         do {
-            choice = tutGroupUI.getListChoice();
-            switch (choice) {
+            System.out.println("===============");
+            System.out.println("Display Student");
+            System.out.println("===============");
+            gpChoice = tutGroupUI.getGroupChoice();
+            switch (gpChoice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
@@ -185,7 +356,47 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
+                    System.out.println("===============");
+                    System.out.println("Display Student");
+                    System.out.println("===============");
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    System.out.println("===============");
+                    System.out.println("Display Student");
+                    System.out.println("===============");
+                    
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1 
+                    break;
+                }
+                case 99 -> {
+                    cls();
                     mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
+            }
+        } while (gpChoice != 0);
+
+        int choice = 0;
+        do {
+            choice = tutGroupUI.returnChoice();
+            switch (choice) {
+                case 0 -> {
+                    cls();
+                    MessageUI.displayExitMessage();
+                    System.exit(0);
+                    break;
+                }
+                case 1 -> {
+                    cls();
+                    mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -196,10 +407,13 @@ public class TutorGroupManagement {
     }
 
     public void generateReport() {
-        int choice = 0;
+        int gpChoice = 0;
         do {
-            choice = tutGroupUI.getReportChoice();
-            switch (choice) {
+            System.out.println("======");
+            System.out.println("Report");
+            System.out.println("======");
+            gpChoice = tutGroupUI.getGroupChoice();
+            switch (gpChoice) {
                 case 0 -> {
                     cls();
                     MessageUI.displayExitMessage();
@@ -207,7 +421,49 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
+                    System.out.println("======");
+                    System.out.println("Report");
+                    System.out.println("======");
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    System.out.println("\nTotal Students: " + g1List.getNumberOfEntries() + " students ");
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    System.out.println("========");
+                    System.out.println("\nReport");
+                    System.out.println("========");
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1 
+                    System.out.println("\nTotal Students: " + g2List.getNumberOfEntries() + " students ");
+                    break;
+                }
+                case 99 -> {
+                    cls();
                     mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
+            }
+        } while (gpChoice != 0);
+        
+        
+        int choice = 0;
+        do {
+            choice = tutGroupUI.returnChoice();
+            switch (choice) {
+                case 0 -> {
+                    cls();
+                    MessageUI.displayExitMessage();
+                    System.exit(0);
+                    break;
+                }
+                case 99 -> {
+                    cls();
+                    mainMenu();
+                    break;
                 }
                 default -> {
                     cls();
@@ -217,13 +473,23 @@ public class TutorGroupManagement {
         } while (choice != 0);
 
     }
-    
-    public String getAllStudents() {
-        String outputStr = "";
-        Iterator<Student> studIterator = studentList.getIterator();
 
-        while (studIterator.hasNext()) {
-            Student stud = studIterator.next();
+    public String getAllStudentsG1() {
+        String outputStr = "";
+        Iterator<Student> g1StudIterator = g1List.getIterator();
+        while (g1StudIterator.hasNext()) {
+            Student stud = g1StudIterator.next();
+            outputStr += stud + "\n";
+        }
+
+        return outputStr;
+    }
+
+    public String getAllStudentsG2() {
+        String outputStr = "";
+        Iterator<Student> g2StudIterator = g2List.getIterator();
+        while (g2StudIterator.hasNext()) {
+            Student stud = g2StudIterator.next();
             outputStr += stud + "\n";
         }
 

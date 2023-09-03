@@ -12,8 +12,8 @@ import java.util.Objects;
  *
  * @author Jack
  */
-public class Student implements Serializable, Comparable<Student>{
-    
+public class Student implements Serializable, Comparable<Student> {
+
     private String studentName;
     private int studentID;
     private String studentEmail;
@@ -21,7 +21,7 @@ public class Student implements Serializable, Comparable<Student>{
     private String gender;
 
     public Student() {
-        
+
     }
 
     public Student(int studentID) {
@@ -83,8 +83,6 @@ public class Student implements Serializable, Comparable<Student>{
         return hash;
     }
 
-   
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -102,7 +100,7 @@ public class Student implements Serializable, Comparable<Student>{
 
     @Override
     public String toString() {
-        return String.format("%6s %6s %6s %6s %6s",  studentName,  studentID,  studentEmail,  mode,  gender);
+        return String.format("%6s %10s %6s %10s %6s", studentName, studentID, studentEmail, mode, gender);
     }
 
     @Override
@@ -115,8 +113,4 @@ public class Student implements Serializable, Comparable<Student>{
             return -1;
         }
     }
-    }
-    
-    
-    
-
+}

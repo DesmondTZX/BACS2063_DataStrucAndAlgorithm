@@ -17,21 +17,23 @@ public class TutorGroupManagementUI {
     Scanner scanner = new Scanner(System.in);
 
     public int getMenuChoice() {
+        System.out.println("===========================");
         System.out.println("\nTutorial Group Management");
+        System.out.println("===========================");
         System.out.println("1. Add new students to tutorial group");
-        System.out.println("2. Remove student to tutorial group");
+        System.out.println("2. Remove student from tutorial group");
         System.out.println("3. Change tutorial group for student");
         System.out.println("4. Find student in tutorial group");
-        System.out.println("5. List all student in tutorial group");
+        System.out.println("5. Display student in tutorial group");
         System.out.println("6. Generate Relevent Reports");
         System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
+        System.out.print("Please Enter Your Choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println();
         return choice;
     }
-    
+
     public int inputStudentID() {
         System.out.print("Enter Student ID:  ");
         int studentID = scanner.nextInt();
@@ -41,9 +43,9 @@ public class TutorGroupManagementUI {
 
     //input student detail
     public String inputStudentName() {
-       
+
         System.out.print("Enter Student Name:  ");
-        String studentName = scanner.nextLine(); 
+        String studentName = scanner.nextLine();
         return studentName;
     }
 
@@ -63,94 +65,57 @@ public class TutorGroupManagementUI {
         System.out.print("Enter Mode:  "); //fulltime or parttime
         String mode = scanner.nextLine();
         return mode;
-       
+
     }
 
     public Student inputStudentDetails() {
-        System.out.println("\nPlease key in the student details:");
+        System.out.println("\nPlease Key In the following Student Details:");
         String studentName = inputStudentName();
         int studentID = inputStudentID();
         String studentEmail = inputStudentEmail();
         String mode = inputMode();
         String gender = inputGender();
 
+        System.out.println("");
+
         return new Student(studentName, studentID, studentEmail, mode, gender);
     }
 
-    public int getListChoice() {
-        System.out.println("1. Return to main menu");
+    public int getGroupChoice() {
+        System.out.println("\nPlease Select The Tutorial Group:");
+        System.out.println("1. Group 1");
+        System.out.println("2. Group 2");
+        System.out.println("99. Return to Main Menu");
         System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
+        System.out.print("Please Enter Your Choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println();
         return choice;
     }
 
-    public int getAddChoice() {
-        System.out.println("1. Return to main menu");
+    public String againChoice() {
+        System.out.print("\nWant search again?:");
+        String choice = scanner.nextLine();
+        System.out.println();
+        return choice;
+    }
+
+    public int returnChoice() {
+        System.out.println("99. Return to Main Menu");
         System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
+        System.out.print("Please Enter Your Choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println();
         return choice;
     }
 
-    public int getRemoveChoice() {
-        System.out.println("1. Return to main menu");
-        System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        return choice;
-    }
-
-    public int getChangeChoice() {
-        System.out.println("1. Return to main menu");
-        System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        return choice;
-    }
-
-    public int getFindChoice() {
-        System.out.println("1. Return to main menu");
-        System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        return choice;
-    }
-
-    public int getReportChoice() {
-        System.out.println("1. Return to main menu");
-        System.out.println("0. Quit");
-        System.out.print("Enter choice: ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println();
-        return choice;
+    public void listAllStudent(String outputStr) {
+        System.out.println("\nList of Students:\n" +
+                           "=================\n" + outputStr);
     }
 
     
-    public void listAllStudent(String outputStr){
-        System.out.println("\nList of Students:\n" + outputStr);
-    }
-    
-    
-    public void printStudentDetails(Student student){
-      System.out.println("Student Details");
-        System.out.println("Student Name: " + student.getStudentName());
-        System.out.println("Student ID: " + student.getStudentID());
-        System.out.println("Student Email: " + student.getStudentEmail());
-        System.out.println("Mode: " + student.getMode());
-        System.out.println("Student Gender: " + student.getGender());
-    }
-
 
 }

@@ -30,6 +30,10 @@ public class MessageUI {
     public static void displayInvalidFormat() {
         printFormattedText("Your input is not in correct format: ", ConsoleColor.YELLOW);
     }
+    
+    public static void displayNotFound() {
+        printFormattedText("Cannot Found This Student!! Please Try Again!!: ", ConsoleColor.RED);
+    }
 
     public static void printFormattedText(String text, ConsoleColor color) {
         System.out.print(color + text + ConsoleColor.RESET);
