@@ -3,6 +3,10 @@ package adt;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+/*
+ *  Author: Wong Fu Lim
+ *   Double Hashing of HashMap
+ * */
 
 public class HashMap<K, V> implements HashMapInterface<K, V> {
 
@@ -17,11 +21,27 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
     }
 
     private Entry<K, V>[] entries;
-    private int count;
+    private int numberOfEntries;
+    private double loadFactor = 0.75;
+    private int primeNumber;
+    private static final int DEFAULT_CAPACITY = 10;
+
 
     public HashMap() {
-        entries = new Entry[10];
-        count = 0;
+        this(DEFAULT_CAPACITY);
+    }
+
+    public HashMap(int capacity) {
+        entries = new Entry[capacity];
+        numberOfEntries = 0;
+        primeNumber = getPrimeNumber();
+    }
+
+    public HashMap(int capacity, double loadFactor) {
+        entries = new Entry[capacity];
+        numberOfEntries = 0;
+        primeNumber = getPrimeNumber();
+        this.loadFactor = loadFactor;
     }
 
     @Override
@@ -34,17 +54,17 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
         }
 
         // Add new entry
-        if (isFull()) {
-            doubleSize();
+        if (numberOfEntries >= loadFactor * entries.length) {
+            rehash();
         }
         index = getIndexForNullEntries(key);
-        while(index == -1) {
-            doubleSize();
+        while (index == -1) {
+            rehash();
             index = getIndexForNullEntries(key);
         }
 
         entries[index] = new Entry<>(key, value);
-        count++;
+        numberOfEntries++;
 
 
     }
@@ -65,7 +85,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
         if (index != -1) {
             removedValue = entries[index].value;
             entries[index] = null;
-            count--;
+            numberOfEntries--;
         }
         return removedValue;
     }
@@ -109,29 +129,46 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
 
     @Override
     public int size() {
-        return count;
+        return numberOfEntries;
     }
 
     @Override
     public boolean isEmpty() {
-        return count == 0;
+        return numberOfEntries == 0;
     }
 
     @Override
     public boolean isFull() {
-        return entries.length == count;
+        return entries.length == numberOfEntries;
     }
 
     @Override
     public void clear() {
-        for(int i = 0; i < entries.length; i++){
+        for (int i = 0; i < entries.length; i++) {
             entries[i] = null;
         }
-        count = 0;
+        numberOfEntries = 0;
+    }
+
+    // Get the prime number that is closest to the size of the array
+    private int getPrimeNumber() {
+        for (int i = entries.length - 1; i >= 1; i--) {
+            int count = 0;
+            for (int j = 2; j * j <= i; j++) {
+                if (i % j == 0) {
+                    count++;
+                    break;
+                }
+            }
+            if (count == 0) {
+                return i;
+            }
+        }
+        return 3;
     }
 
 
-    private void doubleSize() {
+    private void rehash() {
         Entry<K, V>[] oldEntries = entries;
         entries = new Entry[oldEntries.length * 2];
 
@@ -149,28 +186,38 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
         while (steps < entries.length) {
             int index = index(key, steps++);
             Entry<K, V> entry = entries[index];
-            if (entry == null ) {
+            if (entry == null) {
                 return index;
             }
         }
         return -1;
     }
 
-    private int getIndexForExistingEntries(K key){
-        for(int i = 0; i < entries.length; i++){
-            if(entries[i] != null && entries[i].key.equals(key)){
-                return i;
+    private int getIndexForExistingEntries(K key) {
+        int steps = 0;
+
+        while (steps < entries.length) {
+            int index = index(key, steps++);
+            Entry<K, V> entry = entries[index];
+            if (entry != null && entry.key.equals(key)) {
+                return index;
             }
         }
         return -1;
     }
 
     private int index(K key, int i) {
-        return (hash(key) + i) % entries.length;
+        int hash1 = hash1(key);
+        int hash2 = hash2(key);
+        return (hash1 + i * hash2) % entries.length;
     }
 
-    private int hash(K key) {
+    private int hash1(K key) {
         return key.hashCode() % entries.length;
+    }
+
+    private int hash2(K key) {
+        return primeNumber - (key.hashCode() % primeNumber);
     }
 
     @Override
