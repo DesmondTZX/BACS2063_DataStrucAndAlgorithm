@@ -157,23 +157,23 @@ public class ProgrammeManagementUI {
         System.out.println();
 
         String code = inputProgrammeCode(" (Press enter to skip)");
-        if(!code.isEmpty())
+        if(!code.trim().isEmpty())
             programme.setCode(Integer.parseInt(code));
 
         String name = inputProgrammeName(" (Press enter to skip)");
-        if(!name.isEmpty())
+        if(!name.trim().isEmpty())
             programme.setName(name);
 
         String type = inputProgrammeType(" (Press enter to skip)");
-        if(!type.isEmpty())
+        if(!type.trim().isEmpty())
             programme.setType(type);
 
         String duration = inputProgrammeDuration(" (Press enter to skip)");
-        if(!duration.isEmpty())
+        if(!duration.trim().isEmpty())
             programme.setDuration(Integer.parseInt(duration));
 
         String faculty = inputProgrammeFaculty(" (Press enter to skip)");
-        if(!faculty.isEmpty())
+        if(!faculty.trim().isEmpty())
             programme.setFaculty(faculty);
 
         return programme;
