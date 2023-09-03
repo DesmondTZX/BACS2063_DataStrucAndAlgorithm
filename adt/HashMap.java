@@ -220,8 +220,8 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
         return primeNumber - (key.hashCode() % primeNumber);
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(entries);
-    }
+    //@Override
+    //public String toString() {
+    //    return Arrays.toString(entries);
+    //}
 }
