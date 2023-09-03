@@ -1,15 +1,19 @@
 package entity;
 
+import adt.HashMap;
+import adt.HashMapInterface;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Programme implements Comparable<Programme> {
+public class Programme implements Serializable {
     private int code;
     private String name;
     private String type;
     private int duration;
     private String faculty;
 
-    private ArrayList<TutorialGroup> tutorialGroup;
+    private HashMapInterface<String,TutorialGroup> tutorialGroup;
 
     public Programme(int code) {
         this.code = code;
@@ -21,18 +25,8 @@ public class Programme implements Comparable<Programme> {
         this.type = type;
         this.duration = duration;
         this.faculty = faculty;
+        tutorialGroup = new HashMap<>();
     }
-
-    public Programme(int code, String name, String type, int duration, String faculty, ArrayList<TutorialGroup> tutorialGroup) {
-        this.code = code;
-        this.name = name;
-        this.type = type;
-        this.duration = duration;
-        this.faculty = faculty;
-        this.tutorialGroup = tutorialGroup;
-    }
-
-
 
     public int getCode() {
         return code;
@@ -74,12 +68,19 @@ public class Programme implements Comparable<Programme> {
         this.faculty = faculty;
     }
 
-    public ArrayList<TutorialGroup> getTutorialGroup() {
+    public HashMapInterface<String, TutorialGroup> getTutorialGroup() {
         return tutorialGroup;
     }
 
-    public void setTutorialGroup(ArrayList<TutorialGroup> tutorialGroup) {
+    public void setTutorialGroup(HashMapInterface<String, TutorialGroup> tutorialGroup) {
         this.tutorialGroup = tutorialGroup;
+    }
+    public void addTutorialGroup(TutorialGroup tutorialGroup) {
+        this.tutorialGroup.put(tutorialGroup.getId(), tutorialGroup);
+    }
+
+    public void removeTutorialGroup(TutorialGroup tutorialGroup) {
+        this.tutorialGroup.remove(tutorialGroup.getId());
     }
 
     @Override
@@ -107,14 +108,4 @@ public class Programme implements Comparable<Programme> {
                 '}';
     }
 
-    @Override
-    public int compareTo(Programme o) {
-        if (this.code > o.code) {
-            return 1;
-        } else if (this.code < o.code) {
-            return -1;
-        } else {
-            return 0;
-        }
-    }
 }

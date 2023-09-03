@@ -1,5 +1,6 @@
 package adt;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.List;
  *   Double Hashing of HashMap
  * */
 
-public class HashMap<K, V> implements HashMapInterface<K, V> {
+public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
-    private class Entry<K, V> {
+    private class Entry<K, V> implements Serializable{
         private K key;
         private V value;
 
@@ -132,6 +133,10 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
         return numberOfEntries;
     }
 
+    public int getCapacity() {
+        return entries.length;
+    }
+
     @Override
     public boolean isEmpty() {
         return numberOfEntries == 0;
@@ -213,11 +218,19 @@ public class HashMap<K, V> implements HashMapInterface<K, V> {
     }
 
     private int hash1(K key) {
-        return key.hashCode() % entries.length;
+        int hashIndex1 = key.hashCode() % entries.length;
+        if (hashIndex1 < 0) {
+            hashIndex1 += entries.length;
+        }
+        return hashIndex1;
     }
 
     private int hash2(K key) {
-        return primeNumber - (key.hashCode() % primeNumber);
+        int hashIndex2 = primeNumber - (key.hashCode() % primeNumber);
+        if (hashIndex2 < 0) {
+            hashIndex2 += primeNumber;
+        }
+        return hashIndex2;
     }
 
     @Override
