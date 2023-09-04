@@ -1,5 +1,10 @@
 package boundary;
 
+/**
+ *
+ * @author Desmond Tan Zhe Xuan 
+ */
+
 import java.util.Scanner;
 import entity.Tutor;
 
@@ -15,6 +20,8 @@ public class TutorManagementUI {
     System.out.println("4. Modify a tutor");
     System.out.println("5. List/Search tutors based on fliter criteria");
     System.out.println("6. Generate Report");
+    System.out.println("7. Clear tutor list");
+    System.out.println("8. Generate Dummy Data (FOR TESTING PURPOSES ONLY)");
     System.out.println("0. Quit");
     System.out.print("Enter choice: ");
     int choice = scanner.nextInt();
@@ -24,7 +31,7 @@ public class TutorManagementUI {
   }
 
   public void listAllTutors(String outputStr) {
-    System.out.println("\nList of Tutors:\n" + outputStr);
+    System.out.println(outputStr);
   }
 
   public void printTutorDetails(Tutor tutor) {
@@ -154,6 +161,13 @@ public class TutorManagementUI {
     int choice = scanner.nextInt();
     scanner.nextLine();
     System.out.println();
+    return choice;
+  }
+  
+  public char DecisionYN() {
+    char choice = scanner.next().charAt(0);
+    scanner.nextLine();
+    
     return choice;
   }
 }

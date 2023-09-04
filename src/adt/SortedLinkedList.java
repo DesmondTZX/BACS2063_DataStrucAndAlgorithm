@@ -1,5 +1,11 @@
 package adt;
 
+/**
+ *
+ * @author Desmond Tan Zhe Xuan
+ * This code is partially taken from Chapter 7's SortedLinkedList.java and modified 
+ */
+
 import java.io.Serializable;
 import java.util.Iterator;
 

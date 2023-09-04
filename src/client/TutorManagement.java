@@ -1,5 +1,10 @@
 package client;
 
+/**
+ *
+ * @author Desmond Tan Zhe Xuan
+ */
+
 import adt.*;
 import boundary.TutorManagementUI;
 import dao.TutorDAO;
@@ -23,20 +28,27 @@ public class TutorManagement {
             switch (choice) {
                 case 1 -> {
                     addNewTutor();
+                    System.out.println("\nList of Tutors After Addition:\n");
                     displayTutors();
                 }
-                case 2 -> displayTutors();
+                case 2 -> {
+                    System.out.println("\nList of Tutors:\n");
+                    displayTutors();
+                }   
                 case 3 -> {
                     deleteTutor();
+                    System.out.println("\nList of Tutors After Deletion:\n");
                     displayTutors();
                 }
                 case 4 -> {
                     editTutor();
+                    System.out.println("\nList of Tutors After Modification:\n");
                     displayTutors();
                 }
                 case 5 -> searchSpecificTutors();
                 case 6 -> generateReport();
-                case 7 -> generateDummyData();
+                case 7 -> clearTutorList();
+                case 8 -> generateDummyData();
                 default -> System.out.println("\nInvalid choice");
             }
 
@@ -55,6 +67,7 @@ public class TutorManagement {
     // this is used to generate dummy data for testing purposes and to save time.
     public void generateDummyData() {
         /* tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus */
+        System.out.println("Dummy data generated and saved to file.");
         tutorList.add(new Tutor("p0001", "David Hill", 'F', "plchow@tarc.edu.my", "Assistant Professor", "Faculty of Accountancy, Finance And Business", "", "Kuala Lumpur Branch"));
         tutorList.add(new Tutor("p0002", "Alice Smith", 'M', "asmith@tarc.edu.my", "Associate Professor", "Faculty of Computer Science", "", "Kuala Lumpur Branch"));
         tutorList.add(new Tutor("p0003", "John Doe", 'M', "jdoe@tarc.edu.my", "Professor", "Faculty of Engineering", "", "Penang Branch"));
@@ -179,6 +192,7 @@ public class TutorManagement {
                 (searchCampus == null || tutor.getCampus().equalsIgnoreCase(searchCampus)) &&
                 tutorList.contains(tutor)) {
                 found = true;
+                System.out.println("\nList of Tutors:\n");
                 tutorUI.listAllTutors(tutor.toString());
             }
         }
@@ -189,9 +203,33 @@ public class TutorManagement {
     }
 
     public void generateReport() {
-        System.out.printf("%s %s %s %s %s %s %s %s\n", "ID", "Name", "Gender", "Email", "Position", "Faculty", "Department", "Campus");
+        System.out.println("\nList of Tutors:\n");
+        System.out.printf("%-10s %-20s %-10s %-30s %-20s %-30s %-30s %-20s\n",
+        "ID", "Name", "Gender", "Email", "Position", "Faculty", "Department", "Campus");
         displayTutors();
         System.out.println("Total number of tutors: " + tutorList.getNumberOfEntries());
+    }
+    
+    public void clearTutorList() {
+        System.out.println("Are you sure you want to clear the list? Every tutor saved in the file will be lost. (Y - Clear list, Others - No)");
+        
+        char choice = tutorUI.DecisionYN();
+        
+        switch (choice) {
+            case 'Y' -> {
+                tutorList.clear();
+                tutorDAO.saveToFile(tutorList);
+                System.out.println("\nList cleared.");
+            }
+            case 'y' -> {
+                tutorList.clear();
+                tutorDAO.saveToFile(tutorList);
+                System.out.println("\nList cleared.");
+            }
+            default -> {
+            }
+                
+            }
     }
   
     public static void main(String[] args) {

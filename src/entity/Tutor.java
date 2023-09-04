@@ -1,5 +1,10 @@
 package entity;
 
+/**
+ *
+ * @author Desmond Tan Zhe Xuan
+ */
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -126,6 +131,9 @@ public class Tutor implements Serializable, Comparable<Tutor> {
 
     @Override
     public String toString() {
-        return String.format("%6s %6s %6c %6s %6s %6s %6s %6s", tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus);
+        // Use formatting to specify the width for each field
+        return String.format("%-10s %-20s %-10c %-30s %-20s %-30s %-30s %-20s",
+                tutorId, tutorName, tutorGender, tutorEmail, position, faculty, department, campus);
     }
+
 }
