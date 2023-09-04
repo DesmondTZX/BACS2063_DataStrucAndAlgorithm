@@ -85,23 +85,7 @@ public class SortedLinkedList<T extends Comparable<T>> implements Serializable, 
         firstNode = null;
         numberOfEntries = 0;
     }
-
-    @Override
-    public boolean replace(int givenPosition, T newEntry) {
-        boolean isSuccessful = true;
-
-        if ((givenPosition >= 1) && (givenPosition <= numberOfEntries)) {
-            Node currentNode = firstNode;
-            for (int i = 0; i < givenPosition - 1; ++i) {
-                currentNode = currentNode.next;		// advance currentNode to next node
-            }
-            currentNode.data = newEntry;	// currentNode is pointing to the node at givenPosition
-        } else {
-            isSuccessful = false;
-        }
-        return isSuccessful;
-    }
-
+    
     @Override
     public boolean contains(T anEntry) {
         boolean found = false;

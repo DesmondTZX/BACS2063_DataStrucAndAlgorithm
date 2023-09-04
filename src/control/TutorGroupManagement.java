@@ -369,7 +369,6 @@ public class TutorGroupManagement {
                 case 2 -> {
                     cls();
                     tutGroupUI.dispTitle();
-
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1 
                     break;
                 }

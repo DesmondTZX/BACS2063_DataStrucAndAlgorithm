@@ -20,8 +20,6 @@ public interface SortedListInterface<T extends Comparable<T>> {
     
     public void clear();
     
-    public boolean replace(int givenPosition, T newEntry); //change
-    
     public boolean contains(T anEntry);//find
     
     public int getNumberOfEntries();
