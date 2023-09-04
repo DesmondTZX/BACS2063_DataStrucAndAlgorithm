@@ -99,10 +99,9 @@ public class Programme implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-8s%-40s%-15s%-10s%-10s", code, name, type, duration, faculty));
-        for (TutorialGroup tg : tutorialGroup.values()) {
-            sb.append(String.format("%-30s",tg.toString()));
-        }
+        sb.append(String.format("%-8s%-30s%-15s%-10s%-10s", code, name, type, duration, faculty));
+        for(TutorialGroup tg : tutorialGroup.values())
+            sb.append(String.format("%-6s",tg.getId() + ", "));
         sb.append("\n");
         return sb.toString();
     }

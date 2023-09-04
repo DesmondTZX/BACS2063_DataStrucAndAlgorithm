@@ -1,61 +1,98 @@
 package boundary;
 
-import adt.HashMapInterface;
 import entity.*;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class ProgrammeManagementUI {
     Scanner sc = new Scanner(System.in);
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
     public int getMenuChoice() {
-        System.out.println("Programme Menu");
-        System.out.println("1. Add Programme");
-        System.out.println("2. Remove Programme");
-        System.out.println("3. Update Programme");
-        System.out.println("4. Search Programme");
-        System.out.println("5. Add a Tutorial Group to a Programme");
-        System.out.println("6. Remove a Tutorial Group from a Programme");
-        System.out.println("7. List All Tutorial Group in a Programme");
-        System.out.println("8. Generate Programme Report");
-        System.out.println("0. Exit");
-        System.out.print("Enter choice: ");
+        System.out.println(ANSI_GREEN + "╔═════════════════════════════════════════════╗");
+        System.out.println("║              " + ANSI_PURPLE + "Programme Menu" + ANSI_GREEN + "                 ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ " + ANSI_BLUE + "1. Display All Programmes" + ANSI_GREEN + "                   ║");
+        System.out.println("║ " + ANSI_BLUE + "2. Add Programme" + ANSI_GREEN + "                            ║");
+        System.out.println("║ " + ANSI_BLUE + "3. Remove Programme" + ANSI_GREEN + "                         ║");
+        System.out.println("║ " + ANSI_BLUE + "4. Update Programme" + ANSI_GREEN + "                         ║");
+        System.out.println("║ " + ANSI_BLUE + "5. Search Programme" + ANSI_GREEN + "                         ║");
+        System.out.println("║ " + ANSI_BLUE + "6. Display ALl Tutorial Groups" + ANSI_GREEN + "              ║");
+        System.out.println("║ " + ANSI_BLUE + "7. Add Tutorial Group to a Programme" + ANSI_GREEN + "        ║");
+        System.out.println("║ " + ANSI_BLUE + "8. Remove Tutorial Group from a Programme" + ANSI_GREEN + "   ║");
+        System.out.println("║ " + ANSI_BLUE + "9. List All Tutorial Groups in a Programme" + ANSI_GREEN + "  ║");
+        System.out.println("║ " + ANSI_BLUE + "10. Generate Programme Report" + ANSI_GREEN + "               ║");
+        System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
+        System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
+        displayEnterChoiceMessage();
         int choice = sc.nextInt();
         sc.nextLine(); // Consume the newline character
+        System.out.println();
         return choice;
     }
 
     public int getSearchMenuChoice() {
-        System.out.println("1. Search by Programme Code");
-        System.out.println("2. Search by Programme Name");
-        System.out.println("0. Exit");
+        System.out.println(ANSI_GREEN + "╔═════════════════════════════════════════════╗");
+        System.out.println("║              " + ANSI_PURPLE + "Search Programme" + ANSI_GREEN + "               ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ " + ANSI_BLUE + "1. Search by Programme Code" + ANSI_GREEN + "                 ║");
+        System.out.println("║ " + ANSI_BLUE + "2. Search by Programme Name" + ANSI_GREEN + "                 ║");
+        System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
+        System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
+        displayEnterChoiceMessage();
         int choice = sc.nextInt();
         sc.nextLine(); // Consume the newline character
+        System.out.println();
         return choice;
     }
 
-    public int getTutorialMenuChoice(){
-        System.out.println("1. Create Tutorial Group");
-        System.out.println("2. Add Tutorial Group to Programme");
-        System.out.println("0. Exit");
+    public static void displayEnterChoiceMessage() {
+        System.out.print("Enter choice: ");
+    }
+
+    public int getTutorialMenuChoice() {
+        System.out.println(ANSI_GREEN + "╔═════════════════════════════════════════════╗");
+        System.out.println("║              " + ANSI_PURPLE + "Tutorial Group" + ANSI_GREEN + "                 ║");
+        System.out.println("╠═════════════════════════════════════════════╣");
+        System.out.println("║ " + ANSI_BLUE + "1. Create Tutorial Group" + ANSI_GREEN + "                    ║");
+        System.out.println("║ " + ANSI_BLUE + "2. Add Tutorial Group to Programme" + ANSI_GREEN + "          ║");
+        System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
+        System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
+        displayEnterChoiceMessage();
         int choice = sc.nextInt();
         sc.nextLine(); // Consume the newline character
+        System.out.println();
         return choice;
     }
 
 
-    public void listProgramme(String outputStr) {
+    public void listProgrammes(String outputStr) {
+        System.out.printf("%-8s%-30s%-15s%-10s%-10s%-10s", "Code", "Name", "Type", "Duration", "Faculty" , "Tutorial Group" + "\n");
         System.out.println(outputStr);
     }
 
-    public void listTutorialGroup(String outputStr) {
+    public void listTutorialGroups(String outputStr) {
+        System.out.printf("%-10s %-12s %-6s", "Group ID", "Group Name", "Group Number" + "\n");
         System.out.println(outputStr);
     }
 
     public int getTutorialGroupChoice() {
         System.out.println("Choose Tutorial Group");
         return sc.nextInt();
+    }
+
+    public void pressEnterToContinue() {
+        System.out.println("Press Enter to continue...");
+        sc.nextLine();
     }
 
     public String inputProgrammeCodeToSearchUpdateRemove() {
@@ -65,13 +102,13 @@ public class ProgrammeManagementUI {
 
     }
 
-    public String inputProgrammeNameToSearch(){
+    public String inputProgrammeNameToSearch() {
         System.out.print("Enter Programme Name to search: ");
         return sc.nextLine();
     }
 
     public String inputProgrammeCode(String additionalMessage) {
-        System.out.print("Enter new Programme Code " + additionalMessage + ": ");
+        System.out.print("Enter new Programme Code (Number)" + additionalMessage + ": ");
         return sc.nextLine();
     }
 
@@ -86,7 +123,7 @@ public class ProgrammeManagementUI {
     }
 
     public String inputProgrammeDuration(String additionalMessage) {
-        System.out.print("Enter new Programme Duration " + additionalMessage + ": ");
+        System.out.print("Enter new Programme Duration (Year) " + additionalMessage + ": ");
         return sc.nextLine();
     }
 
@@ -101,7 +138,7 @@ public class ProgrammeManagementUI {
         System.out.print("Enter new Tutorial Group Number :");
         String tutorialGroupNumber = sc.nextLine();
         int groupNumber = Integer.parseInt(tutorialGroupNumber);
-        return new TutorialGroup(tutorialGroupName, groupNumber,size);
+        return new TutorialGroup(tutorialGroupName, groupNumber, size);
     }
 
 
@@ -114,71 +151,132 @@ public class ProgrammeManagementUI {
     }
 
     public void displayProgrammeDoesNotExist() {
-        System.out.println("Programme does not exist");
+        System.out.println(ANSI_RED + "Programme does not exist");
+        System.out.println(ANSI_RESET);
+
     }
 
     public void displayProgrammeExists() {
-        System.out.println("Programme already exists");
+        System.out.println(ANSI_RED + "Programme already exists");
+        System.out.println(ANSI_RESET);
     }
 
     public void displayProgrammeAddedMessage() {
-        System.out.println("Programme added");
+        System.out.println(ANSI_GREEN + "Programme added");
+        System.out.println(ANSI_RESET);
     }
 
     public void displayProgrammeRemovedMessage() {
-        System.out.println("Programme removed");
+        System.out.println(ANSI_GREEN + "Programme removed");
+        System.out.println(ANSI_RESET);
     }
 
     public void displayProgrammeUpdatedMessage() {
-        System.out.println("Programme updated");
+        System.out.println(ANSI_GREEN + "Programme updated");
+        System.out.println(ANSI_RESET);
     }
 
     public void displayTutorialGroupCreatedMessage() {
-        System.out.println("Tutorial group created");
+        System.out.println(ANSI_GREEN + "Tutorial group created");
+        System.out.println(ANSI_RESET);
     }
 
-    public void displayTutorialGroupAlreadyAdded(){
-        System.out.println("Tutorial group already added to this programme");
+    public void displayTutorialGroupAlreadyAdded() {
+        System.out.println(ANSI_RED + "Tutorial group already added");
+        System.out.println(ANSI_RESET);
     }
 
     public void displayInvalidChoice() {
-        System.out.println("Invalid choice");
+        System.out.println(ANSI_RED + "Invalid choice");
+        System.out.println(ANSI_RESET);
     }
 
-    public void displayNoTutorialGroup(){
-        System.out.println("No tutorial group in this programme");
+    public void displayNoTutorialGroupAvailableToRemoveFromProgrammeMessage() {
+        System.out.println(ANSI_RED + "No tutorial group available to remove from this programme. Please add a tutorial group to this programmefirst.");
+        System.out.println(ANSI_RESET);
+    }
+    public void displayNoNewTutorialGroupAvailableToProgrammeMessage() {
+        System.out.println(ANSI_RED + "No new tutorial groups available for this program. All existing tutorial groups have already been added, Please create a new tutorial group first.");
+        System.out.println(ANSI_RESET);
     }
 
-    public Programme inputProgrammeDetailsToUpdate(Programme programme) {
-        System.out.println("Programme Code   Programme Name   Programme Type   Programme Duration   Programme Faculty");
-        System.out.printf("%10d %10s %10s %10d %10s", programme.getCode(), programme.getName(), programme.getType(), programme.getDuration(), programme.getFaculty());
+    public void displayNoTutorialGroupAvailableMessage(){
+        System.out.println(ANSI_RED + "No tutorial group available, Please create a new tutorial group first.");
+        System.out.println(ANSI_RESET);
+    }
+
+    public void displayExitMessage() {
+        System.out.println(ANSI_YELLOW + "Exiting...");
+    }
+
+    public void displayTutorialGroupAddedToProgrammeMessage(){
+        System.out.println(ANSI_GREEN + "Tutorial group added to programme");
+        System.out.println(ANSI_RESET);
+    }
+
+    public void displayTutorialGroupRemovedFromProgrammeMessage(){
+        System.out.println(ANSI_GREEN + "Tutorial group removed from programme");
+        System.out.println(ANSI_RESET);
+    }
+
+    public void displayProgrammeReport(Programme programme) {
+        String straightLine = "---------------------------------------------";
+
+        System.out.println();
+        System.out.println(straightLine);
+        System.out.println(ANSI_PURPLE +"Programme Report");
+        System.out.print(ANSI_RESET);
+        System.out.println(straightLine);
+        System.out.println("Programme Code: " + ANSI_GREEN +programme.getCode());
+        System.out.print(ANSI_RESET);
+        System.out.println("Programme Name: " + ANSI_GREEN+ programme.getName());
+        System.out.print(ANSI_RESET);
+        System.out.println("Programme Type: " + ANSI_GREEN+ programme.getType());
+        System.out.print(ANSI_RESET);
+        System.out.println("Programme Duration: " + ANSI_GREEN+ programme.getDuration());
+        System.out.print(ANSI_RESET);
+        System.out.println("Programme Faculty: " + ANSI_GREEN+ programme.getFaculty());
+        System.out.print(ANSI_RESET);
+        System.out.println(straightLine);
         System.out.println();
 
+        System.out.printf("%-10s %-12s %-6s", "Group ID", "Group Name", "Group Number" + "\n");
+        for(TutorialGroup tutorialGroup : programme.getTutorialGroup().values()){
+            System.out.print(ANSI_GREEN);
+            System.out.printf("%-10s %-12s %-2s", tutorialGroup.getId(), tutorialGroup.getName(), tutorialGroup.getGroupNumber() + "\n");
+        }
+        System.out.print(ANSI_RESET);
+        System.out.println(straightLine);
+        System.out.println("Total number of tutorial groups: " + ANSI_GREEN +programme.getTutorialGroup().size());
+        System.out.print(ANSI_RESET);
+        System.out.println(straightLine);
+    }
+
+
+    public Programme inputProgrammeDetailsToUpdate(Programme programme) {
+        listProgrammes(programme.toString());
+
         String code = inputProgrammeCode(" (Press enter to skip)");
-        if(!code.trim().isEmpty())
+        if (!code.trim().isEmpty())
             programme.setCode(Integer.parseInt(code));
 
         String name = inputProgrammeName(" (Press enter to skip)");
-        if(!name.trim().isEmpty())
+        if (!name.trim().isEmpty())
             programme.setName(name);
 
         String type = inputProgrammeType(" (Press enter to skip)");
-        if(!type.trim().isEmpty())
+        if (!type.trim().isEmpty())
             programme.setType(type);
 
         String duration = inputProgrammeDuration(" (Press enter to skip)");
-        if(!duration.trim().isEmpty())
+        if (!duration.trim().isEmpty())
             programme.setDuration(Integer.parseInt(duration));
 
         String faculty = inputProgrammeFaculty(" (Press enter to skip)");
-        if(!faculty.trim().isEmpty())
+        if (!faculty.trim().isEmpty())
             programme.setFaculty(faculty);
 
         return programme;
-
-
-
-
 
 
     }

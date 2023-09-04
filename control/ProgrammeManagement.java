@@ -25,42 +25,83 @@ public class ProgrammeManagement {
 
     public void start() {
         int choice = 0;
+        boolean isExit = false;
         do {
             choice = programmeManagementUI.getMenuChoice();
             switch (choice) {
-                case 1 -> addProgramme();
-                case 2 -> removeProgramme();
-                case 3 -> updateProgramme();
+                case 1 -> displayAllProgramme();
+                case 2 -> addProgramme();
+                case 3 -> {
+                    displayAllProgramme();
+                    removeProgramme();
+                }
                 case 4 -> {
+                    displayAllProgramme();
+                    updateProgramme();
+                }
+                case 5 -> {
                     int choice2 = 0;
-                    do{
+                    do {
                         choice2 = programmeManagementUI.getSearchMenuChoice();
                         switch (choice2) {
                             case 1 -> searchProgrammeByCode();
                             case 2 -> searchProgrammeByName();
+                            case 0 -> isExit = true;
                             default -> programmeManagementUI.displayInvalidChoice();
                         }
-                    }while(choice2!=0);
+                        if (choice2 != 0)
+                            programmeManagementUI.pressEnterToContinue();
+
+                    } while (choice2 != 0);
 
                 }
-                case 5 -> {
+                case 6 -> listAllTutorialGroup();
+                case 7 -> {
                     int choice3 = 0;
                     do {
                         choice3 = programmeManagementUI.getTutorialMenuChoice();
                         switch (choice3) {
                             case 1 -> createTutorialGroup();
-                            case 2 -> addTutorialGroupToProgramme();
+                            case 2 -> {
+                                displayAllProgramme();
+                                addTutorialGroupToProgramme();
+                            }
+                            case 0 -> isExit = true;
                             default -> programmeManagementUI.displayInvalidChoice();
                         }
+                        if (choice3 != 0)
+                            programmeManagementUI.pressEnterToContinue();
                     } while (choice3 != 0);
                 }
-                case 6 -> removeTutorialGroupFromProgramme();
-                case 7 -> listAllTutorialGroupInProgramme();
-                case 8 -> generateProgrammeReport();
-                case 0 -> System.out.println("Exiting...");
+                case 8 -> {
+                    displayAllProgramme();
+                    removeTutorialGroupFromProgramme();
+                }
+                case 9 -> {
+                    displayAllProgramme();
+                    listAllTutorialGroupInProgramme();
+                }
+                case 10 -> {
+                    displayAllProgramme();
+                    generateProgrammeReport();
+                }
+                case 0 -> {
+                    programmeManagementUI.displayExitMessage();
+                    isExit = true;
+                }
                 default -> programmeManagementUI.displayInvalidChoice();
             }
+            if (!isExit && choice != 0)
+                programmeManagementUI.pressEnterToContinue();
         } while (choice != 0);
+    }
+
+    public void displayAllProgramme() {
+        StringBuilder sb = new StringBuilder();
+        for (Programme programme : programmeMap.values()) {
+            sb.append(programme.toString());
+        }
+        programmeManagementUI.listProgrammes(sb.toString());
     }
 
     public void addProgramme() {
@@ -81,20 +122,22 @@ public class ProgrammeManagement {
     public void removeProgramme() {
         int code = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         Programme removedProgramme = programmeMap.remove(code);
-        programmeDAO.saveToFile(programmeMap);
         if (removedProgramme == null) {
             programmeManagementUI.displayProgrammeDoesNotExist();
         } else {
+            programmeDAO.saveToFile(programmeMap);
             programmeManagementUI.displayProgrammeRemovedMessage();
         }
     }
 
     public void updateProgramme() {
         int code = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
+
         while (!programmeMap.containsKey(code)) {
             programmeManagementUI.displayProgrammeDoesNotExist();
             code = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         }
+
         Programme programme = programmeMap.get(code);
         programme = programmeManagementUI.inputProgrammeDetailsToUpdate(programme);
 
@@ -111,7 +154,7 @@ public class ProgrammeManagement {
         int code = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         if (programmeMap.containsKey(code)) {
             Programme programme = programmeMap.get(code);
-            programmeManagementUI.listProgramme(programme.toString());
+            programmeManagementUI.listProgrammes(programme.toString());
         } else {
             programmeManagementUI.displayProgrammeDoesNotExist();
         }
@@ -119,69 +162,103 @@ public class ProgrammeManagement {
 
     public void searchProgrammeByName() {
         String name = programmeManagementUI.inputProgrammeNameToSearch();
-        String outputStr = "";
+        StringBuilder sb = new StringBuilder();
         for (Programme programme : programmeMap.values()) {
             if (programme.getName().toLowerCase().contains(name.toLowerCase())) {
-                outputStr += programme + "\n";
+                sb.append(programme + "\n");
             }
         }
-        if (outputStr.equals("")) {
+        if (sb.toString().isEmpty()) {
             programmeManagementUI.displayProgrammeDoesNotExist();
         } else {
-            programmeManagementUI.listProgramme(outputStr);
+            programmeManagementUI.listProgrammes(sb.toString());
         }
     }
 
     public void createTutorialGroup() {
         TutorialGroup tutorialGroup = programmeManagementUI.inputTutorialGroupDetails(tutorialGroupMap.size());
         tutorialGroupMap.put(tutorialGroup.getId(), tutorialGroup);
-        programmeManagementUI.displayTutorialGroupCreatedMessage();
         tutorialGroupDAO.saveToFile(tutorialGroupMap);
+        programmeManagementUI.displayTutorialGroupCreatedMessage();
+    }
+
+    public void listAllTutorialGroup() {
+        StringBuilder sb = new StringBuilder();
+        for (TutorialGroup tutorialGroup : tutorialGroupMap.values()) {
+            sb.append(tutorialGroup.toString());
+        }
+        programmeManagementUI.listTutorialGroups(sb.toString());
     }
 
     public void listAllTutorialGroupInProgramme() {
-        for (TutorialGroup tutorialGroup : tutorialGroupMap.values()) {
-            programmeManagementUI.listTutorialGroup(tutorialGroup.toString() + "\n");
+        int programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
+
+        while (!programmeMap.containsKey(programmeCode)) {
+            programmeManagementUI.displayProgrammeDoesNotExist();
+            programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         }
+
+        if (programmeMap.get(programmeCode).getTutorialGroup().isEmpty()) {
+            programmeManagementUI.displayNoTutorialGroupAvailableMessage();
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (TutorialGroup tutorialGroup : programmeMap.get(programmeCode).getTutorialGroup().values()) {
+            sb.append(tutorialGroup.toString());
+        }
+        programmeManagementUI.listTutorialGroups(sb.toString());
     }
 
     public void addTutorialGroupToProgramme() {
-        // input programmeCode
+
+        if (tutorialGroupMap.isEmpty()) {
+            programmeManagementUI.displayNoTutorialGroupAvailableMessage();
+            return;
+        }
+
         int programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         while (!programmeMap.containsKey(programmeCode)) {
             programmeManagementUI.displayProgrammeDoesNotExist();
             programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         }
 
-        //list all tutorial group
+        Programme programme = programmeMap.get(programmeCode);
+        HashMapInterface<String,TutorialGroup> tGroupForProgramme = programme.getTutorialGroup();
+
         int i = 1;
         ArrayList<String> tutorialGroupListId = new ArrayList<>();
-        for (TutorialGroup tutorialGroup : tutorialGroupMap.values()) {
-            programmeManagementUI.listTutorialGroup(i + " ." + tutorialGroup.toString() + "\n");
-            tutorialGroupListId.add(tutorialGroup.getId());
-            i++;
+        StringBuilder sb = new StringBuilder();
+
+        for(TutorialGroup tutorialGroup : tutorialGroupMap.values()){
+            if(!tGroupForProgramme.containsKey(tutorialGroup.getId())){
+                tutorialGroupListId.add(tutorialGroup.getId());
+                sb.append(i + ". ");
+                sb.append(tutorialGroup.toString() + "\n");
+                i++;
+            }
         }
-        if(tutorialGroupListId.size() == 0){
-            programmeManagementUI.displayNoTutorialGroup();
+
+        if (tutorialGroupListId.size() == 0) {
+            programmeManagementUI.displayNoNewTutorialGroupAvailableToProgrammeMessage();
             return;
         }
+
+        programmeManagementUI.listTutorialGroups(sb.toString());
+
         int choice = programmeManagementUI.getTutorialGroupChoice();
-        while(choice < 1 || choice > tutorialGroupListId.size()){
+        while (choice < 1 || choice > tutorialGroupListId.size()) {
             programmeManagementUI.displayInvalidChoice();
             choice = programmeManagementUI.getTutorialGroupChoice();
         }
-        //add tutorial group to programme
-        Programme programme = programmeMap.get(programmeCode);
-        if (programme.getTutorialGroup().containsKey(tutorialGroupListId.get(choice - 1)))
-            programmeManagementUI.displayTutorialGroupAlreadyAdded();
-        else
-            programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
-        programmeDAO.saveToFile(programmeMap);
 
+
+        programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
+        programmeDAO.saveToFile(programmeMap);
+        programmeManagementUI.displayTutorialGroupAddedToProgrammeMessage();
     }
 
     public void removeTutorialGroupFromProgramme() {
-        // input programmeCode
         int programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
 
         while (!programmeMap.containsKey(programmeCode)) {
@@ -190,37 +267,42 @@ public class ProgrammeManagement {
         }
 
         Programme programme = programmeMap.get(programmeCode);
-        //list all tutorial group belong to programme
         HashMapInterface<String, TutorialGroup> tutorialGroups = programme.getTutorialGroup();
+
         int i = 1;
         ArrayList<String> tutorialGroupListId = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+
         for (TutorialGroup tutorialGroup : tutorialGroups.values()) {
-            programmeManagementUI.listTutorialGroup(i + " ." + tutorialGroup.toString() + "\n");
             tutorialGroupListId.add(tutorialGroup.getId());
+            sb.append(i + ". ");
+            sb.append(tutorialGroup.toString() + "\n");
             i++;
         }
-        if(tutorialGroupListId.size() == 0){
-            programmeManagementUI.displayNoTutorialGroup();
+        if (tutorialGroupListId.size() == 0) {
+            programmeManagementUI.displayNoTutorialGroupAvailableToRemoveFromProgrammeMessage();
             return;
         }
+        programmeManagementUI.listTutorialGroups(sb.toString());
+
         int choice = programmeManagementUI.getTutorialGroupChoice();
-        while(choice < 1 || choice > tutorialGroupListId.size()){
+        while (choice < 1 || choice > tutorialGroupListId.size()) {
             programmeManagementUI.displayInvalidChoice();
             choice = programmeManagementUI.getTutorialGroupChoice();
         }
-        //remove tutorial group from programme
         programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
         programmeDAO.saveToFile(programmeMap);
+        programmeManagementUI.displayTutorialGroupRemovedFromProgrammeMessage();
     }
 
-
     public void generateProgrammeReport() {
-        String outputStr = "";
-        System.out.printf("%-8s%-40s%-15s%-10s%-10s%-80s", "Code", "Name", "Type", "Duration", "Faculty", "Tutorial Group");
-        for (Programme programme : programmeMap.values()) {
-            outputStr += programme.toString();
+        int programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
+        while (!programmeMap.containsKey(programmeCode)) {
+            programmeManagementUI.displayProgrammeDoesNotExist();
+            programmeCode = Integer.parseInt(programmeManagementUI.inputProgrammeCodeToSearchUpdateRemove());
         }
-        programmeManagementUI.listProgramme(outputStr);
+        Programme programme = programmeMap.get(programmeCode);
+        programmeManagementUI.displayProgrammeReport(programme);
     }
 
     public static void main(String[] args) {

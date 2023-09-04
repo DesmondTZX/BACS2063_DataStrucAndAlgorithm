@@ -54,7 +54,7 @@ public class TutorialGroup implements Serializable {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-10s %-10s %-6s", id, name, groupNumber));
+        sb.append(String.format("%-10s %-12s %-6s\n", id, name, groupNumber));
         return sb.toString();
     }
 }

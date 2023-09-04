@@ -55,7 +55,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
         }
 
         // Add new entry
-        if (numberOfEntries >= loadFactor * entries.length) {
+        if (isHashMapTooFull()) {
             rehash();
         }
         index = getIndexForNullEntries(key);
@@ -69,7 +69,6 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
 
     }
-
     @Override
     public V get(K key) {
         int index = getIndexForExistingEntries(key);
@@ -153,6 +152,10 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
             entries[i] = null;
         }
         numberOfEntries = 0;
+    }
+
+    private boolean isHashMapTooFull() {
+        return numberOfEntries >= loadFactor * entries.length;
     }
 
     // Get the prime number that is closest to the size of the array
