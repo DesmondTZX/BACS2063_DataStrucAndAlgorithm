@@ -70,14 +70,13 @@ public class TutorGroupManagementUI {
 
     public Student inputStudentDetails() {
         System.out.println("\nPlease Key In the following Student Details:");
+        
         String studentName = inputStudentName();
         int studentID = inputStudentID();
         String studentEmail = inputStudentEmail();
         String mode = inputMode();
         String gender = inputGender();
-
-        System.out.println("");
-
+        
         return new Student(studentName, studentID, studentEmail, mode, gender);
     }
 

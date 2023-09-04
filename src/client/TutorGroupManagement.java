@@ -36,6 +36,7 @@ public class TutorGroupManagement {
         int choice = 0;
         do {
             choice = tutGroupUI.getMenuChoice();
+            
             switch (choice) {
                 case 0 -> {
                     MessageUI.displayExitMessage();
@@ -75,6 +76,7 @@ public class TutorGroupManagement {
                 default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
+                    
                 }
 
             }
