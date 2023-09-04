@@ -25,8 +25,9 @@ public class ProgrammeManagement {
 
     public void start() {
         int choice = 0;
-        boolean isExit = false;
+        boolean isExit;
         do {
+            isExit = false;
             choice = programmeManagementUI.getMenuChoice();
             switch (choice) {
                 case 1 -> displayAllProgramme();
@@ -91,7 +92,7 @@ public class ProgrammeManagement {
                 }
                 default -> programmeManagementUI.displayInvalidChoice();
             }
-            if (!isExit && choice != 0)
+            if (!isExit)
                 programmeManagementUI.pressEnterToContinue();
         } while (choice != 0);
     }
