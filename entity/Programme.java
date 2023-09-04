@@ -98,14 +98,13 @@ public class Programme implements Serializable {
 
     @Override
     public String toString() {
-        return "Programme{" +
-                "code=" + code +
-                ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", duration=" + duration +
-                ", faculty='" + faculty + '\'' +
-                ", tutorialGroup=" + tutorialGroup +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-8s%-40s%-15s%-10s%-10s", code, name, type, duration, faculty));
+        for (TutorialGroup tg : tutorialGroup.values()) {
+            sb.append(String.format("%-30s",tg.toString()));
+        }
+        sb.append("\n");
+        return sb.toString();
     }
 
 }

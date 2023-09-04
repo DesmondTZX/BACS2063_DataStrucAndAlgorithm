@@ -4,6 +4,7 @@ import adt.HashMap;
 import adt.HashMapInterface;
 import boundary.ProgrammeManagementUI;
 import dao.ProgrammeDAO;
+import dao.TutorialGroupDAO;
 import entity.Programme;
 import entity.TutorialGroup;
 
@@ -12,12 +13,14 @@ import java.util.ArrayList;
 
 public class ProgrammeManagement {
     private HashMapInterface<Integer, Programme> programmeMap = new HashMap<>();
-    private final HashMapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
+    private HashMapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
     private final ProgrammeDAO programmeDAO = new ProgrammeDAO();
+    private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO();
     private final ProgrammeManagementUI programmeManagementUI = new ProgrammeManagementUI();
 
     public ProgrammeManagement() {
         programmeMap = programmeDAO.retrieveFromFile();
+        tutorialGroupMap = tutorialGroupDAO.retrieveFromFile();
     }
 
     public void start() {
@@ -29,20 +32,27 @@ public class ProgrammeManagement {
                 case 2 -> removeProgramme();
                 case 3 -> updateProgramme();
                 case 4 -> {
-                    int choice2 = programmeManagementUI.getSearchMenuChoice();
-                    switch (choice2) {
-                        case 1 -> searchProgrammeByCode();
-                        case 2 -> searchProgrammeByName();
-                        default -> System.out.println("Invalid choice");
-                    }
+                    int choice2 = 0;
+                    do{
+                        choice2 = programmeManagementUI.getSearchMenuChoice();
+                        switch (choice2) {
+                            case 1 -> searchProgrammeByCode();
+                            case 2 -> searchProgrammeByName();
+                            default -> programmeManagementUI.displayInvalidChoice();
+                        }
+                    }while(choice2!=0);
+
                 }
                 case 5 -> {
-                    int choice3 = programmeManagementUI.getTutorialMenuChoice();
-                    switch (choice3) {
-                        case 1 -> createTutorialGroup();
-                        case 2 -> addTutorialGroupToProgramme();
-                        default -> System.out.println("Invalid choice");
-                    }
+                    int choice3 = 0;
+                    do {
+                        choice3 = programmeManagementUI.getTutorialMenuChoice();
+                        switch (choice3) {
+                            case 1 -> createTutorialGroup();
+                            case 2 -> addTutorialGroupToProgramme();
+                            default -> programmeManagementUI.displayInvalidChoice();
+                        }
+                    } while (choice3 != 0);
                 }
                 case 6 -> removeTutorialGroupFromProgramme();
                 case 7 -> listAllTutorialGroupInProgramme();
@@ -111,7 +121,7 @@ public class ProgrammeManagement {
         String name = programmeManagementUI.inputProgrammeNameToSearch();
         String outputStr = "";
         for (Programme programme : programmeMap.values()) {
-            if (programme.getName().contains(name)) {
+            if (programme.getName().toLowerCase().contains(name.toLowerCase())) {
                 outputStr += programme + "\n";
             }
         }
@@ -123,9 +133,10 @@ public class ProgrammeManagement {
     }
 
     public void createTutorialGroup() {
-        TutorialGroup tutorialGroup = programmeManagementUI.inputTutorialGroupDetails();
+        TutorialGroup tutorialGroup = programmeManagementUI.inputTutorialGroupDetails(tutorialGroupMap.size());
         tutorialGroupMap.put(tutorialGroup.getId(), tutorialGroup);
         programmeManagementUI.displayTutorialGroupCreatedMessage();
+        tutorialGroupDAO.saveToFile(tutorialGroupMap);
     }
 
     public void listAllTutorialGroupInProgramme() {
@@ -165,6 +176,7 @@ public class ProgrammeManagement {
             programmeManagementUI.displayTutorialGroupAlreadyAdded();
         else
             programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
+        programmeDAO.saveToFile(programmeMap);
 
     }
 
@@ -198,13 +210,15 @@ public class ProgrammeManagement {
         }
         //remove tutorial group from programme
         programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
+        programmeDAO.saveToFile(programmeMap);
     }
 
 
     public void generateProgrammeReport() {
         String outputStr = "";
+        System.out.printf("%-8s%-40s%-15s%-10s%-10s%-80s", "Code", "Name", "Type", "Duration", "Faculty", "Tutorial Group");
         for (Programme programme : programmeMap.values()) {
-            outputStr += programme.toString() + "\n";
+            outputStr += programme.toString();
         }
         programmeManagementUI.listProgramme(outputStr);
     }

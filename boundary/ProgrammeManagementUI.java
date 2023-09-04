@@ -46,12 +46,10 @@ public class ProgrammeManagementUI {
 
 
     public void listProgramme(String outputStr) {
-        System.out.println("List of Programmes");
         System.out.println(outputStr);
     }
 
     public void listTutorialGroup(String outputStr) {
-        System.out.println("List of Tutorial Groups");
         System.out.println(outputStr);
     }
 
@@ -97,13 +95,13 @@ public class ProgrammeManagementUI {
         return sc.nextLine();
     }
 
-    public TutorialGroup inputTutorialGroupDetails() {
+    public TutorialGroup inputTutorialGroupDetails(int size) {
         System.out.print("Enter new Tutorial Group Name :");
         String tutorialGroupName = sc.nextLine();
         System.out.print("Enter new Tutorial Group Number :");
         String tutorialGroupNumber = sc.nextLine();
         int groupNumber = Integer.parseInt(tutorialGroupNumber);
-        return new TutorialGroup(tutorialGroupName, groupNumber);
+        return new TutorialGroup(tutorialGroupName, groupNumber,size);
     }
 
 

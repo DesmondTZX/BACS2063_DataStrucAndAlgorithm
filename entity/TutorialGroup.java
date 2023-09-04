@@ -7,10 +7,9 @@ public class TutorialGroup implements Serializable {
     private String id;
     private String name;
     private int groupNumber;
-    private static int nextId = 1;
 
-    public TutorialGroup(String name, int groupNumber) {
-        this.id = String.format("TG%04d", nextId++);
+    public TutorialGroup(String name, int groupNumber,int nextId) {
+        this.id = String.format("TG%04d", ++nextId);
         this.name = name;
         this.groupNumber = groupNumber;
     }
@@ -39,14 +38,6 @@ public class TutorialGroup implements Serializable {
         this.groupNumber = groupNumber;
     }
 
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        TutorialGroup.nextId = nextId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -62,10 +53,8 @@ public class TutorialGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "TutorialGroup{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", groupNumber=" + groupNumber +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-10s %-10s %-6s", id, name, groupNumber));
+        return sb.toString();
     }
 }
