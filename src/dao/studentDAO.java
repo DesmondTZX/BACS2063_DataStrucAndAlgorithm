@@ -36,7 +36,7 @@ public class StudentDAO {
     }
 
     public SortedListInterface<Student> retrieveFromFile() {
-        SortedListInterface<Student> studentList = new SortedList<>();
+        SortedListInterface<Student> studentList = new SortedLinkedList<>();
 
         try ( ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(fileName))) {
             Object obj;

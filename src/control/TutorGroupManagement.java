@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package client;
+package control;
 
 import adt.*;
 import boundary.*;
@@ -13,6 +13,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
+import java.util.Scanner;
 import utility.*;
 
 /**
@@ -24,8 +25,8 @@ public class TutorGroupManagement {
     private final TutorGroupManagementUI tutGroupUI = new TutorGroupManagementUI();
     private final StudentDAO g1DAO = new StudentDAO("Group1.dat");
     private final StudentDAO g2DAO = new StudentDAO("Group2.dat");
-    private SortedListInterface<Student> g1List = new SortedList<>();
-    private SortedListInterface<Student> g2List = new SortedList<>();
+    private SortedListInterface<Student> g1List = new SortedLinkedList<>();
+    private SortedListInterface<Student> g2List = new SortedLinkedList<>();
 
     public TutorGroupManagement() {
         g1List = g1DAO.retrieveFromFile();
@@ -36,7 +37,6 @@ public class TutorGroupManagement {
         int choice = 0;
         do {
             choice = tutGroupUI.getMenuChoice();
-            
             switch (choice) {
                 case 0 -> {
                     MessageUI.displayExitMessage();
@@ -76,7 +76,7 @@ public class TutorGroupManagement {
                 default -> {
                     cls();
                     MessageUI.displayInvalidChoiceMessage();
-                    
+
                 }
 
             }
@@ -87,9 +87,7 @@ public class TutorGroupManagement {
     public void addNewStudent() {
         int gpChoice = 0;
         do {
-            System.out.println("===========");
-            System.out.println("Add Student");
-            System.out.println("===========");
+            tutGroupUI.addTitle();
             gpChoice = tutGroupUI.getGroupChoice();
             switch (gpChoice) {
                 case 0 -> {
@@ -100,9 +98,7 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
-                    System.out.println("===========");
-                    System.out.println("Add Student");
-                    System.out.println("===========");
+                    tutGroupUI.addTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g1List.add(newStud);
@@ -111,9 +107,7 @@ public class TutorGroupManagement {
                 }
                 case 2 -> {
                     cls();
-                    System.out.println("===========");
-                    System.out.println("Add Student");
-                    System.out.println("===========");
+                    tutGroupUI.addTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g2List.add(newStud);
@@ -158,9 +152,7 @@ public class TutorGroupManagement {
     public void removeStudent() {
         int gpChoice = 0;
         do {
-            System.out.println("==============");
-            System.out.println("Remove Student");
-            System.out.println("==============");
+            tutGroupUI.removeTitle();
             gpChoice = tutGroupUI.getGroupChoice();
             switch (gpChoice) {
                 case 0 -> {
@@ -172,9 +164,7 @@ public class TutorGroupManagement {
                 case 1 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
-                    System.out.println("==============");
-                    System.out.println("Remove Student");
-                    System.out.println("==============");
+                    tutGroupUI.removeTitle();
                     Student delStud = new Student(tutGroupUI.inputStudentID());
                     g1List.remove(delStud);
                     g1DAO.saveToFile(g1List);
@@ -183,9 +173,7 @@ public class TutorGroupManagement {
                 case 2 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G2
-                    System.out.println("==============");
-                    System.out.println("Remove Student");
-                    System.out.println("==============");
+                    tutGroupUI.removeTitle();
                     Student delStud = new Student(tutGroupUI.inputStudentID());
                     g2List.remove(delStud);
                     g2DAO.saveToFile(g2List);
@@ -229,9 +217,7 @@ public class TutorGroupManagement {
     public void changeStudentTutGroup() {
         int gpChoice = 0;
         do {
-            System.out.println("=============================");
-            System.out.println("Change Student Tutorial Group");
-            System.out.println("=============================");
+            tutGroupUI.changeStudTitle();
             gpChoice = tutGroupUI.getGroupChoice();
             switch (gpChoice) {
                 case 0 -> {
@@ -242,28 +228,28 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
-                    System.out.println("=============================");
-                    System.out.println("Change Student Tutorial Group");
-                    System.out.println("=============================");
+                    tutGroupUI.changeStudTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
-                    Student chgStud = tutGroupUI.inputStudentDetails();
-                    g1List.remove(chgStud);
-                    g1DAO.saveToFile(g1List);
-                    g2List.add(chgStud);
-                    g2DAO.saveToFile(g2List);
+                    int studentIDToChange = tutGroupUI.inputStudentID();
+                    Student foundStudent = null;
+
+                    // Convert g1List to a List
+                    Iterator<Student> g1ListAsIterator = g1List.getIterator();
+
+                    changeG1toG2(g1ListAsIterator, studentIDToChange, foundStudent);
                     break;
                 }
                 case 2 -> {
                     cls();
-                    System.out.println("=============================");
-                    System.out.println("Change Student Tutorial Group");
-                    System.out.println("=============================");
+                    tutGroupUI.changeStudTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1
-                    Student chgStud = tutGroupUI.inputStudentDetails();
-                    g2List.remove(chgStud);
-                    g2DAO.saveToFile(g2List);
-                    g1List.add(chgStud);
-                    g1DAO.saveToFile(g1List);
+                    int studentIDToChange = tutGroupUI.inputStudentID();
+                    Student foundStudent = null;
+
+                    // Convert g1List to a List
+                    Iterator<Student> g2ListAsIterator = g2List.getIterator();
+
+                    changeG2toG1(g2ListAsIterator, studentIDToChange, foundStudent);
                     break;
                 }
                 case 99 -> {
@@ -302,21 +288,42 @@ public class TutorGroupManagement {
 
     public void findStudent() {
         do {
-            System.out.println("============");
-            System.out.println("Find Student");
-            System.out.println("============");
-            Student findStud = new Student(tutGroupUI.inputStudentID());
-            if (g1List.contains(findStud) || g2List.contains(findStud)) {
-                System.out.println("Student Details");
-                System.out.println("Student Name: " + findStud.getStudentName());
-                System.out.println("Student ID: " + findStud.getStudentID());
-                System.out.println("Student Email: " + findStud.getStudentEmail());
-                System.out.println("Mode: " + findStud.getMode());
-                System.out.println("Student Gender: " + findStud.getGender());
-            } else {
-                MessageUI.displayNotFound();
-                tutGroupUI.againChoice();
+            tutGroupUI.dispFindTitle();
+
+            int choice = 0;
+            choice = tutGroupUI.getFindChoice();
+            switch (choice) {
+                case 1 -> {
+                    cls();
+                    int studentIDToFind = tutGroupUI.inputStudentID();
+                    Student foundStudent = null;
+                    // Convert g1&g2List to a iterator
+                    Iterator<Student> g1ListAsIterator = g1List.getIterator();
+                    Iterator<Student> g2ListAsIterator = g2List.getIterator();
+                    dispFoundStud(g1ListAsIterator, g2ListAsIterator, studentIDToFind, foundStudent);
+                    break;
+                }
+                case 2 -> {
+                    cls();
+                    String studentNameToFind = tutGroupUI.inputStudentName();
+                    Student foundStudent = null;
+                    // Convert g1&g2List to a iterator
+                    Iterator<Student> g1ListAsIterator = g1List.getIterator();
+                    Iterator<Student> g2ListAsIterator = g2List.getIterator();
+                    dispFoundStud(g1ListAsIterator, g2ListAsIterator, studentNameToFind, foundStudent);
+                    break;
+                }
+                case 99 -> {
+                    cls();
+                    mainMenu();
+                    break;
+                }
+                default -> {
+                    cls();
+                    MessageUI.displayInvalidChoiceMessage();
+                }
             }
+
         } while ("y".equals(tutGroupUI.againChoice()));
 
         int choice = 0;
@@ -342,13 +349,10 @@ public class TutorGroupManagement {
         } while (choice != 0);
     }
 
-    // got filter one based on criteria
     public void dispStudent() {
         int gpChoice = 0;
         do {
-            System.out.println("===============");
-            System.out.println("Display Student");
-            System.out.println("===============");
+            tutGroupUI.dispTitle();
             gpChoice = tutGroupUI.getGroupChoice();
             switch (gpChoice) {
                 case 0 -> {
@@ -358,18 +362,14 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
-                    System.out.println("===============");
-                    System.out.println("Display Student");
-                    System.out.println("===============");
+                    tutGroupUI.dispTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
                     break;
                 }
                 case 2 -> {
                     cls();
-                    System.out.println("===============");
-                    System.out.println("Display Student");
-                    System.out.println("===============");
-                    
+                    tutGroupUI.dispTitle();
+
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1 
                     break;
                 }
@@ -411,9 +411,7 @@ public class TutorGroupManagement {
     public void generateReport() {
         int gpChoice = 0;
         do {
-            System.out.println("======");
-            System.out.println("Report");
-            System.out.println("======");
+            tutGroupUI.reportTitle();
             gpChoice = tutGroupUI.getGroupChoice();
             switch (gpChoice) {
                 case 0 -> {
@@ -423,19 +421,16 @@ public class TutorGroupManagement {
                 }
                 case 1 -> {
                     cls();
-                    System.out.println("======");
-                    System.out.println("Report");
-                    System.out.println("======");
-                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
+                    tutGroupUI.reportTitle();
+                    tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1 
                     System.out.println("\nTotal Students: " + g1List.getNumberOfEntries() + " students ");
+
                     break;
                 }
                 case 2 -> {
                     cls();
-                    System.out.println("========");
-                    System.out.println("\nReport");
-                    System.out.println("========");
-                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G1 
+                    tutGroupUI.reportTitle();
+                    tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G2
                     System.out.println("\nTotal Students: " + g2List.getNumberOfEntries() + " students ");
                     break;
                 }
@@ -450,8 +445,7 @@ public class TutorGroupManagement {
                 }
             }
         } while (gpChoice != 0);
-        
-        
+
         int choice = 0;
         do {
             choice = tutGroupUI.returnChoice();
@@ -511,10 +505,173 @@ public class TutorGroupManagement {
         }
     }
 
+    //display founded student via id
+    public void dispFoundStud(Iterator<Student> g1ListAsIterator, Iterator<Student> g2ListAsIterator, int studentIDToFind, Student foundStudent) {
+        while (g1ListAsIterator.hasNext()) {
+            Student student = g1ListAsIterator.next();
+            if (student.getStudentID() == studentIDToFind) {
+                foundStudent = student;
+                break;
+            }
+        }
+
+        if (foundStudent == null) {
+            // Convert g2List to a List
+
+            while (g2ListAsIterator.hasNext()) {
+                Student student = g2ListAsIterator.next();
+                if (student.getStudentID() == studentIDToFind) {
+                    foundStudent = student;
+                    break;
+                }
+            }
+        }
+
+        if (foundStudent != null) {
+            System.out.println("Student Details");
+            System.out.println("Student Name: " + foundStudent.getStudentName());
+            System.out.println("Student ID: " + foundStudent.getStudentID());
+            System.out.println("Student Email: " + foundStudent.getStudentEmail());
+            System.out.println("Mode: " + foundStudent.getMode());
+            System.out.println("Student Gender: " + foundStudent.getGender());
+        } else {
+            MessageUI.displayNotFound();
+        }
+    }
+
+    //display founded student via name
+    public void dispFoundStud(Iterator<Student> g1ListAsIterator, Iterator<Student> g2ListAsIterator, String studentNameToFind, Student foundStudent) {
+        while (g1ListAsIterator.hasNext()) {
+            Student student = g1ListAsIterator.next();
+            if (student.getStudentName().equals(studentNameToFind)) {
+                foundStudent = student;
+                break;
+            }
+        }
+
+        if (foundStudent == null) {
+            // Convert g2List to a List
+
+            while (g2ListAsIterator.hasNext()) {
+                Student student = g2ListAsIterator.next();
+                if (student.getStudentName().equals(studentNameToFind)) {
+                    foundStudent = student;
+                    break;
+                }
+            }
+        }
+
+        if (foundStudent != null) {
+            System.out.println("Student Details");
+            System.out.println("Student Name: " + foundStudent.getStudentName());
+            System.out.println("Student ID: " + foundStudent.getStudentID());
+            System.out.println("Student Email: " + foundStudent.getStudentEmail());
+            System.out.println("Mode: " + foundStudent.getMode());
+            System.out.println("Student Gender: " + foundStudent.getGender());
+        } else {
+            MessageUI.displayNotFound();
+        }
+    }
+
+    //change g1 to g2
+    public void changeG1toG2(Iterator<Student> g1ListAsIterator, int studentIDToChange, Student foundStudent) {
+        while (g1ListAsIterator.hasNext()) {
+            Student student = g1ListAsIterator.next();
+            if (student.getStudentID() == studentIDToChange) {
+                foundStudent = student;
+                break;
+            }
+
+            if (foundStudent == null) {
+                MessageUI.displayNotFound();
+                break;
+            }
+        }
+        if (foundStudent != null) {
+            System.out.println("Student Details");
+            System.out.println("Student Name: " + foundStudent.getStudentName());
+            System.out.println("Student ID: " + foundStudent.getStudentID());
+            System.out.println("Student Email: " + foundStudent.getStudentEmail());
+            System.out.println("Mode: " + foundStudent.getMode());
+            System.out.println("Student Gender: " + foundStudent.getGender());
+            String choice;
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                switch (choice) {
+                    case "y" -> {
+                        g1List.remove(foundStudent);
+                        g1DAO.saveToFile(g1List);
+                        g2List.add(foundStudent);
+                        g2DAO.saveToFile(g2List);
+                        break;
+                    }
+                    case "n" -> {
+                        cls();
+                        mainMenu();
+                        break;
+                    }
+                    default ->
+                        MessageUI.askAgainMessage();
+                }
+            }
+        } else {
+            MessageUI.displayNotFound();
+        }
+    }
+
+    //change g2 to g1
+    public void changeG2toG1(Iterator<Student> g2ListAsIterator, int studentIDToChange, Student foundStudent) {
+        while (g2ListAsIterator.hasNext()) {
+            Student student = g2ListAsIterator.next();
+            if (student.getStudentID() == studentIDToChange) {
+                foundStudent = student;
+                break;
+            }
+
+            if (foundStudent == null) {
+                MessageUI.displayNotFound();
+                break;
+            }
+        }
+        if (foundStudent != null) {
+            System.out.println("Student Details");
+            System.out.println("Student Name: " + foundStudent.getStudentName());
+            System.out.println("Student ID: " + foundStudent.getStudentID());
+            System.out.println("Student Email: " + foundStudent.getStudentEmail());
+            System.out.println("Mode: " + foundStudent.getMode());
+            System.out.println("Student Gender: " + foundStudent.getGender());
+            String choice;
+            Scanner scanner = new Scanner(System.in);
+            while (true) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                switch (choice) {
+                    case "y" -> {
+                        g2List.remove(foundStudent);
+                        g2DAO.saveToFile(g2List);
+                        g1List.add(foundStudent);
+                        g1DAO.saveToFile(g1List);
+                        break;
+                    }
+                    case "n" -> {
+                        cls();
+                        mainMenu();
+                        break;
+                    }
+                    default ->
+                        MessageUI.askAgainMessage();
+                }
+            }
+        } else {
+            MessageUI.displayNotFound();
+        }
+    }
+
     public static void main(String[] args) {
         TutorGroupManagement tutGroupManagement = new TutorGroupManagement();
         tutGroupManagement.mainMenu();
 
     }
-
 }

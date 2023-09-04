@@ -13,12 +13,12 @@ import java.util.Iterator;
  * @author Jack
  * @param <T>
  */
-public class SortedList<T extends Comparable<T>> implements Serializable, SortedListInterface<T> {
+public class SortedLinkedList<T extends Comparable<T>> implements Serializable, SortedListInterface<T> {
 
     private Node firstNode;
     private int numberOfEntries;
 
-    public SortedList() {
+    public SortedLinkedList() {
         firstNode = null;
         numberOfEntries = 0;
     }

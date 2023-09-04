@@ -11,20 +11,21 @@ package utility;
  */
 public class MessageUI {
     public static void displayInvalidChoiceMessage() {
-        printFormattedText("\nInvalid choice\n", ConsoleColor.RED);
+        printFormattedText("Invalid choice!! Please Try Again!!\n", ConsoleColor.RED);
     }
 
     public static void displayExitMessage() {
-        printFormattedText("\nExiting system...\n", ConsoleColor.GREEN);
+        printFormattedText("\tExiting system...\n", ConsoleColor.GREEN);
 
     }
 
-    public static void askConfirmationMessage(String val) {
-        printFormattedText("Are you sure to " + val + " it?(1 is Yes and 0 is No): ", ConsoleColor.BRIGHTBLUE);
+    public static void askAgainMessage() {
+        printFormattedText("Invalid choice. Please enter 'y' for Yes or 'n' for No.", ConsoleColor.RED);
     }
+
 
     public static void displaySuccessConfirmationMessage(String val) {
-        printFormattedText(val + " Successfully!\n", ConsoleColor.GREEN);
+        printFormattedText(val + " Successfully!!\n", ConsoleColor.GREEN);
     }
 
     public static void displayInvalidFormat() {
