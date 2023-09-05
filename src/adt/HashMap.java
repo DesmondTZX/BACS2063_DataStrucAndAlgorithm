@@ -27,7 +27,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
     private int numberOfEntries;
     private double loadFactor = 0.75;
     private int primeNumber;
-    private static final int DEFAULT_CAPACITY = 10;
+    private static final int DEFAULT_CAPACITY = 20;
 
 
     public HashMap() {
@@ -41,14 +41,16 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
     }
 
     public HashMap(int capacity, double loadFactor) {
-        entries = new Entry[capacity];
-        numberOfEntries = 0;
-        primeNumber = getPrimeNumber();
+        this(capacity);
         this.loadFactor = loadFactor;
     }
 
     @Override
     public void put(K key, V value) {
+        if(key == null || value == null){
+            throw new IllegalArgumentException("Key or value cannot be null");
+        }
+
         //Update Value
         int index = getIndexForExistingEntries(key);
         if (index != -1) {
@@ -60,7 +62,9 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
         if (isHashMapTooFull()) {
             rehash();
         }
+
         index = getIndexForNullEntries(key);
+
         while (index == -1) {
             rehash();
             index = getIndexForNullEntries(key);
@@ -68,11 +72,14 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
         entries[index] = new Entry<>(key, value);
         numberOfEntries++;
-
-
     }
+
     @Override
     public V get(K key) {
+        if(key == null){
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         int index = getIndexForExistingEntries(key);
         if (index != -1) {
             return entries[index].value;
@@ -82,6 +89,10 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public V remove(K key) {
+        if(key == null){
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         V removedValue = null;
         int index = getIndexForExistingEntries(key);
         if (index != -1) {
@@ -134,10 +145,6 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
         return numberOfEntries;
     }
 
-    public int getCapacity() {
-        return entries.length;
-    }
-
     @Override
     public boolean isEmpty() {
         return numberOfEntries == 0;
@@ -154,6 +161,11 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
             entries[i] = null;
         }
         numberOfEntries = 0;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(entries);
     }
 
     private boolean isHashMapTooFull() {
@@ -238,8 +250,8 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
         return hashIndex2;
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(entries);
+    // For HashMapTest class only
+    public int getIndexForTestingClass(K key, int i){
+        return index(key,i);
     }
 }

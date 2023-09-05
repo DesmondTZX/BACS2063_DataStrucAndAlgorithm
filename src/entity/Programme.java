@@ -20,10 +20,6 @@ public class Programme implements Serializable {
 
     private HashMapInterface<String,TutorialGroup> tutorialGroup;
 
-    public Programme(int code) {
-        this.code = code;
-    }
-
     public Programme(int code, String name, String type, int duration, String faculty) {
         this.code = code;
         this.name = name;

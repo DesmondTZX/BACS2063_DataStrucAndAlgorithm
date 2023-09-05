@@ -10,7 +10,10 @@ import adt.*;
 import entity.Programme;
 import java.io.*;
 public class ProgrammeDAO {
-    private String fileName = "programmes.dat"; // For security and maintainability, should not have filename hardcoded here.
+    private String fileName;
+    public ProgrammeDAO(String fileName) {
+        this.fileName = fileName;
+    }
 
     public void saveToFile(HashMapInterface<Integer, Programme> programmes) {
         File file = new File(fileName);

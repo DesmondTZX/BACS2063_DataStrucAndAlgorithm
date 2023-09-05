@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class ProgrammeManagement {
     private HashMapInterface<Integer, Programme> programmeMap = new HashMap<>();
     private HashMapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
-    private final ProgrammeDAO programmeDAO = new ProgrammeDAO();
-    private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO();
+    private final ProgrammeDAO programmeDAO = new ProgrammeDAO("programme.dat");
+    private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO("tutorialGroup.dat");
     private final ProgrammeManagementUI programmeManagementUI = new ProgrammeManagementUI();
 
     public ProgrammeManagement() {
@@ -94,8 +94,10 @@ public class ProgrammeManagement {
                     }
                 }
                 case 11 -> {
-                    displayAllProgramme();
-                    generateProgrammeReport();
+                    if (!isProgrammeMapEmpty()){
+                        displayAllProgramme();
+                        generateProgrammeReport();
+                    }
                 }
                 case 0 -> {
                     programmeManagementUI.displayExitMessage();
@@ -226,7 +228,7 @@ public class ProgrammeManagement {
             if (!tGroupMapForProgramme.containsKey(tutorialGroup.getId())) {
                 tutorialGroupIdList.add(tutorialGroup.getId());
                 sb.append(i + ". ");
-                sb.append(tutorialGroup.toString() + "\n");
+                sb.append(tutorialGroup.toString());
                 i++;
             }
         }
@@ -271,7 +273,7 @@ public class ProgrammeManagement {
         for (TutorialGroup tutorialGroup : tutorialGroups.values()) {
             tutorialGroupListId.add(tutorialGroup.getId());
             sb.append(i + ". ");
-            sb.append(tutorialGroup.toString() + "\n");
+            sb.append(tutorialGroup.toString());
             i++;
         }
         if (tutorialGroupListId.size() == 0) {

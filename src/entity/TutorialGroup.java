@@ -54,7 +54,12 @@ public class TutorialGroup implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        int hash = 0;
+        int n = id.length();
+        int g = 31;
+        for (int i = 0; i < n; i++)
+            hash = g * hash + id.charAt(i);
+        return hash;
     }
 
     @Override

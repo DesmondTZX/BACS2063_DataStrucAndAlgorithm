@@ -11,7 +11,11 @@ import java.io.*;
  */
 
 public class TutorialGroupDAO {
-    private String fileName = "tutorial_groups.dat"; // For security and maintainability, should not have filename hardcoded here.
+    private String fileName;
+
+    public TutorialGroupDAO(String fileName) {
+        this.fileName = fileName;
+    }
 
     public void saveToFile(HashMapInterface<String, TutorialGroup> tutorialGroup) {
         File file = new File(fileName);

@@ -87,7 +87,10 @@ public class ProgrammeManagementUI {
         System.out.println(straightLine);
         System.out.println();
 
-        System.out.printf("%-10s %-12s %-6s", "Group ID", "Group Name", "Group Number" + "\n");
+        if(!programme.getTutorialGroup().isEmpty()) {
+            System.out.printf("%-10s %-12s %-6s", "Group ID", "Group Name", "Group Number" + "\n");
+        }
+
         for (TutorialGroup tutorialGroup : programme.getTutorialGroup().values()) {
             System.out.print(ANSI_GREEN);
             System.out.printf("%-10s %-12s %-2s", tutorialGroup.getId(), tutorialGroup.getName(), tutorialGroup.getGroupNumber() + "\n");
@@ -215,7 +218,10 @@ public class ProgrammeManagementUI {
 
         do {
             durationStr = inputProgrammeDuration(" (Press enter to skip)");
-            if (!durationStr.trim().isEmpty()) {
+            if (durationStr.trim().isEmpty()){
+                isDurationValid = true;
+                continue;
+            }
                 try {
                     isDurationValid = true;
                     duration = Integer.parseInt(durationStr);
@@ -224,7 +230,7 @@ public class ProgrammeManagementUI {
                     isDurationValid = false;
                     displayInvalidInput();
                 }
-            }
+
         } while (!isDurationValid);
 
         String faculty = inputProgrammeFaculty(" (Press enter to skip)");
