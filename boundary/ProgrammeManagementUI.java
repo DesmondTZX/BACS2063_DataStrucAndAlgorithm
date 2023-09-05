@@ -103,8 +103,19 @@ public class ProgrammeManagementUI {
 
     //Input
     public int getEnterChoice() {
-        System.out.print("Enter choice: ");
-        return sc.nextInt();
+        boolean isEnterChoiceValid = false;
+        int choice = 0;
+        do{
+            System.out.print("Enter choice: ");
+            try {
+                isEnterChoiceValid = true;
+                choice = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                isEnterChoiceValid = false;
+                displayInvalidInput();
+            }
+        } while (!isEnterChoiceValid);
+        return choice;
     }
 
     public void pressEnterToContinue() {
@@ -148,8 +159,19 @@ public class ProgrammeManagementUI {
     }
 
     public int getTutorialGroupChoice() {
-        System.out.println("Choose Tutorial Group");
-        return sc.nextInt();
+        boolean isTutorialGroupChoiceValid = false;
+        int choice = 0;
+        do{
+            System.out.print("Enter choice: ");
+            try {
+                isTutorialGroupChoiceValid = true;
+                choice = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                isTutorialGroupChoiceValid = false;
+                displayInvalidInput();
+            }
+        } while (!isTutorialGroupChoiceValid);
+        return choice;
     }
 
     public Programme inputProgrammeDetails(int code) {
