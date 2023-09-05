@@ -1,5 +1,11 @@
 package adt;
 
+/**
+ *
+ * @author Wong Fu Lim
+ *
+ */
+
 import java.util.List;
 
 public interface HashMapInterface<K,V> {

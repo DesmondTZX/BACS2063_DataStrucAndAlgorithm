@@ -1,10 +1,15 @@
 package entity;
 
+/**
+ *
+ * @author Wong Fu Lim
+ *
+ */
+
 import adt.HashMap;
 import adt.HashMapInterface;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Programme implements Serializable {
     private int code;

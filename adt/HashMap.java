@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-/*
- *  Author: Wong Fu Lim
- *   Double Hashing of HashMap
- * */
+
+/**
+ * Array implementation of HashMap - Open Addressing(Double Hashing)
+ * @author Wong Fu Lim
+ *
+ */
 
 public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
@@ -158,7 +160,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
         return numberOfEntries >= loadFactor * entries.length;
     }
 
-    // Get the prime number that is closest to the size of the array
+    // Get the prime number that is closest and lesser to the size of the array
     private int getPrimeNumber() {
         for (int i = entries.length - 1; i >= 1; i--) {
             int count = 0;

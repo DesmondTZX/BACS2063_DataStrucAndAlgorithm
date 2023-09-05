@@ -3,6 +3,13 @@ package dao;
 import adt.*;
 import entity.TutorialGroup;
 import java.io.*;
+
+/**
+ *
+ * @author Wong Fu Lim
+ *
+ */
+
 public class TutorialGroupDAO {
     private String fileName = "tutorial_groups.dat"; // For security and maintainability, should not have filename hardcoded here.
 
