@@ -198,8 +198,10 @@ class HashMapTest {
 
     @Test
     public void testCollision() {
-        assertTrue(hashMap.getIndexForTestingClass(1,0) == hashMap.getIndexForTestingClass(21,0));
+        assertTrue(hashMap.getIndex(1,0) == hashMap.getIndex(21,0));
         //both keys index is 1
+        // 1 % 20 = 1
+        // 21 % 20 = 1
         hashMap.put(1, "value1");
         hashMap.put(21, "value2");
 
@@ -216,7 +218,7 @@ class HashMapTest {
 
     @Test
     public void testNegativeKeyCollision(){
-        assertTrue(hashMap.getIndexForTestingClass(-101,0) == hashMap.getIndexForTestingClass(-81,0));
+        assertTrue(hashMap.getIndex(-101,0) == hashMap.getIndex(-81,0));
         hashMap.put(-101, "value1");
         hashMap.put(-81, "value2");
 

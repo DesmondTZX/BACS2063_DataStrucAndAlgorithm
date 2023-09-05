@@ -251,7 +251,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
     }
 
     // For HashMapTest class only
-    public int getIndexForTestingClass(K key, int i){
+    public int getIndex(K key, int i){
         return index(key,i);
     }
 }
