@@ -7,6 +7,7 @@ package boundary;
 
 import java.util.Scanner;
 import entity.Tutor;
+import java.io.*;
 
 public class TutorManagementUI {
     
@@ -47,13 +48,37 @@ public class TutorManagementUI {
     System.out.println("Tutor campus: " + tutor.getCampus());
   }
 
-  public String generateProductCode() {
-    int idCounter = 1;
+  public String generateTutorID() {
+    int idCounter = getMaxTutorID() + 1; // Get the maximum ID and increment it by 1
     String formattedID = String.format("p%04d", idCounter); // %04d means a 4-digit integer with leading zeros
-    idCounter++; // Increment the counter for the next ID
-    System.out.print("Tutor ID generated.\n");
+    System.out.println("Tutor ID generated: " + formattedID);
     return formattedID;
   }
+
+  private int getMaxTutorID() {
+    int maxID = 0;
+
+    try (ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream("Tutors.dat"))) {
+        while (true) {
+            Object obj = oiStream.readObject();
+            if (obj instanceof Tutor) {
+                Tutor tutor = (Tutor) obj;
+                // Extract the numeric part of the tutor ID and compare it to the current maxID
+                int id = Integer.parseInt(tutor.getTutorId().substring(1));
+                if (id > maxID) {
+                    maxID = id;
+                }
+            }
+        }
+    } catch (EOFException e) {
+        // EOFException indicates the end of the file, so we catch it and proceed
+    } catch (IOException | ClassNotFoundException e) {
+        e.printStackTrace();
+    }
+
+    return maxID;
+ }
+
   
   public String inputTutorID() {
     System.out.print("Enter tutor ID for the Tutors you want to remove/modify: ");
@@ -117,7 +142,7 @@ public class TutorManagementUI {
   }
 
   public Tutor inputTutorDetails() {
-    String tutorId = generateProductCode();
+    String tutorId = generateTutorID();
     String tutorName = inputTutorName();
     char tutorGender = inputTutorGender();
     String tutorEmail = generateTutorEmail(tutorName);

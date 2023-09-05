@@ -28,7 +28,6 @@ public class TutorDAO {
         }
     }
 
-    
     public SortedListInterface<Tutor> retrieveFromFile() {
         SortedListInterface<Tutor> tutorList = new SortedLinkedList<>();
 
