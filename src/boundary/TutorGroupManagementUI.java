@@ -8,7 +8,6 @@ package boundary;
 import java.util.Scanner;
 import entity.Student;
 import java.util.InputMismatchException;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import utility.MessageUI;
@@ -21,6 +20,7 @@ public class TutorGroupManagementUI {
 
     Scanner scanner = new Scanner(System.in);
 
+    // main choice
     public int getMenuChoice() {
         try {
             System.out.println("\t=========================");
@@ -45,6 +45,7 @@ public class TutorGroupManagementUI {
         }
     }
 
+    //input student detail
     public int inputStudentID() {
         int studentID;
         while (true) {
@@ -68,7 +69,6 @@ public class TutorGroupManagementUI {
         return studentID;
     }
 
-    //input student detail
     public String inputStudentName() {
         String studentName;
         do {
@@ -137,11 +137,15 @@ public class TutorGroupManagementUI {
         return new Student(studentName, studentID, studentEmail, mode, gender);
     }
 
+    //choices
     public int getGroupChoice() {
         try {
             System.out.println("\nPlease Select The Tutorial Group:");
             System.out.println("1. Group 1");
             System.out.println("2. Group 2");
+            System.out.println("3. Group 3");
+            System.out.println("4. Group 4");
+            System.out.println("5. Group 5");
             System.out.println("99. Return to Main Menu");
             System.out.println("0. Quit");
             System.out.print("Please Enter Your Choice: ");
@@ -189,6 +193,24 @@ public class TutorGroupManagementUI {
         }
     }
 
+    public int getFindChoice() {
+        try {
+            System.out.println("\nPlease Select The Type You Want to Find:");
+            System.out.println("1. Student ID");
+            System.out.println("2. Student Name");
+            System.out.println("99. Return to Main Menu");
+            System.out.print("Please Enter Your Choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            return choice;
+        } catch (InputMismatchException e) {
+            scanner.nextLine(); // Consume the invalid input
+            MessageUI.displayInvalidChoiceMessage();
+            return -1; // Return a sentinel value or handle the error accordingly
+        }
+    }
+
     public void listAllStudent(String outputStr) {
         System.out.println("""
                            =================
@@ -197,12 +219,95 @@ public class TutorGroupManagementUI {
                            """ + outputStr);
     }
 
-    public int getFindChoice() {
+    //change group choice
+    public int chgGroup1Choice() {
         try {
-            System.out.println("\nPlease Select The Type You Want to Find:");
-            System.out.println("1. Student ID");
-            System.out.println("2. Student Name");
-            System.out.println("99. Return to Main Menu");
+            System.out.println("\nPlease Select The Tutorial Group that You want to Move:");
+            System.out.println("1. Group 2");
+            System.out.println("2. Group 3");
+            System.out.println("3. Group 4");
+            System.out.println("4. Group 5");
+            System.out.println("0. Return Back");
+            System.out.print("Please Enter Your Choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            return choice;
+        } catch (InputMismatchException e) {
+            scanner.nextLine(); // Consume the invalid input
+            MessageUI.displayInvalidChoiceMessage();
+            return -1; // Return a sentinel value or handle the error accordingly
+        }
+    }
+
+    public int chgGroup2Choice() {
+        try {
+            System.out.println("\nPlease Select The Tutorial Group that You want to Move:");
+            System.out.println("1. Group 1");
+            System.out.println("2. Group 3");
+            System.out.println("3. Group 4");
+            System.out.println("4. Group 5");
+            System.out.println("0. Return Back");
+            System.out.print("Please Enter Your Choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            return choice;
+        } catch (InputMismatchException e) {
+            scanner.nextLine(); // Consume the invalid input
+            MessageUI.displayInvalidChoiceMessage();
+            return -1; // Return a sentinel value or handle the error accordingly
+        }
+    }
+
+    public int chgGroup3Choice() {
+        try {
+            System.out.println("\nPlease Select The Tutorial Group that You want to Move:");
+            System.out.println("1. Group 1");
+            System.out.println("2. Group 2");
+            System.out.println("3. Group 4");
+            System.out.println("4. Group 5");
+            System.out.println("0. Return Back");
+            System.out.print("Please Enter Your Choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            return choice;
+        } catch (InputMismatchException e) {
+            scanner.nextLine(); // Consume the invalid input
+            MessageUI.displayInvalidChoiceMessage();
+            return -1; // Return a sentinel value or handle the error accordingly
+        }
+    }
+
+    public int chgGroup4Choice() {
+        try {
+            System.out.println("\nPlease Select The Tutorial Group that You want to Move:");
+            System.out.println("1. Group 1");
+            System.out.println("2. Group 2");
+            System.out.println("3. Group 3");
+            System.out.println("4. Group 5");
+            System.out.println("0. Return Back");
+            System.out.print("Please Enter Your Choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println();
+            return choice;
+        } catch (InputMismatchException e) {
+            scanner.nextLine(); // Consume the invalid input
+            MessageUI.displayInvalidChoiceMessage();
+            return -1; // Return a sentinel value or handle the error accordingly
+        }
+    }
+
+    public int chgGroup5Choice() {
+        try {
+            System.out.println("\nPlease Select The Tutorial Group that You want to Move:");
+            System.out.println("1. Group 1");
+            System.out.println("2. Group 2");
+            System.out.println("3. Group 3");
+            System.out.println("4. Group 4");
+            System.out.println("0. Return Back");
             System.out.print("Please Enter Your Choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -277,17 +382,17 @@ public class TutorGroupManagementUI {
         System.out.println("Remove Student");
         System.out.println("==============");
     }
-    
+
     public void dispTitle() {
         System.out.println("===============");
         System.out.println("Display Student");
         System.out.println("===============");
     }
-     public void reportTitle() {
+
+    public void reportTitle() {
         System.out.println("======");
         System.out.println("Report");
         System.out.println("======");
     }
     
-
 }

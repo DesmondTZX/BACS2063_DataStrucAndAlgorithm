@@ -100,7 +100,7 @@ public class Student implements Serializable, Comparable<Student> {
 
     @Override
     public String toString() {
-        return String.format("|%10s| |%10s| |%20s| |%10s| |%10s|", studentName, studentID, studentEmail, mode, gender);
+        return String.format("|%10s| %10s| %20s| %10s| %10s|", studentName, studentID, studentEmail, mode, gender);
     }
 
     @Override
