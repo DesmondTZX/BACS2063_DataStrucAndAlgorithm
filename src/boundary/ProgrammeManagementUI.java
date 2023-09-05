@@ -38,7 +38,6 @@ public class ProgrammeManagementUI {
         System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
         System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
         int choice = getEnterChoice();
-        sc.nextLine(); // Consume the newline character
         System.out.println();
         return choice;
     }
@@ -52,7 +51,6 @@ public class ProgrammeManagementUI {
         System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
         System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
         int choice = getEnterChoice();
-        sc.nextLine(); // Consume the newline character
         System.out.println();
         return choice;
     }
@@ -258,6 +256,11 @@ public class ProgrammeManagementUI {
     }
 
     //Messages
+    public void displayNoProgrammeAvailableMessage(){
+        System.out.println(ANSI_RED + "No programme available. Please add a programme first.");
+        System.out.println(ANSI_RESET);
+    }
+
     public void displayProgrammeExists() {
         System.out.println(ANSI_RED + "Programme already exists");
         System.out.println(ANSI_RESET);
@@ -296,6 +299,11 @@ public class ProgrammeManagementUI {
 
     public void displayTutorialGroupRemovedFromProgrammeMessage() {
         System.out.println(ANSI_GREEN + "Tutorial group removed from programme");
+        System.out.println(ANSI_RESET);
+    }
+
+    public void displayNoTutorialGroupForThisProgrammeMessage() {
+        System.out.println(ANSI_RED + "No tutorial group for this programme");
         System.out.println(ANSI_RESET);
     }
 
