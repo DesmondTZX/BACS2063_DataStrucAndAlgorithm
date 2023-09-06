@@ -337,9 +337,9 @@ public class ProgrammeManagement {
         } while (!isValidInput);
         return code;
     }
-
+    /*
     public static void main(String[] args) {
         ProgrammeManagement programmeManagement = new ProgrammeManagement();
         programmeManagement.start();
-    }
+    }*/
 }
