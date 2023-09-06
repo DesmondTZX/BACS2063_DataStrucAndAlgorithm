@@ -231,10 +231,10 @@ public class TutorManagement {
                 
             }
     }
-  
+    /*
     public static void main(String[] args) {
         TutorManagement tutorManagement = new TutorManagement();
         tutorManagement.runTutorManagement();
     }
-    
+    */
 }
