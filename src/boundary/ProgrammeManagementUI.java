@@ -340,6 +340,7 @@ public class ProgrammeManagementUI {
 
     public void displayExitMessage() {
         System.out.println(ANSI_YELLOW + "Exiting...");
+        System.out.println(ANSI_RESET);
     }
 
 }

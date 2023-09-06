@@ -99,6 +99,7 @@ public class ProgrammeManagement {
                         generateProgrammeReport();
                     }
                 }
+                case 12 -> generateDummyData();
                 case 0 -> {
                     programmeManagementUI.displayExitMessage();
                     isExit = true;
@@ -295,6 +296,43 @@ public class ProgrammeManagement {
         int programmeCode = validateProgrammeCodeExist();
         Programme programme = programmeMap.get(programmeCode);
         programmeManagementUI.displayProgrammeReport(programme);
+    }
+
+    public void generateDummyData(){
+        programmeMap.put(1234, new Programme(1234, "Computer Science", "Diploma", 2,"FOCS"));
+        programmeMap.put(7777, new Programme(2345, "Software Engineering", "Degree", 3,"FOCS"));
+        programmeMap.put(2345, new Programme(2345, "Information Technology", "Degree", 3,"FOCS"));
+        programmeMap.put(3456, new Programme(3456, "Graphic Design", "Diploma", 2,"FCCI"));
+        programmeMap.put(4567, new Programme(4567, "Business Administration", "Degree", 3,"FCBE"));
+        programmeMap.put(5678, new Programme(5678, "Accounting", "Degree", 4,"FCBE"));
+        programmeMap.put(8888, new Programme(8888, "Mechanical Engineering", "Master", 2,"FOET"));
+        programmeMap.put(5555, new Programme(9999, "Civil Engineering", "Degree", 4,"FOET"));
+        programmeMap.put(9999, new Programme(9999, "Electrical Engineering", "Degree", 4,"FOET"));
+        programmeMap.put(6666, new Programme(6666, "Chemical Engineering", "Degree", 4,"FOET"));
+        programmeMap.put(1798, new Programme(6666, "Computer Science", "PHD", 3,"FOCS"));
+        programmeMap.put(1001,new Programme(1001, "Computing", "Foundation", 1,"Pre-U"));
+        programmeMap.put(1002,new Programme(1002, "Arts", "Foundation", 1,"Pre-U"));
+        programmeMap.put(1003,new Programme(1003, "Business", "Foundation", 1,"Pre-U"));
+        programmeMap.put(1004,new Programme(1004, "Science", "Foundation", 1,"Pre-U"));
+
+        tutorialGroupMap.put("TG0001", new TutorialGroup("RSW", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0002", new TutorialGroup("RSW", 2, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0003", new TutorialGroup("FC", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0004", new TutorialGroup("FB", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0005", new TutorialGroup("FA", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0006", new TutorialGroup("FS", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0007", new TutorialGroup("DCS", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0008", new TutorialGroup("DCS", 2, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0009", new TutorialGroup("DCS", 3, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0010", new TutorialGroup("RGD", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0011", new TutorialGroup("RBA", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0012", new TutorialGroup("RAC", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0013", new TutorialGroup("RCE", 1, tutorialGroupMap.size()));
+        tutorialGroupMap.put("TG0014", new TutorialGroup("RME", 1, tutorialGroupMap.size()));
+
+        programmeDAO.saveToFile(programmeMap);
+        tutorialGroupDAO.saveToFile(tutorialGroupMap);
+        System.out.println("Dummy data generated and saved to file.");
     }
 
     private boolean isProgrammeMapEmpty() {
