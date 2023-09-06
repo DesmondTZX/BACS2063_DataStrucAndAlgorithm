@@ -81,7 +81,7 @@ public class TutorManagementUI {
 
   
   public String inputTutorID() {
-    System.out.print("Enter tutor ID for the Tutors you want to remove/modify: ");
+    System.out.print("Enter tutor ID for the Tutors you want to remove/modify/search: ");
     String id = scanner.nextLine();
     return id;
   }
