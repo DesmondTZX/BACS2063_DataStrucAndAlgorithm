@@ -54,7 +54,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 1 -> {
@@ -109,7 +109,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 1 -> {
@@ -177,7 +177,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    // System.exit(0);
                     break;
                 }
                 case 99 -> {
@@ -203,7 +203,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 1 -> {
@@ -271,7 +271,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 99 -> {
@@ -297,7 +297,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 1 -> {
@@ -375,7 +375,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 99 -> {
@@ -445,7 +445,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 99 -> {
@@ -471,7 +471,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                 }
                 case 1 -> {
                     cls();
@@ -523,7 +523,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                     break;
                 }
                 case 1 -> {
@@ -549,7 +549,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    //// System.exit(0);
                 }
                 case 1 -> {
                     cls();
@@ -607,7 +607,7 @@ public class TutorGroupManagement {
                     clearData();
                     cls();
                     MessageUI.displayExitMessage();
-                    System.exit(0);
+                    // System.exit(0);
                     break;
                 }
                 case 99 -> {
@@ -1325,11 +1325,11 @@ public class TutorGroupManagement {
         tutGroupManagement.generateGroup5();
     }
 
-    //main
+    /*
     public static void main(String[] args) {
         TutorGroupManagement tutGroupManagement = new TutorGroupManagement();
         autoGenerate(tutGroupManagement);
         tutGroupManagement.mainMenu();
 
-    }
+    }*/
 }
