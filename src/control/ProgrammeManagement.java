@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class ProgrammeManagement {
     private HashMapInterface<Integer, Programme> programmeMap = new HashMap<>();
     private HashMapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
-    private final ProgrammeDAO programmeDAO = new ProgrammeDAO("programme.dat");
-    private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO("tutorialGroup.dat");
+    private final ProgrammeDAO programmeDAO = new ProgrammeDAO("programmes.dat");
+    private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO("tutorialGroups.dat");
     private final ProgrammeManagementUI programmeManagementUI = new ProgrammeManagementUI();
 
     public ProgrammeManagement() {
