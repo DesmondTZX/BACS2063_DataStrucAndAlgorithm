@@ -118,14 +118,6 @@ public class ProgrammeManagement {
         programmeManagementUI.listProgrammes(sb.toString());
     }
 
-    private boolean isProgrammeMapEmpty() {
-        if (programmeMap.isEmpty()) {
-            programmeManagementUI.displayNoProgrammeAvailableMessage();
-            return true;
-        }
-        return false;
-    }
-
     public void addProgramme() {
         int code = validateInputProgrammeCode();
 
@@ -252,14 +244,6 @@ public class ProgrammeManagement {
         programmeManagementUI.displayTutorialGroupAddedToProgrammeMessage();
     }
 
-    private boolean isTutorialGroupMapEmpty() {
-        if (tutorialGroupMap.isEmpty()) {
-            programmeManagementUI.displayNoTutorialGroupAvailableMessage();
-            return true;
-        }
-        return false;
-    }
-
     public void removeTutorialGroupFromProgramme() {
         int programmeCode = validateProgrammeCodeExist();
 
@@ -311,6 +295,22 @@ public class ProgrammeManagement {
         int programmeCode = validateProgrammeCodeExist();
         Programme programme = programmeMap.get(programmeCode);
         programmeManagementUI.displayProgrammeReport(programme);
+    }
+
+    private boolean isProgrammeMapEmpty() {
+        if (programmeMap.isEmpty()) {
+            programmeManagementUI.displayNoProgrammeAvailableMessage();
+            return true;
+        }
+        return false;
+    }
+
+    private boolean isTutorialGroupMapEmpty() {
+        if (tutorialGroupMap.isEmpty()) {
+            programmeManagementUI.displayNoTutorialGroupAvailableMessage();
+            return true;
+        }
+        return false;
     }
 
     private int validateProgrammeCodeExist() {
