@@ -146,8 +146,7 @@ public class TutorGroupManagementUI {
             System.out.println("3. Group 3");
             System.out.println("4. Group 4");
             System.out.println("5. Group 5");
-            System.out.println("99. Return to Main Menu");
-            System.out.println("0. Quit");
+            System.out.println("0. Return to Main Menu");
             System.out.print("Please Enter Your Choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -176,29 +175,12 @@ public class TutorGroupManagementUI {
         return choice;
     }
 
-    public int returnChoice() {
-        try {
-            System.out.println("\n");
-            System.out.println("99. Return to Main Menu");
-            System.out.println("0. Quit");
-            System.out.print("Please Enter Your Choice: ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println();
-            return choice;
-        } catch (InputMismatchException e) {
-            scanner.nextLine(); // Consume the invalid input
-            MessageUI.displayInvalidChoiceMessage();
-            return -1; // Return a sentinel value or handle the error accordingly
-        }
-    }
-
     public int getFindChoice() {
         try {
             System.out.println("\nPlease Select The Type You Want to Find:");
             System.out.println("1. Student ID");
             System.out.println("2. Student Name");
-            System.out.println("99. Return to Main Menu");
+            System.out.println("0. Return to Main Menu");
             System.out.print("Please Enter Your Choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
