@@ -159,22 +159,6 @@ public class TutorGroupManagementUI {
         }
     }
 
-    public String againChoice() {
-        String choice;
-        while (true) {
-            System.out.print("\nWant to search again? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-
-            if (choice.equals("y") || choice.equals("n")) {
-                break; // Valid input, exit the loop
-            } else {
-                MessageUI.askAgainMessage();
-            }
-        }
-
-        return choice;
-    }
-
     public int getFindChoice() {
         try {
             System.out.println("\nPlease Select The Type You Want to Find:");

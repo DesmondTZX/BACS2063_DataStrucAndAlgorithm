@@ -151,7 +151,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -215,7 +214,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -290,7 +288,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -302,10 +299,9 @@ public class TutorGroupManagement {
     }
 
     public void findStudent() {
+        int choice = 0;
         do {
             tutGroupUI.dispFindTitle();
-
-            int choice = 0;
             choice = tutGroupUI.getFindChoice();
             switch (choice) {
                 case 1 -> {
@@ -336,7 +332,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -345,7 +340,7 @@ public class TutorGroupManagement {
                 }
             }
 
-        } while ("y".equals(tutGroupUI.againChoice()));
+        } while (choice != 0);
     }
 
     public void dispStudent() {
@@ -386,7 +381,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -441,7 +435,6 @@ public class TutorGroupManagement {
                 }
                 case 0 -> {
                     cls();
-                    mainMenu();
                     break;
                 }
                 default -> {
@@ -668,11 +661,6 @@ public class TutorGroupManagement {
                 foundStudent = student;
                 break;
             }
-
-            if (foundStudent == null) {
-                MessageUI.displayNotFound();
-                break;
-            }
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -681,12 +669,12 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice;
+            String choice = null;
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            while ("y".equals(choice)) {
                 switch (choice) {
                     case "y" -> {
                         int chgChoice = 0;
@@ -734,7 +722,6 @@ public class TutorGroupManagement {
                     }
                     case "n" -> {
                         cls();
-                        mainMenu();
                         break;
                     }
                     default ->
@@ -753,11 +740,6 @@ public class TutorGroupManagement {
                 foundStudent = student;
                 break;
             }
-
-            if (foundStudent == null) {
-                MessageUI.displayNotFound();
-                break;
-            }
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -766,12 +748,12 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice;
+            String choice = null;
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            while ("y".equals(choice)) {
                 switch (choice) {
                     case "y" -> {
                         int chgChoice = 0;
@@ -819,7 +801,6 @@ public class TutorGroupManagement {
                     }
                     case "n" -> {
                         cls();
-                        mainMenu();
                         break;
                     }
                     default ->
@@ -839,10 +820,6 @@ public class TutorGroupManagement {
                 break;
             }
 
-            if (foundStudent == null) {
-                MessageUI.displayNotFound();
-                break;
-            }
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -851,12 +828,12 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice;
+            String choice = null;
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            while ("y".equals(choice)) {
                 switch (choice) {
                     case "y" -> {
                         int chgChoice = 0;
@@ -904,7 +881,6 @@ public class TutorGroupManagement {
                     }
                     case "n" -> {
                         cls();
-                        mainMenu();
                         break;
                     }
                     default ->
@@ -923,11 +899,6 @@ public class TutorGroupManagement {
                 foundStudent = student;
                 break;
             }
-
-            if (foundStudent == null) {
-                MessageUI.displayNotFound();
-                break;
-            }
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -936,12 +907,12 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice;
+            String choice = null;
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            while ("y".equals(choice)) {
                 switch (choice) {
                     case "y" -> {
                         int chgChoice = 0;
@@ -989,7 +960,6 @@ public class TutorGroupManagement {
                     }
                     case "n" -> {
                         cls();
-                        mainMenu();
                         break;
                     }
                     default ->
@@ -1009,10 +979,6 @@ public class TutorGroupManagement {
                 break;
             }
 
-            if (foundStudent == null) {
-                MessageUI.displayNotFound();
-                break;
-            }
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -1021,12 +987,12 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice;
+            String choice = null;
             Scanner scanner = new Scanner(System.in);
 
-            while (true) {
-                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+            while ("y".equals(choice)) {
                 switch (choice) {
                     case "y" -> {
                         int chgChoice = 0;
@@ -1074,7 +1040,6 @@ public class TutorGroupManagement {
                     }
                     case "n" -> {
                         cls();
-                        mainMenu();
                         break;
                     }
                     default ->
