@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Jack
+ * @author Dong Wei Jie, Desmond Tan Zhe Xuan
  * @param <T>
  */
 public interface SortedListInterface<T extends Comparable<T>> {

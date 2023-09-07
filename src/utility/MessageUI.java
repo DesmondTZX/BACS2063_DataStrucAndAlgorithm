@@ -7,7 +7,7 @@ package utility;
 
 /**
  *
- * @author Jack
+ * @author Dong Wei Jie
  */
 public class MessageUI {
     public static void displayInvalidChoiceMessage() {

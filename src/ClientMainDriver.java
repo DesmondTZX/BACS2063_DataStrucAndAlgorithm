@@ -4,7 +4,7 @@ import static control.TutorGroupManagement.autoGenerate;
 
 /**
  *
- * @author Desmond
+ * @author Desmond Tan Zhe Xuan, Wong Fu Lim, Dong Wei Jie
  */
 public class ClientMainDriver {
     Scanner scanner = new Scanner(System.in);

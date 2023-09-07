@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Jack
+ * @author Dong Wei Jie, Desmond Tan Zhe Xuan
  * @param <T>
  */
 public class SortedLinkedList<T extends Comparable<T>> implements Serializable, SortedListInterface<T> {

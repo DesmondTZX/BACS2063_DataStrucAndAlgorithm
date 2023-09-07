@@ -10,7 +10,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Jack
+ * @author Dong Wei Jie
  */
 public class Student implements Serializable, Comparable<Student> {
 

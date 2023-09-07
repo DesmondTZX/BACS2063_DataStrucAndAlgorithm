@@ -7,7 +7,7 @@ package utility;
 
 /**
  *
- * @author Jack
+ * @author Dong Wei Jie
  */
 public enum ConsoleColor {
     RESET("\u001B[0m"),
