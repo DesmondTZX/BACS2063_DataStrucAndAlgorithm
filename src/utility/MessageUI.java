@@ -27,6 +27,10 @@ public class MessageUI {
     public static void displaySuccessConfirmationMessage(String val) {
         printFormattedText(val + " Successfully!!\n", ConsoleColor.GREEN);
     }
+    
+    public static void displaySuccessConfirmation() {
+        printFormattedText("Successfully!!\n", ConsoleColor.GREEN);
+    }
 
     public static void displayInvalidFormat() {
         printFormattedText("Your input is not in correct format: ", ConsoleColor.YELLOW);
