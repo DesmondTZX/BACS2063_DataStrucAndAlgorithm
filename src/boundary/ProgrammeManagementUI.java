@@ -35,6 +35,7 @@ public class ProgrammeManagementUI {
         System.out.println("║ " + ANSI_BLUE + "9. Remove Tutorial Group from a Programme" + ANSI_GREEN + "   ║");
         System.out.println("║ " + ANSI_BLUE + "10. List All Tutorial Groups in a Programme" + ANSI_GREEN + " ║");
         System.out.println("║ " + ANSI_BLUE + "11. Generate Programme Report" + ANSI_GREEN + "               ║");
+        System.out.println("║ " + ANSI_BLUE + "12. Generate Dummy Data " + ANSI_GREEN + "                    ║");
         System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
         System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
         int choice = getEnterChoice();
