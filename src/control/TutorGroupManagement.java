@@ -40,6 +40,7 @@ public class TutorGroupManagement {
 
     //main menu
     public void mainMenu() {
+        cls();
         int choice = 0;
         do {
             choice = tutGroupUI.getMenuChoice();
@@ -177,9 +178,7 @@ public class TutorGroupManagement {
                             foundStudent = student;
                             g1List.remove(foundStudent);
                             g1DAO.saveToFile(g1List);
-                            break;
-                        } else {
-                            MessageUI.displayNotFound();
+                            MessageUI.displaySuccessConfirmation();
                             break;
                         }
                     }
@@ -197,9 +196,7 @@ public class TutorGroupManagement {
                             foundStudent = student;
                             g2List.remove(foundStudent);
                             g2DAO.saveToFile(g2List);
-                            break;
-                        } else {
-                            MessageUI.displayNotFound();
+                            MessageUI.displaySuccessConfirmation();
                             break;
                         }
                     }
@@ -217,9 +214,7 @@ public class TutorGroupManagement {
                             foundStudent = student;
                             g3List.remove(foundStudent);
                             g3DAO.saveToFile(g3List);
-                            break;
-                        } else {
-                            MessageUI.displayNotFound();
+                            MessageUI.displaySuccessConfirmation();
                             break;
                         }
                     }
@@ -237,9 +232,7 @@ public class TutorGroupManagement {
                             foundStudent = student;
                             g4List.remove(foundStudent);
                             g4DAO.saveToFile(g4List);
-                            break;
-                        } else {
-                            MessageUI.displayNotFound();
+                            MessageUI.displaySuccessConfirmation();
                             break;
                         }
                     }
@@ -257,9 +250,7 @@ public class TutorGroupManagement {
                             foundStudent = student;
                             g5List.remove(foundStudent);
                             g5DAO.saveToFile(g5List);
-                            break;
-                        } else {
-                            MessageUI.displayNotFound();
+                            MessageUI.displaySuccessConfirmation();
                             break;
                         }
                     }
@@ -701,66 +692,67 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice = null;
+            String choice = "";
             Scanner scanner = new Scanner(System.in);
-            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-            while ("y".equals(choice)) {
-                switch (choice) {
-                    case "y" -> {
-                        int chgChoice = 0;
-                        chgChoice = tutGroupUI.chgGroup1Choice();
-                        do {
-                            switch (chgChoice) {
-                                case 1 -> {
-                                    g1List.remove(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    g2List.add(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 2 -> {
-                                    g1List.remove(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    g3List.add(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 3 -> {
-                                    g1List.remove(foundStudent);
-                                    g1DAO.saveToFile(g4List);
-                                    g4List.add(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 4 -> {
-                                    g1List.remove(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    g5List.add(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 0 -> {
-                                    cls();
-                                    break;
-                                }
-                                default ->
-                                    MessageUI.askAgainMessage();
-                            }
-                            break;
-                        } while (chgChoice != 0);
-                    }
-                    case "n" -> {
-                        cls();
-                        break;
-                    }
-                    default ->
-                        MessageUI.askAgainMessage();
+            while (!choice.equals("n") && !choice.equals("y")) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                if (!choice.equals("n") && !choice.equals("y")) {
+                    MessageUI.askAgainMessage();
                 }
+            }
+            switch (choice) {
+                case "y" -> {
+                    int chgChoice = 0;
+                    chgChoice = tutGroupUI.chgGroup1Choice();
+                    switch (chgChoice) {
+                        case 1 -> {
+                            g1List.remove(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            g2List.add(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 2 -> {
+                            g1List.remove(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            g3List.add(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 3 -> {
+                            g1List.remove(foundStudent);
+                            g1DAO.saveToFile(g4List);
+                            g4List.add(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 4 -> {
+                            g1List.remove(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            g5List.add(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 0 -> {
+                            cls();
+                            break;
+                        }
+                        default ->
+                            MessageUI.askAgainMessage();
+                    }
+                    break;
+                }
+                case "n" -> {
+                    cls();
+                    break;
+                }
+                default ->
+                    MessageUI.askAgainMessage();
             }
         } else {
             MessageUI.displayNotFound();
@@ -782,67 +774,67 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice = null;
+            String choice = "";
             Scanner scanner = new Scanner(System.in);
-            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-            while ("y".equals(choice)) {
-                switch (choice) {
-                    case "y" -> {
-                        int chgChoice = 0;
-                        chgChoice = tutGroupUI.chgGroup2Choice();
-                        do {
-                            switch (chgChoice) {
-                                case 1 -> {
-                                    g2List.remove(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    g1List.add(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 2 -> {
-                                    g2List.remove(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    g3List.add(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 3 -> {
-                                    g2List.remove(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    g4List.add(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 4 -> {
-                                    g2List.remove(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    g5List.add(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 0 -> {
-                                    cls();
-                                    break;
-                                }
-                                default ->
-                                    MessageUI.askAgainMessage();
-                            }
-
-                            break;
-                        } while (chgChoice != 0);
-                    }
-                    case "n" -> {
-                        cls();
-                        break;
-                    }
-                    default ->
-                        MessageUI.askAgainMessage();
+            while (!choice.equals("n") && !choice.equals("y")) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                if (!choice.equals("n") && !choice.equals("y")) {
+                    MessageUI.askAgainMessage();
                 }
+            }
+            switch (choice) {
+                case "y" -> {
+                    int chgChoice = 0;
+                    chgChoice = tutGroupUI.chgGroup2Choice();
+                    switch (chgChoice) {
+                        case 1 -> {
+                            g2List.remove(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            g1List.add(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 2 -> {
+                            g2List.remove(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            g3List.add(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 3 -> {
+                            g2List.remove(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            g4List.add(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 4 -> {
+                            g2List.remove(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            g5List.add(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 0 -> {
+                            cls();
+                            break;
+                        }
+                        default ->
+                            MessageUI.askAgainMessage();
+                    }
+                    break;
+                }
+                case "n" -> {
+                    cls();
+                    break;
+                }
+                default ->
+                    MessageUI.askAgainMessage();
             }
         } else {
             MessageUI.displayNotFound();
@@ -864,66 +856,67 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice = null;
+            String choice = "";
             Scanner scanner = new Scanner(System.in);
-            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-            while ("y".equals(choice)) {
-                switch (choice) {
-                    case "y" -> {
-                        int chgChoice = 0;
-                        chgChoice = tutGroupUI.chgGroup3Choice();
-                        do {
-                            switch (chgChoice) {
-                                case 1 -> {
-                                    g3List.remove(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    g1List.add(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 2 -> {
-                                    g3List.remove(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    g2List.add(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 3 -> {
-                                    g3List.remove(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    g4List.add(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 4 -> {
-                                    g3List.remove(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    g5List.add(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 0 -> {
-                                    cls();
-                                    break;
-                                }
-                                default ->
-                                    MessageUI.askAgainMessage();
-                            }
-                            break;
-                        } while (chgChoice != 0);
-                    }
-                    case "n" -> {
-                        cls();
-                        break;
-                    }
-                    default ->
-                        MessageUI.askAgainMessage();
+            while (!choice.equals("n") && !choice.equals("y")) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                if (!choice.equals("n") && !choice.equals("y")) {
+                    MessageUI.askAgainMessage();
                 }
+            }
+            switch (choice) {
+                case "y" -> {
+                    int chgChoice = 0;
+                    chgChoice = tutGroupUI.chgGroup3Choice();
+                    switch (chgChoice) {
+                        case 1 -> {
+                            g3List.remove(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            g1List.add(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 2 -> {
+                            g3List.remove(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            g2List.add(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 3 -> {
+                            g3List.remove(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            g4List.add(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 4 -> {
+                            g3List.remove(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            g5List.add(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 0 -> {
+                            cls();
+                            break;
+                        }
+                        default ->
+                            MessageUI.askAgainMessage();
+                    }
+                    break;
+                }
+                case "n" -> {
+                    cls();
+                    break;
+                }
+                default ->
+                    MessageUI.askAgainMessage();
             }
         } else {
             MessageUI.displayNotFound();
@@ -945,66 +938,67 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice = null;
+            String choice = "";
             Scanner scanner = new Scanner(System.in);
-            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-            while ("y".equals(choice)) {
-                switch (choice) {
-                    case "y" -> {
-                        int chgChoice = 0;
-                        chgChoice = tutGroupUI.chgGroup4Choice();
-                        do {
-                            switch (chgChoice) {
-                                case 1 -> {
-                                    g4List.remove(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    g1List.add(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 2 -> {
-                                    g4List.remove(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    g2List.add(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 3 -> {
-                                    g4List.remove(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    g3List.add(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 4 -> {
-                                    g4List.remove(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    g5List.add(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 0 -> {
-                                    cls();
-                                    break;
-                                }
-                                default ->
-                                    MessageUI.askAgainMessage();
-                            }
-                            break;
-                        } while (chgChoice != 0);
-                    }
-                    case "n" -> {
-                        cls();
-                        break;
-                    }
-                    default ->
-                        MessageUI.askAgainMessage();
+            while (!choice.equals("n") && !choice.equals("y")) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                if (!choice.equals("n") && !choice.equals("y")) {
+                    MessageUI.askAgainMessage();
                 }
+            }
+            switch (choice) {
+                case "y" -> {
+                    int chgChoice = 0;
+                    chgChoice = tutGroupUI.chgGroup4Choice();
+                    switch (chgChoice) {
+                        case 1 -> {
+                            g4List.remove(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            g1List.add(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 2 -> {
+                            g4List.remove(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            g2List.add(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 3 -> {
+                            g4List.remove(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            g3List.add(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 4 -> {
+                            g4List.remove(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            g5List.add(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 0 -> {
+                            cls();
+                            break;
+                        }
+                        default ->
+                            MessageUI.askAgainMessage();
+                    }
+                    break;
+                }
+                case "n" -> {
+                    cls();
+                    break;
+                }
+                default ->
+                    MessageUI.askAgainMessage();
             }
         } else {
             MessageUI.displayNotFound();
@@ -1026,66 +1020,67 @@ public class TutorGroupManagement {
             System.out.println("Student Email: " + foundStudent.getStudentEmail());
             System.out.println("Mode: " + foundStudent.getMode());
             System.out.println("Student Gender: " + foundStudent.getGender());
-            String choice = null;
+            String choice = "";
             Scanner scanner = new Scanner(System.in);
-            System.out.print("\nAre you sure want to change group for this student? (y/n): ");
-            choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
-            while ("y".equals(choice)) {
-                switch (choice) {
-                    case "y" -> {
-                        int chgChoice = 0;
-                        chgChoice = tutGroupUI.chgGroup5Choice();
-                        do {
-                            switch (chgChoice) {
-                                case 1 -> {
-                                    g5List.remove(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    g1List.add(foundStudent);
-                                    g1DAO.saveToFile(g1List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 2 -> {
-                                    g5List.remove(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    g2List.add(foundStudent);
-                                    g2DAO.saveToFile(g2List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 3 -> {
-                                    g5List.remove(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    g3List.add(foundStudent);
-                                    g3DAO.saveToFile(g3List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 4 -> {
-                                    g5List.remove(foundStudent);
-                                    g5DAO.saveToFile(g5List);
-                                    g4List.add(foundStudent);
-                                    g4DAO.saveToFile(g4List);
-                                    MessageUI.displaySuccessConfirmation();
-                                    break;
-                                }
-                                case 0 -> {
-                                    cls();
-                                    break;
-                                }
-                                default ->
-                                    MessageUI.askAgainMessage();
-                            }
-                            break;
-                        } while (chgChoice != 0);
-                    }
-                    case "n" -> {
-                        cls();
-                        break;
-                    }
-                    default ->
-                        MessageUI.askAgainMessage();
+            while (!choice.equals("n") && !choice.equals("y")) {
+                System.out.print("\nAre you sure want to change group for this student? (y/n): ");
+                choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
+                if (!choice.equals("n") && !choice.equals("y")) {
+                    MessageUI.askAgainMessage();
                 }
+            }
+            switch (choice) {
+                case "y" -> {
+                    int chgChoice = 0;
+                    chgChoice = tutGroupUI.chgGroup5Choice();
+                    switch (chgChoice) {
+                        case 1 -> {
+                            g5List.remove(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            g1List.add(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 2 -> {
+                            g5List.remove(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            g2List.add(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 3 -> {
+                            g5List.remove(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            g3List.add(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 4 -> {
+                            g5List.remove(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            g4List.add(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            MessageUI.displaySuccessConfirmation();
+                            break;
+                        }
+                        case 0 -> {
+                            cls();
+                            break;
+                        }
+                        default ->
+                            MessageUI.askAgainMessage();
+                    }
+                    break;
+                }
+                case "n" -> {
+                    cls();
+                    break;
+                }
+                default ->
+                    MessageUI.askAgainMessage();
             }
         } else {
             MessageUI.displayNotFound();
@@ -1116,7 +1111,7 @@ public class TutorGroupManagement {
         g2List.add(new Student("Kelly Ng", 2309434, "kellyng-wm21@student.tarc.edu.my", "PartTime", "Female"));
         g2List.add(new Student("Ryan Lee", 2309435, "ryanlee-wm21@student.tarc.edu.my", "FullTime", "Male"));
         g2List.add(new Student("Grace Wong", 2309436, "gracewong-wm21@student.tarc.edu.my", "FullTime", "Female"));
-        g2List.add(new Student("Ethan Lim", 23094237, "ethanlim-wm21@student.tarc.edu.my", "FullTime", "Male"));
+        g2List.add(new Student("Ethan Lim", 2309437, "ethanlim-wm21@student.tarc.edu.my", "FullTime", "Male"));
         g2List.add(new Student("Vanessa Tan", 2309438, "vanessatan-wm21@student.tarc.edu.my", "FullTime", "Male"));
         g2DAO.saveToFile(g2List);
     }

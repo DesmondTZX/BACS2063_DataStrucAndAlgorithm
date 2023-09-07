@@ -24,7 +24,6 @@ public class StudentDAO {
             while (studentIterator.hasNext()) {
                 ooStream.writeObject(studentIterator.next());
             }
-            MessageUI.displaySuccessConfirmationMessage(fileName);
         } catch (IOException ex) {
             System.err.println("Cannot save to file: " + ex.getMessage());
         }

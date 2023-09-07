@@ -29,7 +29,7 @@ public class MessageUI {
     }
     
     public static void displaySuccessConfirmation() {
-        printFormattedText(" Student added Successfully!!\n", ConsoleColor.GREEN);
+        printFormattedText("Successfully!!\n", ConsoleColor.GREEN);
     }
 
     public static void displayInvalidFormat() {
