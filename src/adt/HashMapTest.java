@@ -147,6 +147,20 @@ class HashMapTest {
     }
 
     @Test
+    public void testPutNullInContainsKeyMethod(){
+        hashMap.put(1, "value1");
+        assertThrows(IllegalArgumentException.class, () -> hashMap.containsKey(null));
+
+    }
+
+    @Test
+    public void testPutNullInContainsValueMethod(){
+        hashMap.put(1, "value1");
+        assertThrows(IllegalArgumentException.class, () -> hashMap.containsValue(null));
+
+    }
+
+    @Test
     public void testSize() {
         assertEquals(0, hashMap.size());
 

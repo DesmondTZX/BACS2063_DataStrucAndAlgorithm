@@ -127,11 +127,19 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public boolean containsKey(K key) {
+        if(key == null){
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         return getIndexForExistingEntries(key) != -1;
     }
 
     @Override
     public boolean containsValue(V value) {
+        if(value == null){
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+
         for (int i = 0; i < entries.length; i++) {
             if (entries[i] != null && entries[i].value.equals(value)) {
                 return true;
