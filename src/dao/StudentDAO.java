@@ -29,7 +29,7 @@ public class StudentDAO {
             System.err.println("Cannot save to file: " + ex.getMessage());
         }
     }
-
+    
     public SortedListInterface<Student> retrieveFromFile() {
         SortedListInterface<Student> studentList = new SortedLinkedList<>();
 
@@ -51,8 +51,6 @@ public class StudentDAO {
         } catch (ClassNotFoundException ex) {
             System.err.println("Class not found: " + ex.getMessage());
         }
-
         return studentList;
     }
-
 }

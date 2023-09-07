@@ -40,7 +40,6 @@ public class TutorGroupManagement {
 
     //main menu
     public void mainMenu() {
-
         int choice = 0;
         do {
             choice = tutGroupUI.getMenuChoice();
@@ -86,10 +85,8 @@ public class TutorGroupManagement {
                     MessageUI.displayInvalidChoiceMessage();
 
                 }
-
             }
         } while (choice != 0);
-
     }
 
     //function
@@ -106,6 +103,7 @@ public class TutorGroupManagement {
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g1List.add(newStud);
                     g1DAO.saveToFile(g1List);
+                    MessageUI.displaySuccessConfirmation();
                     break;
                 }
                 case 2 -> {
@@ -115,6 +113,7 @@ public class TutorGroupManagement {
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g2List.add(newStud);
                     g2DAO.saveToFile(g2List);
+                    MessageUI.displaySuccessConfirmation();
                     break;
                 }
                 case 3 -> {
@@ -124,6 +123,7 @@ public class TutorGroupManagement {
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g3List.add(newStud);
                     g3DAO.saveToFile(g3List);
+                    MessageUI.displaySuccessConfirmation();
                     break;
                 }
                 case 4 -> {
@@ -133,6 +133,7 @@ public class TutorGroupManagement {
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g4List.add(newStud);
                     g4DAO.saveToFile(g4List);
+                    MessageUI.displaySuccessConfirmation();
                     break;
                 }
                 case 5 -> {
@@ -142,6 +143,7 @@ public class TutorGroupManagement {
                     Student newStud = tutGroupUI.inputStudentDetails();
                     g5List.add(newStud);
                     g5DAO.saveToFile(g5List);
+                    MessageUI.displaySuccessConfirmation();
                     break;
                 }
                 case 0 -> {
@@ -166,46 +168,101 @@ public class TutorGroupManagement {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1
                     tutGroupUI.removeTitle();
-                    Student delStud = new Student(tutGroupUI.inputStudentID());
-                    g1List.remove(delStud);
-                    g1DAO.saveToFile(g1List);
-                    break;
+                    int delStud = tutGroupUI.inputStudentID();
+                    Iterator<Student> g1ListAsIterator = g1List.getIterator();
+                    Student foundStudent = null;
+                    while (g1ListAsIterator.hasNext()) {
+                        Student student = g1ListAsIterator.next();
+                        if (student.getStudentID() == delStud) {
+                            foundStudent = student;
+                            g1List.remove(foundStudent);
+                            g1DAO.saveToFile(g1List);
+                            break;
+                        } else {
+                            MessageUI.displayNotFound();
+                            break;
+                        }
+                    }
                 }
                 case 2 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG2()); //display all the studentList IN G2
                     tutGroupUI.removeTitle();
-                    Student delStud = new Student(tutGroupUI.inputStudentID());
-                    g2List.remove(delStud);
-                    g2DAO.saveToFile(g2List);
-                    break;
+                    int delStud = tutGroupUI.inputStudentID();
+                    Iterator<Student> g2ListAsIterator = g2List.getIterator();
+                    Student foundStudent = null;
+                    while (g2ListAsIterator.hasNext()) {
+                        Student student = g2ListAsIterator.next();
+                        if (student.getStudentID() == delStud) {
+                            foundStudent = student;
+                            g2List.remove(foundStudent);
+                            g2DAO.saveToFile(g2List);
+                            break;
+                        } else {
+                            MessageUI.displayNotFound();
+                            break;
+                        }
+                    }
                 }
                 case 3 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG3()); //display all the studentList IN G3
                     tutGroupUI.removeTitle();
-                    Student delStud = new Student(tutGroupUI.inputStudentID());
-                    g3List.remove(delStud);
-                    g3DAO.saveToFile(g3List);
-                    break;
+                    int delStud = tutGroupUI.inputStudentID();
+                    Iterator<Student> g3ListAsIterator = g3List.getIterator();
+                    Student foundStudent = null;
+                    while (g3ListAsIterator.hasNext()) {
+                        Student student = g3ListAsIterator.next();
+                        if (student.getStudentID() == delStud) {
+                            foundStudent = student;
+                            g3List.remove(foundStudent);
+                            g3DAO.saveToFile(g3List);
+                            break;
+                        } else {
+                            MessageUI.displayNotFound();
+                            break;
+                        }
+                    }
                 }
                 case 4 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG4()); //display all the studentList IN G4
                     tutGroupUI.removeTitle();
-                    Student delStud = new Student(tutGroupUI.inputStudentID());
-                    g4List.remove(delStud);
-                    g4DAO.saveToFile(g4List);
-                    break;
+                    int delStud = tutGroupUI.inputStudentID();
+                    Iterator<Student> g4ListAsIterator = g4List.getIterator();
+                    Student foundStudent = null;
+                    while (g4ListAsIterator.hasNext()) {
+                        Student student = g4ListAsIterator.next();
+                        if (student.getStudentID() == delStud) {
+                            foundStudent = student;
+                            g4List.remove(foundStudent);
+                            g4DAO.saveToFile(g4List);
+                            break;
+                        } else {
+                            MessageUI.displayNotFound();
+                            break;
+                        }
+                    }
                 }
                 case 5 -> {
                     cls();
                     tutGroupUI.listAllStudent(getAllStudentsG5()); //display all the studentList IN G5
                     tutGroupUI.removeTitle();
-                    Student delStud = new Student(tutGroupUI.inputStudentID());
-                    g5List.remove(delStud);
-                    g5DAO.saveToFile(g5List);
-                    break;
+                    int delStud = tutGroupUI.inputStudentID();
+                    Iterator<Student> g5ListAsIterator = g5List.getIterator();
+                    Student foundStudent = null;
+                    while (g5ListAsIterator.hasNext()) {
+                        Student student = g5ListAsIterator.next();
+                        if (student.getStudentID() == delStud) {
+                            foundStudent = student;
+                            g5List.remove(foundStudent);
+                            g5DAO.saveToFile(g5List);
+                            break;
+                        } else {
+                            MessageUI.displayNotFound();
+                            break;
+                        }
+                    }
                 }
                 case 0 -> {
                     cls();
@@ -258,7 +315,6 @@ public class TutorGroupManagement {
                     changeG3toOther(g3ListAsIterator, studentIDToChange, foundStudent);
                     break;
                 }
-
                 case 4 -> {
                     cls();
                     tutGroupUI.changeStudTitle();
@@ -397,7 +453,6 @@ public class TutorGroupManagement {
                     tutGroupUI.reportTitle();
                     tutGroupUI.listAllStudent(getAllStudentsG1()); //display all the studentList IN G1 
                     System.out.println("\nTotal Students: " + g1List.getNumberOfEntries() + " students ");
-
                     break;
                 }
                 case 2 -> {
@@ -448,7 +503,6 @@ public class TutorGroupManagement {
             Student stud = g1StudIterator.next();
             outputStr += stud + "\n";
         }
-
         return outputStr;
     }
 
@@ -459,7 +513,6 @@ public class TutorGroupManagement {
             Student stud = g2StudIterator.next();
             outputStr += stud + "\n";
         }
-
         return outputStr;
     }
 
@@ -470,7 +523,6 @@ public class TutorGroupManagement {
             Student stud = g3StudIterator.next();
             outputStr += stud + "\n";
         }
-
         return outputStr;
     }
 
@@ -481,7 +533,6 @@ public class TutorGroupManagement {
             Student stud = g4StudIterator.next();
             outputStr += stud + "\n";
         }
-
         return outputStr;
     }
 
@@ -492,7 +543,6 @@ public class TutorGroupManagement {
             Student stud = g5StudIterator.next();
             outputStr += stud + "\n";
         }
-
         return outputStr;
     }
 
@@ -518,10 +568,8 @@ public class TutorGroupManagement {
                 break;
             }
         }
-
         if (foundStudent == null) {
             // Convert g2List to a List
-
             while (g2ListAsIterator.hasNext()) {
                 Student student = g2ListAsIterator.next();
                 if (student.getStudentID() == studentIDToFind) {
@@ -541,7 +589,6 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent == null) {
             // Convert g4List to a List
 
@@ -553,7 +600,6 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent == null) {
             // Convert g5List to a List
 
@@ -565,7 +611,6 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent != null) {
             System.out.println("Student Details");
             System.out.println("Student Name: " + foundStudent.getStudentName());
@@ -587,10 +632,8 @@ public class TutorGroupManagement {
                 break;
             }
         }
-
         if (foundStudent == null) {
             // Convert g2List to a List
-
             while (g2ListAsIterator.hasNext()) {
                 Student student = g2ListAsIterator.next();
                 if (student.getStudentName().equals(studentNameToFind)) {
@@ -599,10 +642,8 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent == null) {
             // Convert g3List to a List
-
             while (g3ListAsIterator.hasNext()) {
                 Student student = g3ListAsIterator.next();
                 if (student.getStudentName().equals(studentNameToFind)) {
@@ -611,10 +652,8 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent == null) {
             // Convert g4List to a List
-
             while (g4ListAsIterator.hasNext()) {
                 Student student = g4ListAsIterator.next();
                 if (student.getStudentName().equals(studentNameToFind)) {
@@ -623,7 +662,6 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent == null) {
             // Convert g5List to a List
 
@@ -635,7 +673,6 @@ public class TutorGroupManagement {
                 }
             }
         }
-
         if (foundStudent != null) {
             System.out.println("Student Details");
             System.out.println("Student Name: " + foundStudent.getStudentName());
@@ -666,7 +703,6 @@ public class TutorGroupManagement {
             System.out.println("Student Gender: " + foundStudent.getGender());
             String choice = null;
             Scanner scanner = new Scanner(System.in);
-
             System.out.print("\nAre you sure want to change group for this student? (y/n): ");
             choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
             while ("y".equals(choice)) {
@@ -681,6 +717,7 @@ public class TutorGroupManagement {
                                     g1DAO.saveToFile(g1List);
                                     g2List.add(foundStudent);
                                     g2DAO.saveToFile(g2List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 2 -> {
@@ -688,6 +725,7 @@ public class TutorGroupManagement {
                                     g1DAO.saveToFile(g1List);
                                     g3List.add(foundStudent);
                                     g3DAO.saveToFile(g3List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 3 -> {
@@ -695,6 +733,7 @@ public class TutorGroupManagement {
                                     g1DAO.saveToFile(g4List);
                                     g4List.add(foundStudent);
                                     g4DAO.saveToFile(g4List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 4 -> {
@@ -702,6 +741,7 @@ public class TutorGroupManagement {
                                     g1DAO.saveToFile(g1List);
                                     g5List.add(foundStudent);
                                     g5DAO.saveToFile(g5List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 0 -> {
@@ -711,7 +751,6 @@ public class TutorGroupManagement {
                                 default ->
                                     MessageUI.askAgainMessage();
                             }
-
                             break;
                         } while (chgChoice != 0);
                     }
@@ -745,7 +784,6 @@ public class TutorGroupManagement {
             System.out.println("Student Gender: " + foundStudent.getGender());
             String choice = null;
             Scanner scanner = new Scanner(System.in);
-
             System.out.print("\nAre you sure want to change group for this student? (y/n): ");
             choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
             while ("y".equals(choice)) {
@@ -760,6 +798,7 @@ public class TutorGroupManagement {
                                     g2DAO.saveToFile(g2List);
                                     g1List.add(foundStudent);
                                     g1DAO.saveToFile(g1List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 2 -> {
@@ -767,6 +806,7 @@ public class TutorGroupManagement {
                                     g2DAO.saveToFile(g2List);
                                     g3List.add(foundStudent);
                                     g3DAO.saveToFile(g3List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 3 -> {
@@ -774,6 +814,7 @@ public class TutorGroupManagement {
                                     g2DAO.saveToFile(g2List);
                                     g4List.add(foundStudent);
                                     g4DAO.saveToFile(g4List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 4 -> {
@@ -781,6 +822,7 @@ public class TutorGroupManagement {
                                     g2DAO.saveToFile(g2List);
                                     g5List.add(foundStudent);
                                     g5DAO.saveToFile(g5List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 0 -> {
@@ -814,7 +856,6 @@ public class TutorGroupManagement {
                 foundStudent = student;
                 break;
             }
-
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -825,7 +866,6 @@ public class TutorGroupManagement {
             System.out.println("Student Gender: " + foundStudent.getGender());
             String choice = null;
             Scanner scanner = new Scanner(System.in);
-
             System.out.print("\nAre you sure want to change group for this student? (y/n): ");
             choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
             while ("y".equals(choice)) {
@@ -840,6 +880,7 @@ public class TutorGroupManagement {
                                     g3DAO.saveToFile(g3List);
                                     g1List.add(foundStudent);
                                     g1DAO.saveToFile(g1List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 2 -> {
@@ -847,6 +888,7 @@ public class TutorGroupManagement {
                                     g3DAO.saveToFile(g3List);
                                     g2List.add(foundStudent);
                                     g2DAO.saveToFile(g2List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 3 -> {
@@ -854,6 +896,7 @@ public class TutorGroupManagement {
                                     g3DAO.saveToFile(g3List);
                                     g4List.add(foundStudent);
                                     g4DAO.saveToFile(g4List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 4 -> {
@@ -861,6 +904,7 @@ public class TutorGroupManagement {
                                     g3DAO.saveToFile(g3List);
                                     g5List.add(foundStudent);
                                     g5DAO.saveToFile(g5List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 0 -> {
@@ -870,7 +914,6 @@ public class TutorGroupManagement {
                                 default ->
                                     MessageUI.askAgainMessage();
                             }
-
                             break;
                         } while (chgChoice != 0);
                     }
@@ -904,7 +947,6 @@ public class TutorGroupManagement {
             System.out.println("Student Gender: " + foundStudent.getGender());
             String choice = null;
             Scanner scanner = new Scanner(System.in);
-
             System.out.print("\nAre you sure want to change group for this student? (y/n): ");
             choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
             while ("y".equals(choice)) {
@@ -919,6 +961,7 @@ public class TutorGroupManagement {
                                     g4DAO.saveToFile(g4List);
                                     g1List.add(foundStudent);
                                     g1DAO.saveToFile(g1List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 2 -> {
@@ -926,6 +969,7 @@ public class TutorGroupManagement {
                                     g4DAO.saveToFile(g4List);
                                     g2List.add(foundStudent);
                                     g2DAO.saveToFile(g2List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 3 -> {
@@ -933,6 +977,7 @@ public class TutorGroupManagement {
                                     g4DAO.saveToFile(g4List);
                                     g3List.add(foundStudent);
                                     g3DAO.saveToFile(g3List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 4 -> {
@@ -940,6 +985,7 @@ public class TutorGroupManagement {
                                     g4DAO.saveToFile(g4List);
                                     g5List.add(foundStudent);
                                     g5DAO.saveToFile(g5List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 0 -> {
@@ -949,7 +995,6 @@ public class TutorGroupManagement {
                                 default ->
                                     MessageUI.askAgainMessage();
                             }
-
                             break;
                         } while (chgChoice != 0);
                     }
@@ -973,7 +1018,6 @@ public class TutorGroupManagement {
                 foundStudent = student;
                 break;
             }
-
         }
         if (foundStudent != null) {
             System.out.println("Student Details");
@@ -984,7 +1028,6 @@ public class TutorGroupManagement {
             System.out.println("Student Gender: " + foundStudent.getGender());
             String choice = null;
             Scanner scanner = new Scanner(System.in);
-
             System.out.print("\nAre you sure want to change group for this student? (y/n): ");
             choice = scanner.nextLine().toLowerCase(); // Convert input to lowercase for case-insensitive comparison
             while ("y".equals(choice)) {
@@ -999,6 +1042,7 @@ public class TutorGroupManagement {
                                     g5DAO.saveToFile(g5List);
                                     g1List.add(foundStudent);
                                     g1DAO.saveToFile(g1List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 2 -> {
@@ -1006,6 +1050,7 @@ public class TutorGroupManagement {
                                     g5DAO.saveToFile(g5List);
                                     g2List.add(foundStudent);
                                     g2DAO.saveToFile(g2List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 3 -> {
@@ -1013,6 +1058,7 @@ public class TutorGroupManagement {
                                     g5DAO.saveToFile(g5List);
                                     g3List.add(foundStudent);
                                     g3DAO.saveToFile(g3List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 4 -> {
@@ -1020,6 +1066,7 @@ public class TutorGroupManagement {
                                     g5DAO.saveToFile(g5List);
                                     g4List.add(foundStudent);
                                     g4DAO.saveToFile(g4List);
+                                    MessageUI.displaySuccessConfirmation();
                                     break;
                                 }
                                 case 0 -> {
@@ -1029,7 +1076,6 @@ public class TutorGroupManagement {
                                 default ->
                                     MessageUI.askAgainMessage();
                             }
-
                             break;
                         } while (chgChoice != 0);
                     }
@@ -1112,5 +1158,4 @@ public class TutorGroupManagement {
         tutGroupManagement.generateGroup4();
         tutGroupManagement.generateGroup5();
     }
-
 }
