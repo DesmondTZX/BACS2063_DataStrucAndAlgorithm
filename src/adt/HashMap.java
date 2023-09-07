@@ -7,13 +7,13 @@ import java.util.List;
 
 /**
  * Array implementation of HashMap - Open Addressing(Double Hashing)
- * @author Wong Fu Lim
  *
+ * @author Wong Fu Lim
  */
 
 public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
-    private class Entry<K, V> implements Serializable{
+    private class Entry<K, V> implements Serializable {
         private K key;
         private V value;
 
@@ -47,7 +47,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public void put(K key, V value) {
-        if(key == null || value == null){
+        if (key == null || value == null) {
             throw new IllegalArgumentException("Key or value cannot be null");
         }
 
@@ -76,7 +76,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public V get(K key) {
-        if(key == null){
+        if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
@@ -89,7 +89,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public V remove(K key) {
-        if(key == null){
+        if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
@@ -127,8 +127,8 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public boolean containsKey(K key) {
-        if(key == null){
-            throw new IllegalArgumentException("Key cannot be null");
+        if (key == null) {
+            return false;
         }
 
         return getIndexForExistingEntries(key) != -1;
@@ -136,8 +136,8 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
 
     @Override
     public boolean containsValue(V value) {
-        if(value == null){
-            throw new IllegalArgumentException("Key cannot be null");
+        if (value == null) {
+            return false;
         }
 
         for (int i = 0; i < entries.length; i++) {
@@ -259,7 +259,7 @@ public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
     }
 
     // For HashMapTest class only
-    protected int getIndex(K key, int i){
-        return index(key,i);
+    protected int getIndex(K key, int i) {
+        return index(key, i);
     }
 }

@@ -1,14 +1,15 @@
 import java.util.Scanner;
+
 import control.*;
+
 import static control.TutorGroupManagement.autoGenerate;
 
 /**
- *
  * @author Desmond Tan Zhe Xuan, Wong Fu Lim, Dong Wei Jie
  */
 public class ClientMainDriver {
     Scanner scanner = new Scanner(System.in);
-    
+
     public int getSystemChoice() {
         int choice;
         while (true) {
@@ -36,7 +37,7 @@ public class ClientMainDriver {
         System.out.println();
         return choice;
     }
-    
+
     public static void main(String[] args) {
         ClientMainDriver client = new ClientMainDriver(); // Create an instance of ClientMainDriver
         int choice = client.getSystemChoice(); // Call getSystemChoice on the instance
@@ -51,7 +52,7 @@ public class ClientMainDriver {
                     TutorGroupManagement tutGroupManagement = new TutorGroupManagement();
                     autoGenerate(tutGroupManagement);
                     tutGroupManagement.mainMenu();
-                }   
+                }
                 case 3 -> {
                     TutorManagement tutorManagement = new TutorManagement();
                     tutorManagement.runTutorManagement();

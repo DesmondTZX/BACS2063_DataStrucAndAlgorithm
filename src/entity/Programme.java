@@ -1,9 +1,7 @@
 package entity;
 
 /**
- *
  * @author Wong Fu Lim
- *
  */
 
 import adt.HashMap;
@@ -18,7 +16,7 @@ public class Programme implements Serializable {
     private int duration;
     private String faculty;
 
-    private HashMapInterface<String,TutorialGroup> tutorialGroup;
+    private HashMapInterface<String, TutorialGroup> tutorialGroup;
 
     public Programme(int code, String name, String type, int duration, String faculty) {
         this.code = code;
@@ -76,6 +74,7 @@ public class Programme implements Serializable {
     public void setTutorialGroup(HashMapInterface<String, TutorialGroup> tutorialGroup) {
         this.tutorialGroup = tutorialGroup;
     }
+
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         this.tutorialGroup.put(tutorialGroup.getId(), tutorialGroup);
     }
@@ -101,8 +100,8 @@ public class Programme implements Serializable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%-8s%-30s%-15s%-10s%-10s", code, name, type, duration, faculty));
-        for(TutorialGroup tg : tutorialGroup.values())
-            sb.append(String.format("%-6s",tg.getId() + ", "));
+        for (TutorialGroup tg : tutorialGroup.values())
+            sb.append(String.format("%-6s", tg.getId() + ", "));
         sb.append("\n");
         return sb.toString();
     }

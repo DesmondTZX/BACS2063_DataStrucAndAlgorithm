@@ -2,12 +2,11 @@ package dao;
 
 import adt.*;
 import entity.TutorialGroup;
+
 import java.io.*;
 
 /**
- *
  * @author Wong Fu Lim
- *
  */
 
 public class TutorialGroupDAO {
@@ -35,7 +34,7 @@ public class TutorialGroupDAO {
         HashMapInterface<String, TutorialGroup> tutorialGroup = new HashMap<>();
         try {
             ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(file));
-            tutorialGroup = (HashMap<String, TutorialGroup>)(oiStream.readObject());
+            tutorialGroup = (HashMap<String, TutorialGroup>) (oiStream.readObject());
             oiStream.close();
         } catch (FileNotFoundException ex) {
             System.out.println("\nNo such file.");

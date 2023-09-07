@@ -1,9 +1,7 @@
 package entity;
 
 /**
- *
  * @author Wong Fu Lim
- *
  */
 
 import java.io.Serializable;
@@ -14,7 +12,7 @@ public class TutorialGroup implements Serializable {
     private String name;
     private int groupNumber;
 
-    public TutorialGroup(String name, int groupNumber,int nextId) {
+    public TutorialGroup(String name, int groupNumber, int nextId) {
         this.id = String.format("TG%04d", ++nextId);
         this.name = name;
         this.groupNumber = groupNumber;

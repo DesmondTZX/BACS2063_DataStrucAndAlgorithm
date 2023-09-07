@@ -6,11 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
-* @Author: Wong Fu Lim
-* To run the test, you have to installed junit5.jar in your project.
-* More info: https://www.jetbrains.com/help/idea/junit.html#intellij
-*
-* */
+ * @Author: Wong Fu Lim
+ * To run the test, you have to installed junit5.jar in your project.
+ * More info: https://www.jetbrains.com/help/idea/junit.html#intellij
+ */
 
 class HashMapTest {
     private HashMap<Integer, String> hashMap;
@@ -40,7 +39,7 @@ class HashMapTest {
     }
 
     @Test
-    public void testAfterRehashTheValueStillValid(){
+    public void testAfterRehashTheValueStillValid() {
         hashMap = new HashMap<>(10);
         for (int i = 0; i < 10; i++) {
             hashMap.put(i, "value" + i);
@@ -49,7 +48,7 @@ class HashMapTest {
         hashMap.put(10, "value10");
 
 
-        for(int i = 0; i <= 10; i++){
+        for (int i = 0; i <= 10; i++) {
             assertEquals("value" + i, hashMap.get(i));
         }
     }
@@ -65,12 +64,12 @@ class HashMapTest {
     }
 
     @Test
-    public void testGetNullKey(){
+    public void testGetNullKey() {
         assertThrows(IllegalArgumentException.class, () -> hashMap.get(null));
     }
 
     @Test
-    public void testRemoveNullKey(){
+    public void testRemoveNullKey() {
         assertThrows(IllegalArgumentException.class, () -> hashMap.remove(null));
     }
 
@@ -147,17 +146,15 @@ class HashMapTest {
     }
 
     @Test
-    public void testPutNullInContainsKeyMethod(){
+    public void testPutNullInContainsKeyMethod() {
         hashMap.put(1, "value1");
-        assertThrows(IllegalArgumentException.class, () -> hashMap.containsKey(null));
-
+        assertFalse(hashMap.containsKey(null));
     }
 
     @Test
-    public void testPutNullInContainsValueMethod(){
+    public void testPutNullInContainsValueMethod() {
         hashMap.put(1, "value1");
-        assertThrows(IllegalArgumentException.class, () -> hashMap.containsValue(null));
-
+        assertFalse(hashMap.containsValue(null));
     }
 
     @Test
@@ -172,7 +169,7 @@ class HashMapTest {
     }
 
     @Test
-    public void testSizeForPutUpdate(){
+    public void testSizeForPutUpdate() {
         hashMap.put(1, "value1");
         assertEquals(1, hashMap.size());
 
@@ -190,7 +187,7 @@ class HashMapTest {
 
     @Test
     public void testIsFull() {
-        for(int i = 0; i < 20; i++){
+        for (int i = 0; i < 20; i++) {
             hashMap.put(i, "value" + i);
         }
 
@@ -212,7 +209,7 @@ class HashMapTest {
 
     @Test
     public void testCollision() {
-        assertTrue(hashMap.getIndex(1,0) == hashMap.getIndex(21,0));
+        assertTrue(hashMap.getIndex(1, 0) == hashMap.getIndex(21, 0));
         //both keys index is 1
         // 1 % 20 = 1
         // 21 % 20 = 1
@@ -225,14 +222,14 @@ class HashMapTest {
     }
 
     @Test
-    public void testNegativeKey(){
+    public void testNegativeKey() {
         hashMap.put(-101, "value1");
         assertEquals("value1", hashMap.get(-101));
     }
 
     @Test
-    public void testNegativeKeyCollision(){
-        assertTrue(hashMap.getIndex(-101,0) == hashMap.getIndex(-81,0));
+    public void testNegativeKeyCollision() {
+        assertTrue(hashMap.getIndex(-101, 0) == hashMap.getIndex(-81, 0));
         hashMap.put(-101, "value1");
         hashMap.put(-81, "value2");
 

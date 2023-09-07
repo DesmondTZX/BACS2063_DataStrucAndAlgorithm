@@ -1,12 +1,11 @@
 package boundary;
 
 /**
- *
  * @author Wong Fu Lim
- *
  */
 
 import entity.*;
+
 import java.util.Scanner;
 
 public class ProgrammeManagementUI {
@@ -88,7 +87,7 @@ public class ProgrammeManagementUI {
         System.out.println(straightLine);
         System.out.println();
 
-        if(!programme.getTutorialGroup().isEmpty()) {
+        if (!programme.getTutorialGroup().isEmpty()) {
             System.out.printf("%-10s %-12s %-6s", "Group ID", "Group Name", "Group Number" + "\n");
         }
 
@@ -107,7 +106,7 @@ public class ProgrammeManagementUI {
     public int getEnterChoice() {
         boolean isEnterChoiceValid = false;
         int choice = 0;
-        do{
+        do {
             System.out.print("Enter choice: ");
             try {
                 isEnterChoiceValid = true;
@@ -163,7 +162,7 @@ public class ProgrammeManagementUI {
     public int getTutorialGroupChoice() {
         boolean isTutorialGroupChoiceValid = false;
         int choice = 0;
-        do{
+        do {
             System.out.print("Enter choice: ");
             try {
                 isTutorialGroupChoiceValid = true;
@@ -219,18 +218,18 @@ public class ProgrammeManagementUI {
 
         do {
             durationStr = inputProgrammeDuration(" (Press enter to skip)");
-            if (durationStr.trim().isEmpty()){
+            if (durationStr.trim().isEmpty()) {
                 isDurationValid = true;
                 continue;
             }
-                try {
-                    isDurationValid = true;
-                    duration = Integer.parseInt(durationStr);
-                    programme.setDuration(duration);
-                } catch (NumberFormatException e) {
-                    isDurationValid = false;
-                    displayInvalidInput();
-                }
+            try {
+                isDurationValid = true;
+                duration = Integer.parseInt(durationStr);
+                programme.setDuration(duration);
+            } catch (NumberFormatException e) {
+                isDurationValid = false;
+                displayInvalidInput();
+            }
 
         } while (!isDurationValid);
 
@@ -263,7 +262,7 @@ public class ProgrammeManagementUI {
     }
 
     //Messages
-    public void displayNoProgrammeAvailableMessage(){
+    public void displayNoProgrammeAvailableMessage() {
         System.out.println(ANSI_RED + "No programme available. Please add a programme first.");
         System.out.println(ANSI_RESET);
     }

@@ -1,16 +1,17 @@
 package dao;
 
 /**
- *
  * @author Wong Fu Lim
- *
  */
 
 import adt.*;
 import entity.Programme;
+
 import java.io.*;
+
 public class ProgrammeDAO {
     private String fileName;
+
     public ProgrammeDAO(String fileName) {
         this.fileName = fileName;
     }
@@ -33,7 +34,7 @@ public class ProgrammeDAO {
         HashMapInterface<Integer, Programme> programmes = new HashMap<>();
         try {
             ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(file));
-            programmes = (HashMap<Integer, Programme>)(oiStream.readObject());
+            programmes = (HashMap<Integer, Programme>) (oiStream.readObject());
             oiStream.close();
         } catch (FileNotFoundException ex) {
             System.out.println("\nNo such file.");
