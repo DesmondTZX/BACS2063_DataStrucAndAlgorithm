@@ -171,10 +171,18 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
         numberOfEntries = 0;
     }
 
-    //@Override
-    //public String toString() {
-    //    return Arrays.toString(entries);
-    //}
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("HashMap: {");
+        for (int i = 0; i < entries.length; i++) {
+            if (entries[i] != null) {
+                sb.append(entries[i].key).append("=").append(entries[i].value).append(", ");
+            }
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 
     private boolean isHashMapTooFull() {
         return numberOfEntries >= loadFactor * entries.length;
