@@ -11,8 +11,7 @@ import dao.ProgrammeDAO;
 import dao.TutorialGroupDAO;
 import entity.Programme;
 import entity.TutorialGroup;
-
-import java.util.ArrayList;
+import adt.ArrayList;
 
 
 public class ProgrammeManagement {
@@ -226,7 +225,7 @@ public class ProgrammeManagement {
             }
         }
 
-        if (tutorialGroupIdList.size() == 0) {
+        if (tutorialGroupIdList.getNumberOfEntries() == 0) {
             programmeManagementUI.displayNoNewTutorialGroupAvailableToProgrammeMessage();
             return;
         }
@@ -234,13 +233,13 @@ public class ProgrammeManagement {
         programmeManagementUI.listTutorialGroups(sb.toString());
 
         int choice = programmeManagementUI.getTutorialGroupChoice();
-        while (choice < 1 || choice > tutorialGroupIdList.size()) {
+        while (choice < 1 || choice > tutorialGroupIdList.getNumberOfEntries()) {
             programmeManagementUI.displayInvalidChoice();
             choice = programmeManagementUI.getTutorialGroupChoice();
         }
 
 
-        programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupIdList.get(choice - 1)));
+        programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupIdList.getEntry(choice - 1)));
         programmeDAO.saveToFile(programmeMap);
         programmeManagementUI.displayTutorialGroupAddedToProgrammeMessage();
     }
@@ -261,18 +260,18 @@ public class ProgrammeManagement {
             sb.append(tutorialGroup.toString());
             i++;
         }
-        if (tutorialGroupListId.size() == 0) {
+        if (tutorialGroupListId.getNumberOfEntries() == 0) {
             programmeManagementUI.displayNoTutorialGroupAvailableToRemoveFromProgrammeMessage();
             return;
         }
         programmeManagementUI.listTutorialGroups(sb.toString());
 
         int choice = programmeManagementUI.getTutorialGroupChoice();
-        while (choice < 1 || choice > tutorialGroupListId.size()) {
+        while (choice < 1 || choice > tutorialGroupListId.getNumberOfEntries()) {
             programmeManagementUI.displayInvalidChoice();
             choice = programmeManagementUI.getTutorialGroupChoice();
         }
-        programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.get(choice - 1)));
+        programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.getEntry(choice - 1)));
         programmeDAO.saveToFile(programmeMap);
         programmeManagementUI.displayTutorialGroupRemovedFromProgrammeMessage();
     }
