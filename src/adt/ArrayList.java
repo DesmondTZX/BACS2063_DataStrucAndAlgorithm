@@ -1,6 +1,7 @@
 package adt;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 public class ArrayList<T> implements ListInterface<T>, Serializable {
 
@@ -166,5 +167,29 @@ public class ArrayList<T> implements ListInterface<T>, Serializable {
         for (int index = removedIndex; index < lastIndex; index++) {
             array[index] = array[index + 1];
         }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
+    }
+
+    private class ListIterator implements Iterator<T> {
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < numberOfEntries;
+        }
+
+        @Override
+        public T next() {
+            T currentElement = null;
+            if(hasNext()){
+                currentElement = array[currentIndex++];
+            }
+            return currentElement;
+        }
+
     }
 }

@@ -1,9 +1,9 @@
 package adt;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import adt.ListInterface;
+import adt.ArrayList;
+
 
 /**
  * Array implementation of HashMap - Open Addressing(Double Hashing)
@@ -104,8 +104,8 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
     }
 
     @Override
-    public List<K> keys() {
-        List<K> keys = new ArrayList<>();
+    public ListInterface<K> keys() {
+        ListInterface<K> keys = new ArrayList<>();
         for (int i = 0; i < entries.length; i++) {
             if (entries[i] != null) {
                 keys.add(entries[i].key);
@@ -115,8 +115,8 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
     }
 
     @Override
-    public List<V> values() {
-        List<V> values = new ArrayList<>();
+    public ListInterface<V> values() {
+        ListInterface<V> values = new ArrayList<>();
         for (int i = 0; i < entries.length; i++) {
             if (entries[i] != null) {
                 values.add(entries[i].value);
@@ -171,10 +171,10 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
         numberOfEntries = 0;
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(entries);
-    }
+    //@Override
+    //public String toString() {
+    //    return Arrays.toString(entries);
+    //}
 
     private boolean isHashMapTooFull() {
         return numberOfEntries >= loadFactor * entries.length;

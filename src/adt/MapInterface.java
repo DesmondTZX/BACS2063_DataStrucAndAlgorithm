@@ -4,7 +4,7 @@ package adt;
  * @author Wong Fu Lim
  */
 
-import java.util.List;
+import adt.ListInterface;
 
 public interface MapInterface<K, V> {
     public void put(K key, V value);
@@ -13,9 +13,9 @@ public interface MapInterface<K, V> {
 
     public V remove(K key);
 
-    public List<K> keys();
+    public ListInterface<K> keys();
 
-    public List<V> values();
+    public ListInterface<V> values();
 
     public boolean containsKey(K key);
 

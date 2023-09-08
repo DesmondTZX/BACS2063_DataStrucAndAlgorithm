@@ -114,7 +114,7 @@ class HashMapTest {
         hashMap.put(1, "value1");
         hashMap.put(2, "value2");
 
-        assertEquals(2, hashMap.keys().size());
+        assertEquals(2, hashMap.keys().getNumberOfEntries());
         assertTrue(hashMap.keys().contains(1));
         assertTrue(hashMap.keys().contains(2));
     }
@@ -124,7 +124,7 @@ class HashMapTest {
         hashMap.put(1, "value1");
         hashMap.put(2, "value2");
 
-        assertEquals(2, hashMap.values().size());
+        assertEquals(2, hashMap.values().getNumberOfEntries());
         assertTrue(hashMap.values().contains("value1"));
         assertTrue(hashMap.values().contains("value2"));
     }
