@@ -265,9 +265,5 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
         }
         return hashIndex2;
     }
-
-    // For HashMapTest class only
-    protected int getIndex(K key, int i) {
-        return index(key, i);
-    }
+    
 }
