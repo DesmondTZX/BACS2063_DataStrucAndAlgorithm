@@ -239,7 +239,7 @@ public class ProgrammeManagement {
         }
 
 
-        programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupIdList.getEntry(choice - 1)));
+        programme.addTutorialGroup(tutorialGroupMap.get(tutorialGroupIdList.getEntry(choice)));
         programmeDAO.saveToFile(programmeMap);
         programmeManagementUI.displayTutorialGroupAddedToProgrammeMessage();
     }
@@ -271,7 +271,7 @@ public class ProgrammeManagement {
             programmeManagementUI.displayInvalidChoice();
             choice = programmeManagementUI.getTutorialGroupChoice();
         }
-        programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.getEntry(choice - 1)));
+        programme.removeTutorialGroup(tutorialGroupMap.get(tutorialGroupListId.getEntry(choice)));
         programmeDAO.saveToFile(programmeMap);
         programmeManagementUI.displayTutorialGroupRemovedFromProgrammeMessage();
     }
