@@ -5,7 +5,7 @@ package entity;
  */
 
 import adt.HashMap;
-import adt.HashMapInterface;
+import adt.MapInterface;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ public class Programme implements Serializable {
     private int duration;
     private String faculty;
 
-    private HashMapInterface<String, TutorialGroup> tutorialGroup;
+    private MapInterface<String, TutorialGroup> tutorialGroup;
 
     public Programme(int code, String name, String type, int duration, String faculty) {
         this.code = code;
@@ -67,11 +67,11 @@ public class Programme implements Serializable {
         this.faculty = faculty;
     }
 
-    public HashMapInterface<String, TutorialGroup> getTutorialGroup() {
+    public MapInterface<String, TutorialGroup> getTutorialGroup() {
         return tutorialGroup;
     }
 
-    public void setTutorialGroup(HashMapInterface<String, TutorialGroup> tutorialGroup) {
+    public void setTutorialGroup(MapInterface<String, TutorialGroup> tutorialGroup) {
         this.tutorialGroup = tutorialGroup;
     }
 

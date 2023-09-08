@@ -16,7 +16,7 @@ public class TutorialGroupDAO {
         this.fileName = fileName;
     }
 
-    public void saveToFile(HashMapInterface<String, TutorialGroup> tutorialGroup) {
+    public void saveToFile(MapInterface<String, TutorialGroup> tutorialGroup) {
         File file = new File(fileName);
         try {
             ObjectOutputStream ooStream = new ObjectOutputStream(new FileOutputStream(file));
@@ -29,9 +29,9 @@ public class TutorialGroupDAO {
         }
     }
 
-    public HashMapInterface<String, TutorialGroup> retrieveFromFile() {
+    public MapInterface<String, TutorialGroup> retrieveFromFile() {
         File file = new File(fileName);
-        HashMapInterface<String, TutorialGroup> tutorialGroup = new HashMap<>();
+        MapInterface<String, TutorialGroup> tutorialGroup = new HashMap<>();
         try {
             ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(file));
             tutorialGroup = (HashMap<String, TutorialGroup>) (oiStream.readObject());

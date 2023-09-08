@@ -11,7 +11,7 @@ import java.util.List;
  * @author Wong Fu Lim
  */
 
-public class HashMap<K, V> implements HashMapInterface<K, V>, Serializable {
+public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
 
     private class Entry<K, V> implements Serializable {
         private K key;

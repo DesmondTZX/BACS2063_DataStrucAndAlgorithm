@@ -5,7 +5,7 @@ package control;
  */
 
 import adt.HashMap;
-import adt.HashMapInterface;
+import adt.MapInterface;
 import boundary.ProgrammeManagementUI;
 import dao.ProgrammeDAO;
 import dao.TutorialGroupDAO;
@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 
 public class ProgrammeManagement {
-    private HashMapInterface<Integer, Programme> programmeMap = new HashMap<>();
-    private HashMapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
+    private MapInterface<Integer, Programme> programmeMap = new HashMap<>();
+    private MapInterface<String, TutorialGroup> tutorialGroupMap = new HashMap<>();
     private final ProgrammeDAO programmeDAO = new ProgrammeDAO("programmes.dat");
     private final TutorialGroupDAO tutorialGroupDAO = new TutorialGroupDAO("tutorialGroups.dat");
     private final ProgrammeManagementUI programmeManagementUI = new ProgrammeManagementUI();
@@ -211,7 +211,7 @@ public class ProgrammeManagement {
         int programmeCode = validateProgrammeCodeExist();
 
         Programme programme = programmeMap.get(programmeCode);
-        HashMapInterface<String, TutorialGroup> tGroupMapForProgramme = programme.getTutorialGroup();
+        MapInterface<String, TutorialGroup> tGroupMapForProgramme = programme.getTutorialGroup();
 
         int i = 1;
         ArrayList<String> tutorialGroupIdList = new ArrayList<>();
@@ -249,7 +249,7 @@ public class ProgrammeManagement {
         int programmeCode = validateProgrammeCodeExist();
 
         Programme programme = programmeMap.get(programmeCode);
-        HashMapInterface<String, TutorialGroup> tutorialGroups = programme.getTutorialGroup();
+        MapInterface<String, TutorialGroup> tutorialGroups = programme.getTutorialGroup();
 
         int i = 1;
         ArrayList<String> tutorialGroupListId = new ArrayList<>();

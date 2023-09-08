@@ -16,7 +16,7 @@ public class ProgrammeDAO {
         this.fileName = fileName;
     }
 
-    public void saveToFile(HashMapInterface<Integer, Programme> programmes) {
+    public void saveToFile(MapInterface<Integer, Programme> programmes) {
         File file = new File(fileName);
         try {
             ObjectOutputStream ooStream = new ObjectOutputStream(new FileOutputStream(file));
@@ -29,9 +29,9 @@ public class ProgrammeDAO {
         }
     }
 
-    public HashMapInterface<Integer, Programme> retrieveFromFile() {
+    public MapInterface<Integer, Programme> retrieveFromFile() {
         File file = new File(fileName);
-        HashMapInterface<Integer, Programme> programmes = new HashMap<>();
+        MapInterface<Integer, Programme> programmes = new HashMap<>();
         try {
             ObjectInputStream oiStream = new ObjectInputStream(new FileInputStream(file));
             programmes = (HashMap<Integer, Programme>) (oiStream.readObject());
