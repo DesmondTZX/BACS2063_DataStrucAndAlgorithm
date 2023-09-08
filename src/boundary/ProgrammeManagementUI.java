@@ -20,36 +20,37 @@ public class ProgrammeManagementUI {
 
     // Menu
     public int getMenuChoice() {
-        System.out.println(ANSI_GREEN + "╔═════════════════════════════════════════════╗");
-        System.out.println("║              " + ANSI_PURPLE + "Programme Menu" + ANSI_GREEN + "                 ║");
-        System.out.println("╠═════════════════════════════════════════════╣");
-        System.out.println("║ " + ANSI_BLUE + "1.  Display All Programmes" + ANSI_GREEN + "                  ║");
-        System.out.println("║ " + ANSI_BLUE + "2.  Add Programme" + ANSI_GREEN + "                           ║");
-        System.out.println("║ " + ANSI_BLUE + "3.  Remove Programme" + ANSI_GREEN + "                        ║");
-        System.out.println("║ " + ANSI_BLUE + "4.  Update Programme" + ANSI_GREEN + "                        ║");
-        System.out.println("║ " + ANSI_BLUE + "5.  Search Programme" + ANSI_GREEN + "                        ║");
-        System.out.println("║ " + ANSI_BLUE + "6.  Display ALl Tutorial Groups" + ANSI_GREEN + "             ║");
-        System.out.println("║ " + ANSI_BLUE + "7.  Create New Tutorial Group" + ANSI_GREEN + "               ║");
-        System.out.println("║ " + ANSI_BLUE + "8.  Add Tutorial Group to a Programme" + ANSI_GREEN + "       ║");
-        System.out.println("║ " + ANSI_BLUE + "9.  Remove Tutorial Group from a Programme" + ANSI_GREEN + "  ║");
-        System.out.println("║ " + ANSI_BLUE + "10. List All Tutorial Groups in a Programme" + ANSI_GREEN + " ║");
-        System.out.println("║ " + ANSI_BLUE + "11. Generate Programme Report" + ANSI_GREEN + "               ║");
-        System.out.println("║ " + ANSI_BLUE + "12. Generate Dummy Data " + ANSI_GREEN + "                    ║");
-        System.out.println("║ " + ANSI_RED + "0.  Exit" + ANSI_GREEN + "                                    ║");
-        System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "-----------------------------------------------");
+        System.out.println("|              " + ANSI_PURPLE + "Programme Menu" + ANSI_GREEN + "                 |");
+        System.out.println("|---------------------------------------------|");
+        System.out.println("| " + ANSI_BLUE + "1.  Display All Programmes" + ANSI_GREEN + "                  |");
+        System.out.println("| " + ANSI_BLUE + "2.  Add Programme" + ANSI_GREEN + "                           |");
+        System.out.println("| " + ANSI_BLUE + "3.  Remove Programme" + ANSI_GREEN + "                        |");
+        System.out.println("| " + ANSI_BLUE + "4.  Update Programme" + ANSI_GREEN + "                        |");
+        System.out.println("| " + ANSI_BLUE + "5.  Search Programme" + ANSI_GREEN + "                        |");
+        System.out.println("| " + ANSI_BLUE + "6.  Display ALl Tutorial Groups" + ANSI_GREEN + "             |");
+        System.out.println("| " + ANSI_BLUE + "7.  Create New Tutorial Group" + ANSI_GREEN + "               |");
+        System.out.println("| " + ANSI_BLUE + "8.  Add Tutorial Group to a Programme" + ANSI_GREEN + "       |");
+        System.out.println("| " + ANSI_BLUE + "9.  Remove Tutorial Group from a Programme" + ANSI_GREEN + "  |");
+        System.out.println("| " + ANSI_BLUE + "10. List All Tutorial Groups in a Programme" + ANSI_GREEN + " |");
+        System.out.println("| " + ANSI_BLUE + "11. Generate Programme Report" + ANSI_GREEN + "               |");
+        System.out.println("| " + ANSI_BLUE + "12. Generate Dummy Data " + ANSI_GREEN + "                    |");
+        System.out.println("| " + ANSI_RED + "0.  Exit" + ANSI_GREEN + "                                    |");
+        System.out.println("-----------------------------------------------" + ANSI_RESET);
         int choice = getEnterChoice();
         System.out.println();
         return choice;
     }
 
     public int getSearchMenuChoice() {
-        System.out.println(ANSI_GREEN + "╔═════════════════════════════════════════════╗");
-        System.out.println("║              " + ANSI_PURPLE + "Search Programme" + ANSI_GREEN + "               ║");
-        System.out.println("╠═════════════════════════════════════════════╣");
-        System.out.println("║ " + ANSI_BLUE + "1. Search by Programme Code" + ANSI_GREEN + "                 ║");
-        System.out.println("║ " + ANSI_BLUE + "2. Search by Programme Name" + ANSI_GREEN + "                 ║");
-        System.out.println("║ " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     ║");
-        System.out.println("╚═════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(ANSI_GREEN + "-----------------------------------------------");
+        System.out.println("|              " + ANSI_PURPLE + "Search Programme" + ANSI_GREEN + "               |");
+        System.out.println("|---------------------------------------------|");
+        System.out.println("| " + ANSI_BLUE + "1. Search by Programme Code" + ANSI_GREEN + "                 |");
+        System.out.println("| " + ANSI_BLUE + "2. Search by Programme Name" + ANSI_GREEN + "                 |");
+        System.out.println("| " + ANSI_RED + "0. Exit" + ANSI_GREEN + "                                     |");
+        System.out.println("|---------------------------------------------|" + ANSI_RESET);
+
         int choice = getEnterChoice();
         System.out.println();
         return choice;
