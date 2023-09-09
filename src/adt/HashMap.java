@@ -269,5 +269,4 @@ public class HashMap<K, V> implements MapInterface<K, V>, Serializable {
     protected int getIndex(K key,int step){
         return index(key,step);
     }
-    
 }
