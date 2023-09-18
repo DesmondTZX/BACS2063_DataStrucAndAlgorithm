@@ -1,5 +1,12 @@
 # BACS2063 Data Structures and Algorithms
 
+## Table of Content
+
+![1. Main Menu](#part-1--main-menu)
+![2. Programme Management Subsystem (Wong Fu Lim)](#part-2--programme-management-subsystem-wong-fu-lim)
+![3. Tutorial Group Management Subsystem (Dong Wei Jie)](#part-3--tutorial-group-management-subsystem-dong-wei-jie)
+![4. Tutor Group Management Subsystem (Desmond Tan Zhe Xuan)](#part-4--tutor-group-management-subsystem-desmond-tan-zhe-xuan)
+
 ## Part 1 : Main Menu
 
 ![](img/Image00.png)
