@@ -6,6 +6,7 @@
 
 ======================================================================
 ![](img/Image00.png)
+
 Figure 1 Main Menu
 
 ======================================================================
@@ -87,8 +88,14 @@ Figure 2.17 List the tutorial all tutorial group under a programme
 
 ======================================================================
 
+- Put all the screenshot here
+- Remove all these bullet point after done screenshot
+
 ======================================================================
 
 ## Part 4 : Tutor Group Management Subsystem (Desmond Tan Zhe Xuan)
 
 ======================================================================
+
+- Put all the screenshot here
+- Remove all these bullet point after done screenshot
