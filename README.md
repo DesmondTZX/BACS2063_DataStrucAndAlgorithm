@@ -88,7 +88,7 @@ Figure 2.17 List the tutorial all tutorial group under a programme
 
 ## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie)
 
-![](*/img(wj)/1.png)
+![](img(wj)/1.png)
 
 Figure 1 Tutorial Group Management Subsystem Menu
 
