@@ -11,3 +11,15 @@ Figure 2 Add Student to Tutorial Group (To let the user select any group to add 
 ![](img(wj)/3.png)
 
 Figure 3 Add Student to Tutorial Group (Show the name list and let the user to add the student details.)
+
+![](img(wj)/20.png)
+
+Figure 4 Add Student to Tutorial Group (Show it added “successfully” in group that selected)
+
+![](img(wj)/5.png)
+
+Figure 5 Add Student to Tutorial Group (Added Successfully (Megan Loo))
+
+![](img(wj)/21.png)
+
+Figure 5 Add Student to Tutorial Group (If the user input is wrong, then it will show invalid message.)
