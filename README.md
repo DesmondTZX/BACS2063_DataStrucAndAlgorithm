@@ -1,19 +1,13 @@
 # BACS2063 Data Structures and Algorithms
 
-======================================================================
-
 ## Part 1 : Main Menu
 
-======================================================================
 ![](img/Image00.png)
 
 Figure 1 Main Menu
 
-======================================================================
-
 ## Part 2 : Programme Management Subsystem (Wong Fu Lim)
 
-======================================================================
 ![](img/Image01.png)
 
 Figure 2.1 Programme Management Subsystem Menu
@@ -82,20 +76,12 @@ Figure 2.16 Remove a tutorial group from a programme
 
 Figure 2.17 List the tutorial all tutorial group under a programme
 
-======================================================================
-
 ## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie)
-
-======================================================================
 
 - Put all the screenshot here
 - Remove all these bullet point after done screenshot
 
-======================================================================
-
 ## Part 4 : Tutor Group Management Subsystem (Desmond Tan Zhe Xuan)
-
-======================================================================
 
 - Put all the screenshot here
 - Remove all these bullet point after done screenshot
