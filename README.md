@@ -88,9 +88,33 @@ Figure 2.17 List the tutorial all tutorial group under a programme
 
 ## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie)
 
-- Put all the screenshot here
-- Put all the image in the img folder
-- Remove all these bullet point after done screenshot
+![](img(wj)/1.png)
+
+Figure 1 Tutorial Group Management Subsystem Menu
+
+![](img(wj)/2.png)
+
+Figure 2 Add Student to Tutorial Group (To let the user select any group to add the student in the tutorial group.)
+
+![](img(wj)/3.png)
+
+Figure 3 Add Student to Tutorial Group (Show the name list and let the user to add the student details.)
+
+![](img(wj)/20.png)
+
+Figure 4 Add Student to Tutorial Group (Show it added “successfully” in group that selected)
+
+![](img(wj)/5.png)
+
+Figure 5 Add Student to Tutorial Group (Added Successfully (Megan Loo))
+
+![](img(wj)/21.png)
+
+Figure 5 Add Student to Tutorial Group (If the user input is wrong, then it will show invalid message.)
+
+
+*TO BE CONTUINUE ADDED.....*
+
 
 ## Part 4 : Tutor Group Management Subsystem (Desmond Tan Zhe Xuan)
 
