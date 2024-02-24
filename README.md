@@ -4,7 +4,7 @@
 
 Figure 1 Programme Management Subsystem Menu
 
-![](img/Image0png)
+![](img/Image02png)
 
 Figure 2 Display All programmes when the programme is empty (All other choices will also get the error message when programme or tutorials groups are empty )
 
