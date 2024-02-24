@@ -18,73 +18,26 @@ Figure 1 Main Menu
 
 ## Part 2 : Programme Management Subsystem (Wong Fu Lim)
 
-![](img/Image01.png)
+| Image | Description |
+|-------|-------------|
+| <img src="img/Image01.png" alt="Programme Management Subsystem Menu" width="1800"> | Programme Management Subsystem Menu |
+| <img src="img/Image02.png" alt="Display All programmes when the programme is empty" width="1800"> | Display All programmes when the programme is empty (All other choices will also get the error message when programme or tutorials groups are empty) |
+| <img src="img/Image03.png" alt="Generate Dummy Data" width="1800"> | Generate Dummy Data |
+| <img src="img/Image04.png" alt="Display all programmes" width="1800"> | Display all programmes |
+| <img src="img/Image05.png" alt="Add a new programme" width="1800"> | Add a new programme |
+| <img src="img/Image06.png" alt="Remove a programme" width="1800"> | Remove a programme |
+| <img src="img/Image07.png" alt="Update a programme" width="1800"> | Update a programme |
+| <img src="img/Image08.png" alt="Search a programme that with wrong code" width="1800"> | Search a programme that with wrong code |
+| <img src="img/Image09.png" alt="Search a programme with correct code" width="1800"> | Search a programme with correct code |
+| <img src="img/Image10.png" alt="Search a programme by name" width="1800"> | Search a programme by name |
+| <img src="img/Image11.png" alt="Display all tutorial groups" width="1800"> | Display all tutorial groups |
+| <img src="img/Image12.png" alt="Create new tutorial group" width="1800"> | Create new tutorial group |
+| <img src="img/Image13.png" alt="Add tutorial group to a programme" width="1800"> | Add tutorial group to a programme |
+| <img src="img/Image14.png" alt="List all tutorial group under a programme" width="1800"> | List all tutorial group under a programme |
+| <img src="img/Image15.png" alt="Generate programme report" width="1800"> | Generate programme report |
+| <img src="img/Image16.png" alt="Remove a tutorial group from a programme" width="1800"> | Remove a tutorial group from a programme |
+| <img src="img/Image17.png" alt="List the tutorial all tutorial group under a programme" width="1800"> | List the tutorial all tutorial group under a programme |
 
-Figure 2.1 Programme Management Subsystem Menu
-
-![](img/Image02.png)
-
-Figure 2.2 Display All programmes when the programme is empty (All other choices will also get the error message when programme or tutorials groups are empty )
-
-![](img/Image03.png)
-
-Figure 2.3 Generate Dummy Data
-
-![](img/Image04.png)
-
-Figure 2.4 Display all programmes
-
-![](img/Image05.png)
-
-Figure 2.5 Add a new programme
-
-![](img/Image06.png)
-
-Figure 2.6 Remove a programme
-
-![](img/Image07.png)
-
-Figure 2.7 Update a programme
-
-![](img/Image08.png)
-
-Figure 2.8 Search a programme that with wrong code
-
-![](img/Image09.png)
-
-Figure 2.9 Search a programme with correct code
-
-![](img/Image10.png)
-
-Figure 2.10 Search a programme by name
-
-![](img/Image11.png)
-
-Figure 2.11 Display all tutorial groups
-
-![](img/Image12.png)
-
-Figure 2.12 Create new tutorial group
-
-![](img/Image13.png)
-
-Figure 2.13 Add tutorial group to a programme
-
-![](img/Image14.png)
-
-Figure 2.14 List all tutorial group under a programme
-
-![](img/Image15.png)
-
-Figure 2.15 Generate programme report
-
-![](img/Image16.png)
-
-Figure 2.16 Remove a tutorial group from a programme
-
-![](img/Image17.png)
-
-Figure 2.17 List the tutorial all tutorial group under a programme
 
 ## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie)
 
