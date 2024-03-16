@@ -16,7 +16,7 @@
 
 Figure 1 Main Menu
 
-## Part 2 : Programme Management Subsystem (Wong Fu Lim)
+## Part 2 : Programme Management Subsystem (Wong Fu Lim) - HashMap | Double Hashing
 
 | Description | Image |
 |-------------|-------|
@@ -39,7 +39,7 @@ Figure 1 Main Menu
 | List the tutorial all tutorial group under a programme | <img src="img/Image17.png" alt="List the tutorial all tutorial group under a programme" width="1800"> |
 
 
-## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie)
+## Part 3 : Tutorial Group Management Subsystem (Dong Wei Jie) - Sorted Linked List
 
 
 
@@ -142,7 +142,7 @@ Figure 1 Main Menu
 | :- |
 
 
-## Part 4 : Tutor Group Management Subsystem (Desmond Tan Zhe Xuan)
+## Part 4 : Tutor Group Management Subsystem (Desmond Tan Zhe Xuan) - Sorted Linked List
 
 ![](img_des/Capture.png)
 
